@@ -871,7 +871,10 @@
     "stock_total": 461,
     "variantes": [],
     "imagenes": [
-      "imagenes/A-006.jpg"
+      "imagenes/a-006_1.png",
+      "imagenes/a-006_2.jpg",
+      "imagenes/a-006_3.png",
+      "imagenes/a-006_4.jpg"
     ],
     "descripcion": "Tapabarro Posterior Universal",
     "popular": false,
@@ -879,7 +882,7 @@
     "stock_actual": 461,
     "precio_venta": 28.0,
     "descripcion_detallada": "Tapabarro Posterior Universal",
-    "imagen": "A-006.jpg",
+    "imagen": "a-006_1.png",
     "es_popular": false,
     "variantes_raw": ""
   },
