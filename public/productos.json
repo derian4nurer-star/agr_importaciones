@@ -32,7 +32,10 @@
     "stock_total": 6,
     "variantes": [],
     "imagenes": [
-      "imagenes/mq122_1.png"
+      "imagenes/mq122_1.png",
+      "imagenes/mq122_2.jpeg",
+      "imagenes/mq_3.webp",
+      "imagenes/mq122_4.jpeg"
     ],
     "descripcion": "Base De Exploradora Para Barras Telescópicas",
     "popular": false,
