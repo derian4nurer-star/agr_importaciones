@@ -814,8 +814,24 @@
       return list.length > 0 ? list : [{ nombre: 'Estándar', stock: 0 }];
     }
 
+    function getProductTotalStock(product) {
+      if (!product) return 0;
+      const normVariants = getNormalizedVariants(product);
+      if (normVariants && normVariants.length > 0) {
+        const sumVariants = normVariants.reduce((sum, v) => sum + (v.stock || 0), 0);
+        if (sumVariants > 0) {
+          return sumVariants;
+        }
+      }
+      if (typeof product.stock_total === 'number') return product.stock_total;
+      if (typeof product.stock_actual === 'number') return product.stock_actual;
+      if (typeof product.stock === 'number') return product.stock;
+      return 0;
+    }
+
     function updateModalStockDisplay(variantObj, product) {
-      const stock = variantObj ? variantObj.stock : (typeof product.stock_total === 'number' ? product.stock_total : (product.stock_actual || 0));
+      const totalStock = getProductTotalStock(product);
+      const variantStock = variantObj ? variantObj.stock : totalStock;
       const variantName = variantObj ? variantObj.nombre : '';
       const stockLabel = document.getElementById('modal-stock-label');
       const stockBar = document.getElementById('modal-stock-bar');
@@ -824,27 +840,32 @@
 
       if (!stockLabel || !stockBar) return;
 
-      if (stock >= 21) {
-        stockLabel.textContent = 'Hay stock en almacén';
-        stockLabel.className = 'font-bold text-red-300';
-        stockBar.className = 'h-full bg-[#C8232B] rounded-full transition-all duration-500';
-        stockBar.style.width = '100%';
-      } else if (stock >= 1 && stock <= 20) {
-        const vText = (variantName && variantName !== 'Estándar' && variantName !== 'Único') ? variantName : 'Único';
-        stockLabel.textContent = `¡Solo quedan ${stock} unids en ${vText}!`;
-        stockLabel.className = 'font-bold text-[#C8232B] animate-pulse';
-        stockBar.className = 'h-full bg-[#C8232B] rounded-full transition-all duration-500';
-        stockBar.style.width = `${(stock / 20) * 100}%`;
-      } else {
+      if (variantStock <= 0) {
         const vText = (variantName && variantName !== 'Estándar' && variantName !== 'Único') ? ` en ${variantName}` : '';
-        stockLabel.textContent = `Agotado temporalmente${vText}`;
+        if (totalStock > 0) {
+          stockLabel.textContent = `Agotado${vText} (¡Quedan ${totalStock} unids en total!)`;
+        } else {
+          stockLabel.textContent = `Agotado temporalmente${vText}`;
+        }
         stockLabel.className = 'font-bold text-neutral-500';
         stockBar.className = 'h-full bg-neutral-800 rounded-full transition-all duration-500';
         stockBar.style.width = '0%';
+      } else if (totalStock >= 21) {
+        const vDetail = (variantName && variantName !== 'Estándar' && variantName !== 'Único') ? ` (${variantName}: ${variantStock} unids)` : '';
+        stockLabel.textContent = `Hay stock en almacén (${totalStock} unids)${vDetail}`;
+        stockLabel.className = 'font-bold text-red-300';
+        stockBar.className = 'h-full bg-[#C8232B] rounded-full transition-all duration-500';
+        stockBar.style.width = '100%';
+      } else {
+        const vDetail = (variantName && variantName !== 'Estándar' && variantName !== 'Único') ? ` (${variantName}: ${variantStock} unids)` : '';
+        stockLabel.textContent = `¡Solo quedan ${totalStock} unids!${vDetail}`;
+        stockLabel.className = 'font-bold text-[#C8232B] animate-pulse';
+        stockBar.className = 'h-full bg-[#C8232B] rounded-full transition-all duration-500';
+        stockBar.style.width = `${Math.min(100, Math.max(8, (totalStock / 20) * 100))}%`;
       }
 
       if (addBtn) {
-        if (stock === 0) {
+        if (variantStock === 0) {
           addBtn.disabled = true;
           addBtn.className = 'w-full py-3.5 bg-neutral-800 text-neutral-500 font-bold rounded-xl text-lg cursor-not-allowed flex items-center justify-center gap-2 shadow-none';
         } else {

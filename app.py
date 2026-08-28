@@ -4,6 +4,8 @@ import re
 import io
 import csv
 import sqlite3
+import subprocess
+import threading
 from datetime import datetime
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -16,6 +18,62 @@ DB_PATH = os.path.join(BASE_DIR, 'inventario.db')
 PUBLIC_DIR = os.path.join(BASE_DIR, 'public')
 IMAGES_DIR = os.path.join(PUBLIC_DIR, 'imagenes')
 JSON_CATALOG_PATH = os.path.join(PUBLIC_DIR, 'productos.json')
+
+def sincronizar_con_github():
+    """Ejecuta los comandos de Git en un hilo secundario sin congelar la interfaz ni retrasar las peticiones del usuario."""
+    def tarea():
+        try:
+            # 1. Asegurar que git rastree el JSON actualizado y todas las imágenes nuevas
+            subprocess.run(["git", "add", "public/productos.json", "public/imagenes/"], cwd=BASE_DIR, check=True)
+            
+            # 2. Verificar si hay cambios pendientes antes de commitear
+            status = subprocess.run(["git", "status", "--porcelain"], cwd=BASE_DIR, capture_output=True, text=True)
+            if status.stdout.strip():
+                subprocess.run(["git", "commit", "-m", "Auto-sync: inventario, catalogo e imagenes actualizadas"], cwd=BASE_DIR, check=True)
+                subprocess.run(["git", "push"], cwd=BASE_DIR, check=True)
+                print("🚀 Cambios sincronizados exitosamente con GitHub y Vercel.")
+            else:
+                print("ℹ️ No hay cambios pendientes para sincronizar con Git.")
+        except Exception as e:
+            print(f"⚠️ Error en la sincronización automática con Git: {e}")
+
+    threading.Thread(target=tarea, daemon=True).start()
+
+def normalizar_nombre_imagen(filename):
+    """
+    Normaliza el nombre de archivo de imagen asegurando que la extensión esté en minúsculas
+    y coincida exactamente con el archivo real en disco (public/imagenes/) para evitar discrepancias .JPG vs .jpg.
+    """
+    if not filename:
+        return ""
+    filename_str = str(filename).strip()
+    if not filename_str or filename_str.startswith('http://') or filename_str.startswith('https://') or filename_str.startswith('data:'):
+        return filename_str
+
+    clean_name = filename_str.replace('\\', '/')
+    prefix = ""
+    if clean_name.startswith('public/imagenes/'):
+        prefix = "imagenes/"
+        clean_name = clean_name[16:]
+    elif clean_name.startswith('imagenes/'):
+        prefix = "imagenes/"
+        clean_name = clean_name[9:]
+
+    base, ext = os.path.splitext(clean_name)
+    ext_lower = ext.lower()
+    normalized_file = f"{base}{ext_lower}"
+
+    if os.path.exists(IMAGES_DIR):
+        try:
+            files_on_disk = os.listdir(IMAGES_DIR)
+            for disk_file in files_on_disk:
+                if disk_file.lower() == normalized_file.lower():
+                    normalized_file = disk_file
+                    break
+        except Exception:
+            pass
+
+    return f"{prefix}{normalized_file}" if prefix else normalized_file
 
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
@@ -230,7 +288,7 @@ def exportar_productos_json():
         for r in rows:
             # Procesar lista de imágenes
             imgs_raw = []
-            main_img = (r['imagen'] or "").strip()
+            main_img = normalizar_nombre_imagen((r['imagen'] or "").strip())
             if main_img:
                 imgs_raw.append(main_img)
             
@@ -240,12 +298,12 @@ def exportar_productos_json():
                     parsed_extras = json.loads(extras_raw)
                     if isinstance(parsed_extras, list):
                         for img_item in parsed_extras:
-                            img_item = str(img_item).strip()
+                            img_item = normalizar_nombre_imagen(str(img_item).strip())
                             if img_item and img_item not in imgs_raw:
                                 imgs_raw.append(img_item)
                 except Exception:
                     for img_item in str(extras_raw).split(','):
-                        img_item = img_item.strip()
+                        img_item = normalizar_nombre_imagen(img_item.strip())
                         if img_item and img_item not in imgs_raw:
                             imgs_raw.append(img_item)
             
@@ -266,7 +324,11 @@ def exportar_productos_json():
 
             is_popular = bool(r['destacado_popular']) if ('destacado_popular' in r.keys() and r['destacado_popular'] is not None) else (bool(r['es_popular']) if r['es_popular'] is not None else False)
 
-            stock_total_val = int(r['stock_actual'])
+            stock_actual_db = int(r['stock_actual'])
+            if var_parsed and any(':' in part for part in str(var_str).split(',')):
+                stock_total_val = sum(v['stock'] for v in var_parsed)
+            else:
+                stock_total_val = stock_actual_db
 
             productos.append({
                 "sku": r['sku'],
@@ -293,6 +355,9 @@ def exportar_productos_json():
         
         with open(JSON_CATALOG_PATH, 'w', encoding='utf-8') as f:
             json.dump(productos, f, ensure_ascii=False, indent=2)
+        
+        # Disparar auto-sincronización con GitHub y Vercel en segundo plano
+        sincronizar_con_github()
         return True
     except Exception as e:
         print(f"Error al exportar productos.json: {e}")
@@ -493,7 +558,7 @@ def update_web_config(sku):
         conn.close()
         return jsonify({'error': f'El producto con SKU "{sku}" no existe'}), 404
         
-    imagen_principal = str(data.get('imagen', '') or data.get('imagen_principal', '')).strip()
+    imagen_principal = normalizar_nombre_imagen(str(data.get('imagen', '') or data.get('imagen_principal', '')).strip())
     
     raw_extras = data.get('imagenes_extra') if data.get('imagenes_extra') is not None else data.get('imagenes_galeria')
     if raw_extras is None:
@@ -563,7 +628,7 @@ def save_producto_config_web():
         conn.close()
         return jsonify({'error': f'El producto con SKU "{sku}" no existe'}), 404
 
-    imagen_principal = str(data.get('imagen_principal', '') or data.get('imagen', '')).strip()
+    imagen_principal = normalizar_nombre_imagen(str(data.get('imagen_principal', '') or data.get('imagen', '')).strip())
 
     raw_extras = data.get('imagenes_galeria') if data.get('imagenes_galeria') is not None else data.get('imagenes_extra')
     if raw_extras is None:
@@ -646,7 +711,7 @@ def add_producto():
         variantes_str = variantes_raw
         stock_actual = stock_actual_input
 
-    imagen = str(data.get('imagen', '')).strip()
+    imagen = normalizar_nombre_imagen(str(data.get('imagen', '')).strip())
     imagenes_extra = str(data.get('imagenes_extra', '')).strip()
     descripcion_detallada = str(data.get('descripcion_detallada', '')).strip()
     es_popular = 1 if data.get('es_popular') in [True, 1, '1', 'true', 'True'] else 0
@@ -699,7 +764,7 @@ def update_producto(sku):
         variantes_str = variantes_raw
         stock_actual = stock_actual_input
 
-    imagen = str(data.get('imagen', '')).strip()
+    imagen = normalizar_nombre_imagen(str(data.get('imagen', '')).strip())
     
     conn = get_db()
     cursor = conn.cursor()
@@ -1613,13 +1678,19 @@ def upload_imagen():
     if not filename:
         filename = f"img_{int(datetime.now().timestamp())}.jpg"
 
-    ext = os.path.splitext(filename)[1].lower()
+    base, ext = os.path.splitext(filename)
+    ext = ext.lower()
     allowed_exts = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg']
     if ext not in allowed_exts:
         return jsonify({'status': 'error', 'error': 'Formato de imagen no permitido (.jpg, .jpeg, .png, .webp)'}), 400
         
+    filename = f"{base}{ext}"
     save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     file.save(save_path)
+
+    # Disparar auto-sincronización con GitHub y Vercel en segundo plano
+    sincronizar_con_github()
+
     return jsonify({
         'status': 'success',
         'message': 'Imagen subida correctamente',
