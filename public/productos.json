@@ -869,12 +869,7 @@
     "categoria": "Accesorios",
     "precio": 28.0,
     "stock_total": 461,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 461
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/A-006.jpg"
     ],
@@ -886,7 +881,7 @@
     "descripcion_detallada": "Tapabarro Posterior Universal",
     "imagen": "A-006.jpg",
     "es_popular": false,
-    "variantes_raw": "Único:461"
+    "variantes_raw": ""
   },
   {
     "sku": "X-20",
