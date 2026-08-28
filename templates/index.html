@@ -1,0 +1,3063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGR Importaciones — Sistema de Gestión & Inventario</title>
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    body {
+      background-color: #F4F6F9;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #EBF0F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    .panel-card {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+    }
+    
+    /* Quitar flechas/spinners nativos de inputs numéricos */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+    input[type=number] {
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+  </style>
+</head>
+<body class="text-slate-900 min-h-screen font-sans antialiased">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Layout Principal -->
+  <div class="flex flex-col min-h-screen">
+    
+    <!-- 1. CABECERA SUPERIOR (NAVBAR OSCURA) -->
+    <header class="bg-[#0f172a] text-white sticky top-0 z-40 shadow-md">
+      <div class="max-w-[1500px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        
+        <!-- Izquierda: Marca & Título -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/30 text-amber-400 flex items-center justify-center">
+            <i data-lucide="box" class="w-4 h-4"></i>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-display font-extrabold text-sm tracking-wide uppercase text-white">AGR IMPORTACIONES</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 hidden sm:inline-block">Control de Inventario & Caja</span>
+          </div>
+        </div>
+
+        <!-- Derecha: Pestañas de Navegación -->
+        <nav class="flex items-center gap-1">
+          <button onclick="switchTab('ventas')" id="tab-btn-ventas" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-bold transition-all text-white bg-indigo-600 border-t-2 border-indigo-400 shadow">
+            <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+            <span>Ventas (Caja)</span>
+          </button>
+          <button onclick="switchTab('inventario')" id="tab-btn-inventario" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+            <i data-lucide="boxes" class="w-3.5 h-3.5"></i>
+            <span>Inventario</span>
+          </button>
+          <button onclick="switchTab('reportes')" id="tab-btn-reportes" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+            <i data-lucide="line-chart" class="w-3.5 h-3.5"></i>
+            <span>Reportes</span>
+          </button>
+          <button onclick="switchTab('web')" id="tab-btn-web" class="tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800">
+            <i data-lucide="palette" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span>Catálogo Web</span>
+          </button>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-[1500px] w-full mx-auto p-4 sm:p-6 space-y-6">
+
+      <!-- ========================================== -->
+      <!-- PESTAÑA 1: VENTAS (CAJA INTELIGENTE) -->
+      <!-- ========================================== -->
+      <div id="page-ventas" class="tab-page space-y-5">
+        
+        <!-- Header Controls Bar (Buscador + Toggle WhatsApp + Vaciar Carrito) -->
+        <div class="panel-card p-4 space-y-4">
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+            
+            <!-- Buscador Predictivo -->
+            <div class="relative flex-1">
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">BUSCAR Y AGREGAR REPUESTO AL CARRITO:</label>
+              <div class="relative">
+                <input type="text" id="sales-search-input" onkeyup="handleSalesSearch(event)" placeholder="Escribe SKU, Marca o Modelo (ej: SX20, Motul, Scoyco)..." 
+                  class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 pl-10 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 shadow-sm">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+              </div>
+              
+              <!-- Autocompletado Predictivo -->
+              <div id="sales-search-results" class="hidden absolute top-full left-0 right-0 mt-1 bg-white border border-slate-300 rounded-xl shadow-2xl z-30 max-h-72 overflow-y-auto divide-y divide-slate-100"></div>
+            </div>
+
+            <!-- Botones de Utilidad -->
+            <div class="flex items-center gap-2 pt-5 md:pt-0">
+              <!-- Botón Abrir / Cerrar WhatsApp Parser Box -->
+              <button type="button" onclick="toggleWhatsappModule()" class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 transition shadow-sm">
+                <i data-lucide="message-square" class="w-4 h-4 text-emerald-600"></i>
+                <span>Pegar Pedido de WhatsApp</span>
+              </button>
+
+              <!-- Botón Vaciar Carrito (Color Amarillo) -->
+              <button type="button" onclick="clearCart()" class="flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-bold text-xs bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 transition shadow-sm">
+                <i data-lucide="trash-2" class="w-4 h-4 text-amber-600"></i>
+                <span>Vaciar Carrito</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Módulo WhatsApp Parser (Sin texto de probar ejemplo) -->
+          <div id="whatsapp-module-container" class="hidden bg-gradient-to-r from-emerald-50/70 via-teal-50/40 to-slate-50 border border-emerald-200 rounded-xl p-4 space-y-3 transition-all duration-200">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 text-xs font-extrabold text-emerald-800 uppercase">
+                <div class="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                </div>
+                <span>Pegar Texto de WhatsApp para Carga Automática</span>
+              </div>
+
+              <button type="button" onclick="toggleWhatsappModule()" class="text-slate-400 hover:text-slate-700">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <textarea id="whatsapp-input" rows="2" placeholder="Pega aquí el mensaje enviado por tu cliente... Ejemplo: CODIGO_PEDIDO:[SX20:5,MQ-20:2] o '5 de SX20 y 2 de MQ-20'" 
+                class="flex-1 bg-white border border-emerald-300/80 rounded-xl p-3 text-xs font-mono text-slate-800 placeholder-slate-400 focus:outline-none focus:border-emerald-600 shadow-sm"></textarea>
+              <button type="button" onclick="parseWhatsappOrder()" class="px-6 py-3 rounded-xl font-extrabold text-xs bg-emerald-600 hover:bg-emerald-700 text-white shadow-md flex items-center justify-center gap-2 whitespace-nowrap transition transform active:scale-98">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <span>Cargar Pedido al Carrito</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Carrito de Venta & Sidebar de Pago (Grid Reorganizado) -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          
+          <!-- Tabla del Carrito (3 cols) -->
+          <div class="lg:col-span-3 panel-card overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-200/80 border-b border-slate-300 text-slate-700 uppercase font-bold tracking-wider">
+                  <tr>
+                    <th class="py-3 px-4">SKU</th>
+                    <th class="py-3 px-4">PRODUCTO / MARCA / VARIANTE</th>
+                    <th class="py-3 px-4 text-right">PRECIO U.</th>
+                    <th class="py-3 px-4 text-center">CANTIDAD</th>
+                    <th class="py-3 px-4 text-right">SUBTOTAL</th>
+                    <th class="py-3 px-4 text-center">EDITAR</th>
+                    <th class="py-3 px-4 text-center">ELIMINAR</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-table-body" class="divide-y divide-slate-100 bg-white">
+                  <!-- Cart Items cargados con JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div id="cart-empty-message" class="text-center py-16 text-slate-400 italic text-xs space-y-2">
+              <i data-lucide="shopping-cart" class="w-8 h-8 text-slate-300 mx-auto"></i>
+              <p>El carrito está vacío. Empieza a buscar un producto arriba o pega un pedido de WhatsApp.</p>
+            </div>
+          </div>
+
+          <!-- Panel Lateral de Resumen & Procesamiento de Venta (1 col) -->
+          <div class="space-y-6">
+            <div class="panel-card p-5 space-y-5 sticky top-20">
+              
+              <h2 class="font-display font-extrabold text-sm text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-3 flex items-center gap-2">
+                <i data-lucide="receipt" class="w-4 h-4 text-indigo-600"></i>
+                <span>RESUMEN DE VENTA</span>
+              </h2>
+
+              <!-- Campo CLIENTE -->
+              <div class="space-y-1">
+                <label class="text-[11px] font-bold uppercase text-slate-500">CLIENTE:</label>
+                <input type="text" id="customer-name" value="Cliente General" placeholder="Nombre del cliente..." 
+                  class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:bg-white focus:border-indigo-600">
+              </div>
+
+              <!-- Campo FECHA/HORA VENTA -->
+              <div class="space-y-1">
+                <label class="text-[11px] font-bold uppercase text-slate-500">FECHA/HORA VENTA:</label>
+                <div class="relative">
+                  <input type="text" id="sales-datetime" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono font-bold text-slate-700">
+                  <i data-lucide="calendar" class="w-4 h-4 text-slate-400 absolute right-3 top-2.5"></i>
+                </div>
+              </div>
+
+              <!-- Recuadro Destacado PRECIO A PAGAR -->
+              <div class="border-2 border-blue-400 rounded-xl p-5 text-center bg-blue-50/30 space-y-1">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-600 block">PRECIO A PAGAR:</span>
+                <span id="summary-total-amount" class="font-display font-extrabold text-3xl text-indigo-900 block">S/ 0.00</span>
+              </div>
+
+              <!-- Breakdown informativo -->
+              <div class="flex justify-between text-xs text-slate-500 pt-1">
+                <span>Variedad de Ítems: <strong id="summary-items-count" class="text-slate-800">0</strong></span>
+                <span>Unidades: <strong id="summary-total-qty" class="text-slate-800">0</strong></span>
+              </div>
+
+              <!-- Botón Pagar y Descontar Stock -->
+              <button onclick="processSale()" id="checkout-btn" disabled 
+                class="w-full py-3.5 rounded-xl font-display font-extrabold text-sm bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-md disabled:opacity-40 disabled:cursor-not-allowed transition transform active:scale-98 flex items-center justify-center gap-2">
+                <i data-lucide="banknote" class="w-4 h-4"></i>
+                <span>Pagar y Descontar Stock</span>
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PESTAÑA 2: INVENTARIO (TABLA COMPLETA) -->
+      <!-- ========================================== -->
+      <div id="page-inventario" class="tab-page hidden space-y-5">
+        
+        <!-- Barra Superior -->
+        <div class="panel-card p-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+          
+          <!-- Input de búsqueda en vivo + Ordenador -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-1">
+            <div class="relative flex-1 min-w-[240px]">
+              <input type="text" id="inventory-search" oninput="loadInventory()" placeholder="Filtrar por SKU, Marca, Categoría o Descripción..."
+                class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 pl-9 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-600 shadow-sm">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+            </div>
+
+            <!-- Selector de Ordenamiento (Igual a Imagen de Referencia) -->
+            <div class="relative min-w-[200px]">
+              <select id="inventory-sort" onchange="renderInventoryTable()" 
+                class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-indigo-600 shadow-sm cursor-pointer">
+                <option value="name_asc">Ordenar por Nombre (A-Z)</option>
+                <option value="stock_desc">Stock Actual (Mayor a Menor)</option>
+                <option value="stock_asc">Stock Actual (Menor a Mayor)</option>
+                <option value="margin_desc">Margen Real (Mayor a Menor)</option>
+                <option value="value_desc">Valor Inventario (Mayor a Menor)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Botón Unificado Desplegable: Acciones Excel -->
+          <div class="relative inline-block text-left" id="excel-actions-dropdown-container">
+            <button type="button" onclick="toggleExcelDropdown(event)" id="excel-dropdown-btn"
+              class="px-4 py-2 rounded-xl font-extrabold text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs flex items-center gap-2 transition cursor-pointer">
+              <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-700"></i>
+              <span>📊 Acciones Excel</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-emerald-700"></i>
+            </button>
+
+            <!-- Menú Flotante Desplegable -->
+            <div id="excel-dropdown-menu" class="hidden absolute right-0 mt-2 w-60 rounded-2xl bg-white border border-slate-200 shadow-xl z-50 overflow-hidden divide-y divide-slate-100 text-xs">
+              <div class="p-1 space-y-0.5">
+                <!-- Opción 1: Importar desde Excel -->
+                <button type="button" onclick="openImportModal(); closeExcelDropdown();" 
+                  class="w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center gap-2.5 cursor-pointer">
+                  <i data-lucide="file-input" class="w-4 h-4 text-emerald-600"></i>
+                  <div>
+                    <div class="font-extrabold text-slate-800">📥 Importar desde Excel</div>
+                    <div class="text-[10px] text-slate-400 font-normal">Cargar .xlsx o .csv masivo</div>
+                  </div>
+                </button>
+
+                <!-- Opción 2: Exportar a Excel -->
+                <a href="/api/exportar-excel" onclick="closeExcelDropdown()" 
+                  class="w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center gap-2.5 block cursor-pointer">
+                  <i data-lucide="file-output" class="w-4 h-4 text-emerald-600"></i>
+                  <div>
+                    <div class="font-extrabold text-slate-800">📤 Exportar a Excel (.xlsx)</div>
+                    <div class="text-[10px] text-slate-400 font-normal">Descarga nativa en celdas</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón + Nuevo Registro -->
+          <button type="button" onclick="openProductModal()" class="px-4 py-2 rounded-xl font-extrabold bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm flex items-center gap-1.5 transition">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>+ Nuevo Registro</span>
+          </button>
+
+        </div>
+
+        <!-- Tabla de Productos -->
+        <div class="panel-card overflow-hidden bg-[#FAFCFF]">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-[#E2E8F0] border-b border-slate-300 text-slate-700 uppercase font-bold tracking-wider">
+                <tr>
+                  <th class="py-3 px-4">SKU</th>
+                  <th class="py-3 px-4">PRODUCTO / DESCRIPCIÓN</th>
+                  <th class="py-3 px-3">MARCA</th>
+                  <th class="py-3 px-3">CATEGORÍA</th>
+                  <th class="py-3 px-3 text-center">PRECIO (S/)</th>
+                  <th class="py-3 px-3 text-center">STOCK</th>
+                  <th class="py-3 px-3 text-center">MÍNIMO</th>
+                  <th class="py-3 px-3 text-center">ESTADO</th>
+                  <th class="py-3 px-4 text-center">ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody id="inventory-table-body" class="divide-y divide-slate-200/80 bg-white">
+                <!-- Filas cargadas dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+
+          <div id="inventory-empty-state" class="hidden text-center py-12 text-slate-400 italic">
+            No se encontraron productos en el inventario.
+          </div>
+
+          <!-- Paginación de Inventario (50 productos por página) -->
+          <div id="inventory-pagination" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 text-xs mt-4">
+            <span id="inventory-pagination-counter" class="font-semibold text-slate-600">
+              Mostrando 0-0 de 0 productos
+            </span>
+            <div class="flex items-center gap-2">
+              <button type="button" id="inventory-prev-btn" onclick="changeInventoryPage(-1)" 
+                class="px-3.5 py-1.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                ❮ Anterior
+              </button>
+              <span id="inventory-page-info" class="font-extrabold text-slate-800 px-2">Página 1 de 1</span>
+              <button type="button" id="inventory-next-btn" onclick="changeInventoryPage(1)" 
+                class="px-3.5 py-1.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                Siguiente ❯
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PESTAÑA 3: REPORTES & TICKETS DE VENTAS -->
+      <!-- ========================================== -->
+      <div id="page-reportes" class="tab-page hidden space-y-6">
+        
+        <!-- 1. Barra de Filtros Superior (Filtro por Rango de Fechas & Buscador - Alineación Perfecta) -->
+        <div class="panel-card p-4">
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-end justify-between gap-4">
+            
+            <!-- Buscador + Rango de Fechas -->
+            <div class="flex flex-wrap items-end gap-3 flex-1">
+              
+              <!-- Buscador Textual -->
+              <div class="flex-1 min-w-[220px]">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">🔍 BUSCADOR (ID, CLIENTE, PRODUCTO):</label>
+                <input type="text" id="report-search-input" placeholder="Escribe para buscar..." onkeyup="if(event.key==='Enter') loadReports()"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:bg-white focus:border-indigo-600 shadow-xs">
+              </div>
+
+              <!-- Fecha Desde -->
+              <div class="w-36">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">DESDE:</label>
+                <input type="date" id="report-date-start"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-indigo-600 shadow-xs">
+              </div>
+
+              <!-- Fecha Hasta -->
+              <div class="w-36">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">HASTA:</label>
+                <input type="date" id="report-date-end"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 focus:outline-none focus:bg-white focus:border-indigo-600 shadow-xs">
+              </div>
+
+              <!-- Botón Filtrar -->
+              <div>
+                <button type="button" onclick="loadReports()" 
+                  class="px-5 py-2 rounded-xl font-extrabold text-xs bg-slate-900 hover:bg-slate-800 text-white shadow-sm flex items-center gap-1.5 transition">
+                  <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                  <span>Filtrar</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Botones de Acción sobre Venta Seleccionada (Perfectamente nivelados al mismo alto) -->
+            <div class="flex items-center gap-2">
+              
+              <!-- Botón Ver Comprobante -->
+              <button type="button" onclick="viewSelectedTicketReceipt()" 
+                class="px-4 py-2 rounded-xl font-bold text-xs bg-blue-600 hover:bg-blue-700 text-white shadow-sm flex items-center gap-1.5 transition">
+                <i data-lucide="receipt" class="w-4 h-4"></i>
+                <span>Ver Comprobante</span>
+              </button>
+
+              <!-- Botón Anular Venta (Rojo) -->
+              <button type="button" onclick="voidSelectedTicket()" 
+                class="px-4 py-2 rounded-xl font-bold text-xs bg-rose-600 hover:bg-rose-700 text-white shadow-sm flex items-center gap-1.5 transition">
+                <i data-lucide="x-circle" class="w-4 h-4"></i>
+                <span>Anular Venta</span>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Tarjetas de Resumen KPI (Recaudado Total, Ganancia Neta, Valor Costo y Valor Venta) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Recaudado Total (Verde) -->
+          <div class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-4 text-center space-y-1 shadow-sm">
+            <span class="text-[11px] font-extrabold text-emerald-800 uppercase tracking-wider block">RECAUDADO TOTAL</span>
+            <div id="kpi-recaudado-total" class="font-display font-black text-2xl text-emerald-700">S/ 0.00</div>
+          </div>
+
+          <!-- Ganancia Neta (Naranja / Ámbar) -->
+          <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 text-center space-y-1 shadow-sm">
+            <span class="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider block">GANANCIA NETA</span>
+            <div id="kpi-ganancia-neta" class="font-display font-black text-2xl text-amber-800">S/ 0.00</div>
+          </div>
+
+          <!-- Valor Inventario a Precio de Costo -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center space-y-1 shadow-sm">
+            <span class="text-[11px] font-extrabold text-slate-600 uppercase tracking-wider block">INVENTARIO (COSTO)</span>
+            <div id="kpi-valor-costo" class="font-display font-black text-2xl text-slate-800">S/ 0.00</div>
+          </div>
+
+          <!-- Valor Inventario a Precio de Venta -->
+          <div class="bg-indigo-50/80 border border-indigo-200 rounded-2xl p-4 text-center space-y-1 shadow-sm">
+            <span class="text-[11px] font-extrabold text-indigo-800 uppercase tracking-wider block">INVENTARIO (VENTA)</span>
+            <div id="kpi-valor-venta" class="font-display font-black text-2xl text-indigo-700">S/ 0.00</div>
+            <span id="kpi-ganancia-potencial-sub" class="text-[10px] font-bold text-indigo-500 block">Ganancia en Stock: S/ 0.00</span>
+          </div>
+
+        </div>
+
+        <!-- 3. Tabla "📜 TICKETS Y VENTAS REGISTRADAS" (Estilo Desglosable como en la Imagen) -->
+        <div class="panel-card p-5 space-y-4">
+          
+          <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <div class="flex items-center gap-2">
+              <h3 class="font-extrabold text-sm text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                <span>📜</span>
+                <span>TICKETS Y VENTAS REGISTRADAS</span>
+              </h3>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 uppercase tracking-wide border border-emerald-300">
+                ⚡ VISTA OPTIMIZADA
+              </span>
+              <button onclick="loadReports()" class="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-200/80 border-b border-slate-300 text-slate-700 uppercase font-bold tracking-wider">
+                <tr>
+                  <th class="py-3 px-3 text-center">SEL</th>
+                  <th class="py-3 px-4">FECHA Y HORA</th>
+                  <th class="py-3 px-4">CLIENTE</th>
+                  <th class="py-3 px-4">DETALLE DE PRODUCTOS</th>
+                  <th class="py-3 px-3 text-center">CANT</th>
+                  <th class="py-3 px-4 text-right">TOTAL</th>
+                  <th class="py-3 px-4 text-right">GANANCIA</th>
+                </tr>
+              </thead>
+              <tbody id="sales-history-table-body" class="divide-y divide-slate-100 bg-white">
+                <!-- Filas de tickets con desglose desplegable cargadas por JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div id="reports-empty-state" class="hidden text-center py-12 text-slate-400 italic">
+            No se registraron ventas en el periodo o búsqueda seleccionada.
+          </div>
+
+          <!-- Paginación de Ventas (20 ventas por página) -->
+          <div id="reports-pagination" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 text-xs mt-4">
+            <span id="reports-pagination-counter" class="font-semibold text-slate-600">
+              Mostrando 0-0 de 0 ventas
+            </span>
+            <div class="flex items-center gap-2">
+              <button type="button" id="reports-prev-btn" onclick="changeReportsPage(-1)" 
+                class="px-3.5 py-1.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                ❮ Anterior
+              </button>
+              <span id="reports-page-info" class="font-extrabold text-slate-800 px-2">Página 1 de 1</span>
+              <button type="button" id="reports-next-btn" onclick="changeReportsPage(1)" 
+                class="px-3.5 py-1.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                Siguiente ❯
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================== -->
+      <!-- PESTAÑA 4: GESTIÓN DE CATÁLOGO WEB -->
+      <!-- ========================================== -->
+      <div id="page-web" class="tab-page hidden space-y-5">
+        
+        <!-- Header Banner Pestaña Web -->
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 rounded-2xl p-5 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">Módulo Administrativo</span>
+              <span class="text-xs text-slate-400 font-mono">Personalización E-commerce</span>
+            </div>
+            <h2 class="font-display font-black text-lg tracking-tight text-white flex items-center gap-2">
+              <span>🎨 Gestión y Enriquecimiento del Catálogo Web</span>
+            </h2>
+            <p class="text-xs text-slate-300">Configura la galería de fotos, variantes interactivas, fichas técnicas y destaca productos en el catálogo público del cliente.</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="/catalogo" target="_blank" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-emerald-500 hover:bg-emerald-600 text-white shadow-md transition flex items-center gap-2">
+              <i data-lucide="globe" class="w-4 h-4"></i>
+              <span>Abrir Catálogo Público ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Barra de Búsqueda y Filtros Web -->
+        <div class="panel-card p-4 space-y-3">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            
+            <div class="relative flex-1">
+              <input type="text" id="web-catalog-search" oninput="renderWebCatalogCards()" placeholder="Buscar por SKU, Nombre o Marca para configurar..."
+                class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 pl-10 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <select id="web-catalog-category-filter" onchange="renderWebCatalogCards()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:border-indigo-600">
+                <option value="ALL">Todas las Categorías</option>
+              </select>
+              <select id="web-catalog-popular-filter" onchange="renderWebCatalogCards()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:border-indigo-600">
+                <option value="ALL">Todos los Estados</option>
+                <option value="POPULAR">🔥 Solo Más Populares</option>
+                <option value="HIDDEN">🚫 Solo Ocultos en Web</option>
+                <option value="VISIBLE">👁️ Solo Visibles en Web</option>
+                <option value="STANDARD">Estándar</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Cuadrícula de Productos para Configuración Web -->
+        <div id="web-catalog-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+          <!-- Renderizado dinámicamente con JS -->
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: INGRESO RÁPIDO DE MERCADERÍA -->
+  <!-- ========================================== -->
+  <div id="quick-stock-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200">
+      
+      <!-- Header del Modal -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+          <span class="text-base">📦</span>
+          <span>Ingreso Rápido de Mercadería</span>
+        </h3>
+        <button onclick="closeQuickStockModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Formulario / Cuerpo -->
+      <form onsubmit="submitQuickStockIncrease(event)" class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="quick-stock-sku" value="">
+
+        <!-- Banner Informativo del Producto -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-1.5">
+          <div class="flex items-center gap-1.5">
+            <span class="font-bold text-slate-900 text-sm">Producto:</span>
+            <span id="quick-stock-product-name" class="font-bold text-slate-800 text-sm uppercase">--</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-600">
+            <span class="font-semibold text-slate-700">Stock Total:</span>
+            <span id="quick-stock-current" class="font-bold text-slate-900">0 unidades</span>
+          </div>
+        </div>
+
+        <!-- Opción A: Si NO tiene variantes (o producto simple) -->
+        <div id="quick-stock-simple-container" class="space-y-2">
+          <label class="block font-extrabold text-[11px] text-slate-600 uppercase tracking-wider">
+            ¿CUÁNTAS UNIDADES NUEVAS INGRESAN AL ALMACÉN?*
+          </label>
+          <div class="relative">
+            <input type="number" id="quick-stock-qty" min="1" value="0"
+              class="w-full bg-white border-2 border-slate-900 rounded-xl px-4 py-3 text-right font-mono font-extrabold text-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 shadow-sm">
+          </div>
+        </div>
+
+        <!-- Opción B: Si TIENE variantes (ej. Tallas M, L, XL) -->
+        <div id="quick-stock-variants-container" class="space-y-3 hidden">
+          <label class="block font-extrabold text-[11px] text-slate-600 uppercase tracking-wider flex items-center justify-between">
+            <span>DESGLOSE DE INGRESO POR VARIANTE:*</span>
+            <span class="text-[10px] text-slate-400 font-normal">Ingresa el stock a ingresar</span>
+          </label>
+          <div id="quick-stock-variants-list" class="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+            <!-- Renderizado dinámico por variante -->
+          </div>
+        </div>
+
+        <!-- Botones de Acción (Cancelar + Confirmar) -->
+        <div class="pt-3 flex items-center justify-end gap-3 border-t border-slate-100">
+          <button type="button" onclick="closeQuickStockModal()" class="px-5 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl font-bold bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-700 transition flex items-center gap-1.5 shadow-xs">
+            <span>💻</span>
+            <span class="font-extrabold">Confirmar</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL POP-OVER: SELECCIÓN DE VARIANTE PARA CAJA -->
+  <!-- ========================================== -->
+  <div id="sales-variant-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200">
+      
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div>
+          <span id="sales-variant-modal-sku" class="font-mono font-bold text-xs px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 border border-indigo-200 inline-block mb-1">COD: -</span>
+          <h3 id="sales-variant-modal-title" class="font-display font-extrabold text-sm text-slate-800 leading-tight">
+            Selecciona variante
+          </h3>
+        </div>
+        <button type="button" onclick="closeSalesVariantModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-3">
+        <p class="text-xs font-semibold text-slate-600">Elige la talla o color para agregar al carrito de venta:</p>
+        <div id="sales-variant-modal-list" class="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto pt-1">
+          <!-- Renderizado dinámico de variantes -->
+        </div>
+      </div>
+
+      <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 text-right">
+        <button type="button" onclick="closeSalesVariantModal()" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+          Cancelar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: REGISTRAR / EDITAR PRODUCTO -->
+  <!-- ========================================== -->
+  <div id="product-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden max-h-[95vh] flex flex-col border border-slate-200">
+      
+      <!-- Encabezado Modal -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 id="modal-title" class="font-display font-extrabold text-base text-slate-800 flex items-center gap-2">
+          <span>📦 Registrar Nuevo Repuesto</span>
+        </h3>
+        <button onclick="closeProductModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Formulario 2 Columnas -->
+      <form id="product-form" onsubmit="saveProduct(event)" class="p-6 overflow-y-auto space-y-4 flex-1 text-xs">
+        <input type="hidden" id="modal-is-edit" value="false">
+        
+        <!-- Fila 1: SKU & CATEGORÍA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">SKU (CÓDIGO)*</label>
+            <input type="text" id="form-sku" required placeholder="Ej: SX20, 1060..." 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono font-bold text-slate-900 uppercase focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">CATEGORÍA</label>
+            <input type="text" id="form-categoria" placeholder="Ej: Cascos, Aceites, Luces..." 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <!-- Fila 2: MARCA & VARIANTES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">MARCA</label>
+            <input type="text" id="form-marca" placeholder="Ej: AGR, Scoyco, Kaifa..." 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">VARIANTES (Colores / Tallas)</label>
+            <input type="text" id="form-variantes" oninput="handleFormVariantesInput()" placeholder="Ej: Rojo, Azul (M, L, XL)..." 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <!-- Fila 3: MODELO / DESCRIPCIÓN DEL PRODUCTO -->
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">MODELO / DESCRIPCIÓN DEL PRODUCTO*</label>
+          <input type="text" id="form-descripcion" required placeholder="Ej: Faro LED Auxiliar Explorer 40W..." 
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+        </div>
+
+        <!-- Fila 4: COSTO COMPRA & PRECIO VENTA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">COSTO DE COMPRA (S/)*</label>
+            <input type="number" step="0.01" id="form-costo" required oninput="calculateMargins()" placeholder="0.00" 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono text-slate-900 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">PRECIO DE VENTA (S/)*</label>
+            <input type="number" step="0.01" id="form-precio" required oninput="calculateMargins()" placeholder="0.00" 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono font-bold text-slate-900 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <!-- Tarjetas de Cálculo Automático -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+          <!-- Recuadro 1: % MARKUP ESTIMADO -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-3.5 text-center bg-slate-50/70">
+            <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider block">% MARKUP ESTIMADO</span>
+            <span id="indicator-markup" class="font-display font-extrabold text-lg text-slate-800 block mt-0.5">0.0%</span>
+          </div>
+
+          <!-- Recuadro 2: MARGEN DE GANANCIA REAL -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-3.5 text-center bg-slate-50/70">
+            <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider block">MARGEN DE GANANCIA REAL</span>
+            <span id="indicator-margen" class="font-display font-extrabold text-lg text-slate-800 block mt-0.5">0.0%</span>
+            <span id="indicator-ganancia" class="hidden">S/ 0.00</span>
+          </div>
+        </div>
+
+        <!-- Fila 5: STOCK ACTUAL & STOCK MÍNIMO -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">STOCK ACTUAL*</label>
+            <input type="number" id="form-stock" required min="0" value="0" 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono font-bold text-slate-900 focus:outline-none focus:border-indigo-600">
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">STOCK MÍNIMO (ALERTA)*</label>
+            <input type="number" id="form-stock-min" required min="1" value="2" 
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono text-slate-900 focus:outline-none focus:border-indigo-600">
+          </div>
+        </div>
+
+        <!-- Fila 6: FOTO DEL PRODUCTO -->
+        <div>
+          <label class="block font-bold text-slate-700 uppercase mb-1">FOTO DEL PRODUCTO</label>
+          <div class="flex gap-2">
+            <input type="text" id="form-imagen" placeholder="Ej: SX20.jpg o sube un archivo" 
+              class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none focus:border-indigo-600">
+            <label class="cursor-pointer px-3.5 py-2 bg-slate-100 border border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-200 transition flex items-center gap-1">
+              <i data-lucide="upload" class="w-3.5 h-3.5"></i> Subir
+              <input type="file" id="file-upload-input" onchange="uploadImageFile(event)" accept="image/*" class="hidden">
+            </label>
+          </div>
+        </div>
+
+        <!-- Botones del Pie del Modal -->
+        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeProductModal()" class="px-6 py-2.5 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 border border-slate-300 text-slate-800 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl font-bold bg-emerald-50 hover:bg-emerald-100 border border-emerald-500 text-emerald-700 transition flex items-center gap-1.5">
+            <span>💾 Guardar Producto</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: IMPORTAR PRODUCTOS DESDE EXCEL / CSV -->
+  <!-- ========================================== -->
+  <div id="import-excel-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 p-6 space-y-5">
+      
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2 font-display font-extrabold text-sm text-slate-900">
+          <i data-lucide="file-input" class="w-5 h-5 text-emerald-600"></i>
+          <span>📥 Importar Productos desde Excel</span>
+        </div>
+        <button type="button" onclick="closeImportModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Selecciona un archivo <strong>.xlsx</strong> o <strong>.csv</strong>. Si el código SKU ya existe en el sistema, sus datos y stock se actualizarán automáticamente. Si es nuevo, se registrará como nuevo producto.
+      </p>
+
+      <!-- Dropzone / File Picker -->
+      <div class="border-2 border-dashed border-emerald-300 hover:border-emerald-500 rounded-2xl p-6 text-center bg-emerald-50/50 transition cursor-pointer" onclick="document.getElementById('import-file-input').click()">
+        <input type="file" id="import-file-input" accept=".xlsx,.csv" class="hidden" onchange="handleFileSelect(this)">
+        <i data-lucide="upload-cloud" class="w-10 h-10 text-emerald-600 mx-auto mb-2"></i>
+        <span id="selected-file-name" class="block font-bold text-xs text-slate-800">Haz clic aquí para elegir un archivo (.xlsx o .csv)</span>
+        <span class="text-[10px] text-slate-400 block mt-1">Formato compatible: Excel (.xlsx) y CSV con comas o punto y coma</span>
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button type="button" onclick="closeImportModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">
+          Cancelar
+        </button>
+        <button type="button" onclick="uploadImportFile()" id="submit-import-btn" disabled
+          class="px-5 py-2 rounded-xl text-xs font-extrabold text-white bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm transition flex items-center gap-2 font-display">
+          <i data-lucide="upload" class="w-4 h-4"></i>
+          <span>Procesar e Importar</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: PERSONALIZACIÓN Y CONFIGURACIÓN WEB DEL PRODUCTO -->
+  <div id="web-config-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Header (1. Encabezado) -->
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white">
+        <div>
+          <span class="text-[10px] font-extrabold tracking-widest text-amber-400 uppercase block">🎨 Configurar Ficha Web</span>
+          <h3 class="font-display font-black text-base flex items-center gap-2 text-white">
+            <span id="web-modal-product-title">Nombre del Producto</span>
+          </h3>
+        </div>
+        <button type="button" onclick="closeWebConfigModal()" class="text-slate-400 hover:text-white transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveWebConfig(event)" class="p-6 overflow-y-auto space-y-5 text-xs flex-1">
+        <input type="hidden" id="web-modal-sku-input" value="">
+
+        <!-- Banner Producto / Referencia Bloqueada (SKU, Marca, Categoría, Precio) -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex items-center justify-between">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span id="web-modal-sku-badge" class="font-mono font-bold text-xs px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800 border border-indigo-200">SKU</span>
+              <span id="web-modal-brand-badge" class="font-extrabold text-xs text-slate-700">Marca</span>
+            </div>
+            <span id="web-modal-category-text" class="text-[11px] text-slate-500 font-semibold block">Categoría</span>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-bold text-slate-400 uppercase block">Precio Público</span>
+            <span id="web-modal-price" class="font-mono font-black text-base text-emerald-600 block">S/ 0.00</span>
+          </div>
+        </div>
+
+        <!-- 2. GALERÍA DE 4 IMÁGENES CON PREVIEWS -->
+        <div class="space-y-3 bg-slate-50/70 border border-slate-200 p-4 rounded-2xl">
+          <label class="block font-extrabold text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+            <i data-lucide="image" class="w-4 h-4 text-indigo-600"></i>
+            <span>Galería de 4 Imágenes (Con Vista Previa)</span>
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            
+            <!-- Foto 1 (Principal) -->
+            <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3">
+              <div onclick="triggerGalleryFileInput(1)" title="Haz clic para subir foto"
+                class="w-14 h-14 rounded-lg bg-slate-100 border-2 border-dashed border-slate-300 hover:border-indigo-500 transition-all relative group cursor-pointer overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+                <img id="web-preview-img1" src="" onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover hidden">
+                <div class="flex flex-col items-center justify-center text-slate-400 group-hover:text-indigo-600 transition">
+                  <i data-lucide="camera" class="w-5 h-5"></i>
+                  <span class="text-[9px] font-bold mt-0.5">Subir</span>
+                </div>
+                <div class="absolute inset-0 bg-indigo-950/75 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-0.5">
+                  <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                  <span>Cambiar</span>
+                </div>
+                <input type="file" id="web-file-input-1" accept="image/*" class="hidden" onchange="uploadWebGalleryImage(event, 1)">
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-0.5">
+                  <label class="block font-bold text-indigo-950 text-[10px] uppercase">Foto Principal *</label>
+                  <span class="text-[9px] font-semibold text-indigo-600 hover:underline cursor-pointer" onclick="triggerGalleryFileInput(1)">📷 Buscar archivo</span>
+                </div>
+                <input type="text" id="web-form-img1" oninput="updateImagePreviews()" placeholder="1060.jpg o URL" required
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600">
+              </div>
+            </div>
+
+            <!-- Foto 2 (Secundaria) -->
+            <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3">
+              <div onclick="triggerGalleryFileInput(2)" title="Haz clic para subir foto"
+                class="w-14 h-14 rounded-lg bg-slate-100 border-2 border-dashed border-slate-300 hover:border-indigo-500 transition-all relative group cursor-pointer overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+                <img id="web-preview-img2" src="" onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover hidden">
+                <div class="flex flex-col items-center justify-center text-slate-400 group-hover:text-indigo-600 transition">
+                  <i data-lucide="camera" class="w-5 h-5"></i>
+                  <span class="text-[9px] font-bold mt-0.5">Subir</span>
+                </div>
+                <div class="absolute inset-0 bg-indigo-950/75 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-0.5">
+                  <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                  <span>Cambiar</span>
+                </div>
+                <input type="file" id="web-file-input-2" accept="image/*" class="hidden" onchange="uploadWebGalleryImage(event, 2)">
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-0.5">
+                  <label class="block font-bold text-slate-700 text-[10px] uppercase">Foto Secundaria 2</label>
+                  <span class="text-[9px] font-semibold text-indigo-600 hover:underline cursor-pointer" onclick="triggerGalleryFileInput(2)">📷 Buscar archivo</span>
+                </div>
+                <input type="text" id="web-form-img2" oninput="updateImagePreviews()" placeholder="1060_lateral.jpg"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600">
+              </div>
+            </div>
+
+            <!-- Foto 3 (Secundaria) -->
+            <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3">
+              <div onclick="triggerGalleryFileInput(3)" title="Haz clic para subir foto"
+                class="w-14 h-14 rounded-lg bg-slate-100 border-2 border-dashed border-slate-300 hover:border-indigo-500 transition-all relative group cursor-pointer overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+                <img id="web-preview-img3" src="" onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover hidden">
+                <div class="flex flex-col items-center justify-center text-slate-400 group-hover:text-indigo-600 transition">
+                  <i data-lucide="camera" class="w-5 h-5"></i>
+                  <span class="text-[9px] font-bold mt-0.5">Subir</span>
+                </div>
+                <div class="absolute inset-0 bg-indigo-950/75 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-0.5">
+                  <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                  <span>Cambiar</span>
+                </div>
+                <input type="file" id="web-file-input-3" accept="image/*" class="hidden" onchange="uploadWebGalleryImage(event, 3)">
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-0.5">
+                  <label class="block font-bold text-slate-700 text-[10px] uppercase">Foto Secundaria 3</label>
+                  <span class="text-[9px] font-semibold text-indigo-600 hover:underline cursor-pointer" onclick="triggerGalleryFileInput(3)">📷 Buscar archivo</span>
+                </div>
+                <input type="text" id="web-form-img3" oninput="updateImagePreviews()" placeholder="1060_visor.jpg"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600">
+              </div>
+            </div>
+
+            <!-- Foto 4 (Secundaria) -->
+            <div class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-3">
+              <div onclick="triggerGalleryFileInput(4)" title="Haz clic para subir foto"
+                class="w-14 h-14 rounded-lg bg-slate-100 border-2 border-dashed border-slate-300 hover:border-indigo-500 transition-all relative group cursor-pointer overflow-hidden flex items-center justify-center flex-shrink-0 shadow-xs">
+                <img id="web-preview-img4" src="" onerror="this.classList.add('hidden'); if (this.nextElementSibling) this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover hidden">
+                <div class="flex flex-col items-center justify-center text-slate-400 group-hover:text-indigo-600 transition">
+                  <i data-lucide="camera" class="w-5 h-5"></i>
+                  <span class="text-[9px] font-bold mt-0.5">Subir</span>
+                </div>
+                <div class="absolute inset-0 bg-indigo-950/75 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-[9px] font-bold gap-0.5">
+                  <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                  <span>Cambiar</span>
+                </div>
+                <input type="file" id="web-file-input-4" accept="image/*" class="hidden" onchange="uploadWebGalleryImage(event, 4)">
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between mb-0.5">
+                  <label class="block font-bold text-slate-700 text-[10px] uppercase">Foto Secundaria 4</label>
+                  <span class="text-[9px] font-semibold text-indigo-600 hover:underline cursor-pointer" onclick="triggerGalleryFileInput(4)">📷 Buscar archivo</span>
+                </div>
+                <input type="text" id="web-form-img4" oninput="updateImagePreviews()" placeholder="1060_interior.jpg"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 focus:outline-none focus:border-indigo-600">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. SELECTOR DE VARIANTES / OPCIONES CON ETIQUETAS INTERACTIVAS (TAGS) -->
+        <div class="space-y-2.5 bg-slate-50/70 border border-slate-200 p-4 rounded-2xl">
+          <label class="block font-extrabold text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+            <i data-lucide="tags" class="w-4 h-4 text-indigo-600"></i>
+            <span>Selector de Variantes (Separadas por comas)</span>
+          </label>
+          <input type="text" id="web-form-variantes" oninput="renderVariantChipsFromInput()" placeholder="Ej: Negro, Rojo, Azul o Talla M, Talla L, Talla XL" 
+            class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-900 focus:outline-none focus:border-indigo-600 shadow-xs">
+          
+          <!-- Vista Previa de Chips Interáctivos -->
+          <div class="space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase block">Etiquetas que verá el cliente:</span>
+            <div id="web-variant-chips-preview" class="flex items-center gap-1.5 flex-wrap pt-0.5 min-h-[32px]">
+              <span class="text-[11px] text-slate-400 italic">Escribe opciones arriba para previsualizar botones...</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 flex-wrap pt-1 border-t border-slate-200/80">
+            <span class="text-[10px] text-slate-500 font-semibold">Cargar opciones rápidas:</span>
+            <button type="button" onclick="appendVariantPreset('Negro, Rojo, Azul')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-[10px] font-bold text-slate-700 transition">+ Colores Básicos</button>
+            <button type="button" onclick="appendVariantPreset('Talla M, Talla L, Talla XL')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-[10px] font-bold text-slate-700 transition">+ Tallas M/L/XL</button>
+            <button type="button" onclick="appendVariantPreset('1 Litro')" class="px-2.5 py-1 rounded-lg bg-white border border-slate-300 hover:bg-slate-100 text-[10px] font-bold text-slate-700 transition">+ 1 Litro</button>
+          </div>
+        </div>
+
+        <!-- 4. DESCRIPCIÓN DETALLADA -->
+        <div class="space-y-1.5">
+          <label class="block font-extrabold text-slate-800 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-4 h-4 text-indigo-600"></i>
+            <span>Descripción Detallada y Ficha Técnica</span>
+          </label>
+          <textarea id="web-form-descripcion-larga" rows="3" 
+            placeholder="Detalla aquí las características del producto, materiales, si cuenta con certificaciones (DOT), compatibilidad con modelos de moto..."
+            class="w-full bg-slate-50 border border-slate-300 rounded-2xl p-3.5 text-xs text-slate-800 focus:outline-none focus:border-indigo-600 shadow-xs leading-relaxed"></textarea>
+        </div>
+
+        <!-- 5. INTERRUPTOR DE DESTACADO Y VISIBILIDAD WEB -->
+        <div class="space-y-3">
+          <!-- Destacar Popular -->
+          <div class="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-4 flex items-center justify-between">
+            <label class="flex items-center gap-3 font-extrabold text-xs text-amber-950 cursor-pointer">
+              <input type="checkbox" id="web-form-destacado-popular" class="w-4.5 h-4.5 accent-amber-600 rounded cursor-pointer">
+              <span>[✓] Destacar en la sección 'Más Populares / Más Vendidos'</span>
+            </label>
+            <span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-200">Sección Superior</span>
+          </div>
+
+          <!-- Ocultar de la Web -->
+          <div class="bg-rose-50/80 border border-rose-200/90 rounded-2xl p-4 flex items-center justify-between">
+            <label class="flex items-center gap-3 font-extrabold text-xs text-rose-950 cursor-pointer">
+              <input type="checkbox" id="web-form-ocultar-web" class="w-4.5 h-4.5 accent-rose-600 rounded cursor-pointer">
+              <span>[✓] Ocultar este producto en la página web pública</span>
+            </label>
+            <span class="text-[10px] font-bold text-rose-800 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-200">Visibilidad Web</span>
+          </div>
+        </div>
+
+        <!-- 6. BOTÓN DE GUARDADO -->
+        <div class="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeWebConfigModal()" class="px-5 py-2.5 rounded-xl font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl font-extrabold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition flex items-center gap-2 font-display">
+            <i data-lucide="save" class="w-4 h-4"></i>
+            <span>💾 Guardar Cambios Web</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: EDITAR ÍTEM EN CARRITO (PRECIO Y CANTIDAD) -->
+  <div id="edit-cart-item-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-blue-50/60">
+        <h3 class="font-bold text-sm text-blue-900 flex items-center gap-2">
+          <i data-lucide="edit-3" class="w-4 h-4 text-blue-600"></i>
+          <span>Editar Ítem en Carrito</span>
+        </h3>
+        <button onclick="closeEditCartItemModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveCartItemEdit(event)" class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="edit-modal-sku" value="">
+
+        <!-- Banner Producto -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+          <div class="flex items-center justify-between">
+            <span id="edit-modal-sku-badge" class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-blue-100 text-blue-800">SKU</span>
+            <span id="edit-modal-stock-badge" class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Stock: 0</span>
+          </div>
+          <p id="edit-modal-description" class="font-bold text-slate-800 text-xs mt-1">Descripción del repuesto</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Input PRECIO UNITARIO -->
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">PRECIO UNITARIO (S/)*</label>
+            <input type="number" step="0.01" min="0" id="edit-modal-price" required
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono font-bold text-slate-900 focus:outline-none focus:bg-white focus:border-indigo-600">
+          </div>
+
+          <!-- Input CANTIDAD -->
+          <div>
+            <label class="block font-bold text-slate-700 uppercase mb-1">CANTIDAD*</label>
+            <input type="number" min="1" id="edit-modal-qty" required
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-mono font-bold text-slate-900 focus:outline-none focus:bg-white focus:border-indigo-600">
+          </div>
+        </div>
+
+        <div id="edit-modal-error" class="hidden text-rose-600 text-[11px] font-bold"></div>
+
+        <div class="pt-2 flex items-center justify-end gap-3 border-t border-slate-200">
+          <button type="button" onclick="closeEditCartItemModal()" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 border border-slate-300 text-slate-800 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl font-bold bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm flex items-center gap-1.5">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Guardar Cambios</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRMAR PROCESAR VENTA (ESTILO BOLETA COMPROBANTE) -->
+  <div id="confirm-sale-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+          <i data-lucide="receipt" class="w-4.5 h-4.5 text-indigo-600"></i>
+          <span>Confirmar Venta y Descontar Stock</span>
+        </h3>
+        <button onclick="closeConfirmSaleModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 font-mono text-xs">
+        <div class="text-center border-b border-dashed border-slate-300 pb-3 space-y-1">
+          <p class="font-bold text-sm text-slate-900 uppercase">AGR IMPORTACIONES</p>
+          <p class="text-slate-500 text-[11px]">Venta de Repuestos y Accesorios</p>
+          <p id="confirm-receipt-date" class="text-slate-500 text-[11px]">Fecha: --</p>
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+            Pendiente de Confirmación
+          </span>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block">Cliente:</span>
+          <span id="confirm-receipt-client" class="font-bold text-slate-900 text-sm">--</span>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-slate-500 block font-bold">Detalle de Productos:</span>
+          <div id="confirm-receipt-items-list" class="space-y-1.5 border-t border-b border-slate-200 py-2 max-h-48 overflow-y-auto"></div>
+        </div>
+
+        <div class="flex justify-between items-baseline text-sm pt-1">
+          <span class="font-bold text-slate-900">TOTAL A PAGAR:</span>
+          <span id="confirm-receipt-total" class="font-bold text-indigo-700 text-base">S/ 0.00</span>
+        </div>
+      </div>
+
+      <div class="px-6 py-3.5 bg-slate-50 flex items-center justify-end gap-3 border-t border-slate-200">
+        <button onclick="closeConfirmSaleModal()" class="px-5 py-2.5 rounded-xl font-bold bg-slate-200 hover:bg-slate-300 border border-slate-300 text-slate-800 transition">
+          Cancelar
+        </button>
+        <button onclick="executeSaleProcess()" class="px-6 py-2.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-700 text-white transition shadow-md flex items-center gap-1.5">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>Aceptar y Registrar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: RECIBO DE COMPROBANTE DE VENTA -->
+  <div id="sale-detail-modal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200">
+      <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <h3 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+          <span>Comprobante de Venta</span>
+        </h3>
+        <button onclick="closeSaleModal()" class="text-slate-400 hover:text-slate-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 font-mono text-xs">
+        <div class="text-center border-b border-dashed border-slate-300 pb-3 space-y-1">
+          <p class="font-bold text-sm text-slate-900 uppercase">AGR IMPORTACIONES</p>
+          <p class="text-slate-500">Venta de Repuestos y Accesorios</p>
+          <p id="receipt-date" class="text-slate-500">Fecha: --</p>
+          <p id="receipt-id" class="text-indigo-600 font-bold">Venta #--</p>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block">Cliente:</span>
+          <span id="receipt-client" class="font-bold text-slate-900 text-sm">--</span>
+        </div>
+
+        <div class="space-y-2">
+          <span class="text-slate-500 block font-bold">Detalle de Productos:</span>
+          <div id="receipt-items-list" class="space-y-1.5 border-t border-b border-slate-200 py-2 max-h-48 overflow-y-auto"></div>
+        </div>
+
+        <div class="flex justify-between items-baseline text-sm pt-1">
+          <span class="font-bold text-slate-900">TOTAL PAGADO:</span>
+          <span id="receipt-total" class="font-bold text-indigo-700 text-base">S/ 0.00</span>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-slate-50 flex justify-end border-t border-slate-200">
+        <button onclick="closeSaleModal()" class="px-5 py-2 bg-indigo-600 text-white font-bold rounded-xl text-xs hover:bg-indigo-700">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript Application Logic (100% Funcional y Conectado) -->
+  <script>
+    // Estado Global
+    let productsList = [];
+    let cart = [];
+    let currentInventoryPage = 1;
+    const INVENTORY_PER_PAGE = 50;
+    let currentReportsPage = 1;
+    const REPORTS_PER_PAGE = 20;
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadInventory();
+      loadReports();
+      updateLiveDateTime();
+      setInterval(updateLiveDateTime, 1000);
+    });
+
+    function formatMoney(amount) {
+      const num = typeof amount === 'number' ? amount : parseFloat(amount || 0);
+      if (isNaN(num)) return '0.00';
+      return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function updateLiveDateTime() {
+      const now = new Date();
+      const formatted = now.getDate().toString().padStart(2, '0') + '/' +
+                        (now.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                        now.getFullYear() + ' ' +
+                        now.getHours().toString().padStart(2, '0') + ':' +
+                        now.getMinutes().toString().padStart(2, '0');
+      const dtInput = document.getElementById('sales-datetime');
+      if (dtInput) dtInput.value = formatted;
+    }
+
+    // Toggle WhatsApp Module Box
+    function toggleWhatsappModule() {
+      const box = document.getElementById('whatsapp-module-container');
+      if (box.classList.contains('hidden')) {
+        box.classList.remove('hidden');
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    // Cambio de Pestañas
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`page-${tabName}`).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = 'tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-800';
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      if (activeBtn) {
+        activeBtn.className = 'tab-btn flex items-center gap-2 px-4 py-2 rounded-t-lg text-xs font-bold transition-all text-white bg-indigo-600 border-t-2 border-indigo-400 shadow';
+      }
+
+      if (tabName === 'inventario') loadInventory();
+      if (tabName === 'reportes') loadReports();
+      if (tabName === 'web') loadWebCatalogPage();
+    }
+
+    // Renderizar tarjetas en la pestaña "Catálogo Web"
+    async function loadWebCatalogPage() {
+      try {
+        const res = await fetch('/api/productos');
+        if (!res.ok) throw new Error('Error al cargar productos');
+        productsList = await res.json();
+        
+        // Cargar opciones de filtro de categoría
+        const catSelect = document.getElementById('web-catalog-category-filter');
+        if (catSelect) {
+          const currentCat = catSelect.value;
+          const categories = ['ALL', ...new Set(productsList.map(p => p.categoria))];
+          catSelect.innerHTML = categories.map(c => `
+            <option value="${c}">${c === 'ALL' ? 'Todas las Categorías' : c}</option>
+          `).join('');
+          catSelect.value = currentCat || 'ALL';
+        }
+
+        renderWebCatalogCards();
+      } catch (err) {
+        showToast('Error al cargar la pestaña de Catálogo Web', 'error');
+      }
+    }
+
+    function getImageUrl(img) {
+      if (!img) return '';
+      let str = String(img).trim();
+      if (str.startsWith('http://') || str.startsWith('https://') || str.startsWith('data:')) {
+        return str;
+      }
+      str = str.replace(/^\.\//, '');
+      str = str.replace(/^public\//, '').replace(/^\/public\//, '');
+      str = str.replace(/^\/?imagenes\//, '');
+      return `/imagenes/${str}`;
+    }
+
+    function renderWebCatalogCards() {
+      const grid = document.getElementById('web-catalog-products-grid');
+      if (!grid) return;
+
+      const search = (document.getElementById('web-catalog-search')?.value || '').trim().toLowerCase();
+      const catFilter = document.getElementById('web-catalog-category-filter')?.value || 'ALL';
+      const popFilter = document.getElementById('web-catalog-popular-filter')?.value || 'ALL';
+
+      const filtered = productsList.filter(p => {
+        const matchesSearch = !search || p.sku.toLowerCase().includes(search) || p.descripcion.toLowerCase().includes(search) || p.marca.toLowerCase().includes(search);
+        const matchesCat = catFilter === 'ALL' || p.categoria === catFilter;
+        let matchesPop = true;
+        if (popFilter === 'POPULAR') matchesPop = Boolean(p.destacado_popular || p.es_popular);
+        else if (popFilter === 'HIDDEN') matchesPop = Boolean(p.ocultar_web);
+        else if (popFilter === 'VISIBLE') matchesPop = !p.ocultar_web;
+        else if (popFilter === 'STANDARD') matchesPop = !(p.destacado_popular || p.es_popular);
+        return matchesSearch && matchesCat && matchesPop;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 p-6 text-slate-400 italic">
+            No se encontraron productos para los filtros seleccionados.
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const isPopular = Boolean(p.destacado_popular || p.es_popular);
+        const isHidden = Boolean(p.ocultar_web);
+        const imagePath = p.imagen ? getImageUrl(p.imagen) : '';
+
+        // Calcular total de fotos
+        let extraImgs = [];
+        const galRaw = p.imagenes_galeria || p.imagenes_extra || '';
+        if (galRaw) {
+          try {
+            extraImgs = JSON.parse(galRaw);
+          } catch(e) {
+            extraImgs = String(galRaw).split(',').map(s => s.trim()).filter(Boolean);
+          }
+        }
+        const totalPhotos = (p.imagen ? 1 : 0) + (Array.isArray(extraImgs) ? extraImgs.length : 0);
+
+        // Variantes tags
+        const varStr = p.lista_variantes || p.variantes || '';
+        const varList = varStr.split(',').map(s => s.trim()).filter(Boolean);
+
+        return `
+          <div class="bg-white border border-slate-200 hover:border-indigo-400 rounded-2xl p-4 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-3 group ${isHidden ? 'opacity-75 bg-slate-50/60' : ''}">
+            
+            <div class="space-y-2">
+              <div class="aspect-video bg-slate-100 rounded-xl overflow-hidden relative flex items-center justify-center border border-slate-200">
+                ${imagePath ? `
+                  <img src="${imagePath}" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'text-[10px] font-bold text-slate-400\\'>Sin Foto</span>';" class="w-full h-full object-cover">
+                ` : `
+                  <span class="text-[10px] font-bold text-slate-400">Sin Foto Principal</span>
+                `}
+                
+                <span class="absolute top-2 left-2 font-mono font-bold text-[10px] px-2 py-0.5 rounded bg-slate-900/80 text-white shadow">
+                  ${p.sku}
+                </span>
+
+                ${isHidden ? `
+                  <span class="absolute top-2 right-2 font-bold text-[10px] px-2 py-0.5 rounded-full bg-rose-600 text-white shadow">
+                    🚫 Oculto en Web
+                  </span>
+                ` : (isPopular ? `
+                  <span class="absolute top-2 right-2 font-bold text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white shadow">
+                    🔥 Popular
+                  </span>
+                ` : '')}
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase">
+                  <span>${p.marca}</span>
+                  <span class="text-indigo-600 font-semibold">${p.categoria}</span>
+                </div>
+                <h4 class="font-bold text-slate-900 text-xs line-clamp-2 leading-snug group-hover:text-indigo-600 transition pt-0.5">${p.descripcion}</h4>
+              </div>
+
+              <!-- Indicadores Web -->
+              <div class="flex items-center gap-2 text-[10px] font-semibold text-slate-500 pt-1 flex-wrap">
+                <span class="bg-slate-100 px-2 py-0.5 rounded border border-slate-200 flex items-center gap-1">
+                  📷 ${totalPhotos} ${totalPhotos === 1 ? 'foto' : 'fotos'}
+                </span>
+                <span class="bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                  🏷️ ${varList.length} var.
+                </span>
+                ${isHidden ? `
+                  <span class="bg-rose-100 text-rose-800 font-bold px-2 py-0.5 rounded border border-rose-200">
+                    🚫 Oculto en Web
+                  </span>
+                ` : `
+                  <span class="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded border border-emerald-200">
+                    👁️ Visible en Web
+                  </span>
+                `}
+              </div>
+            </div>
+
+            <button onclick="openWebConfigModal('${p.sku}')" type="button"
+              class="w-full py-2 px-3 rounded-xl font-bold text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 flex items-center justify-center gap-1.5 transition">
+              <span>⚙️ Configurar Web</span>
+            </button>
+
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    // Modal de Personalización de Catálogo Web
+    async function openWebConfigModal(sku) {
+      let p = null;
+
+      // 1. Fallback inmediato en memoria (evita errores de red si los productos ya están cargados)
+      if (Array.isArray(window.productsList)) {
+        p = window.productsList.find(item => String(item.sku).toUpperCase() === String(sku).toUpperCase());
+      }
+
+      if (p) {
+        populateWebConfigModal(p);
+        document.getElementById('web-config-modal').classList.remove('hidden');
+        if (window.lucide) lucide.createIcons();
+      }
+
+      // 2. Sync por red para obtener los datos más recientes de SQLite
+      try {
+        let res = await fetch(`/api/producto/${encodeURIComponent(sku)}`);
+        if (!res.ok) {
+          res = await fetch(`/api/productos/${encodeURIComponent(sku)}`);
+        }
+        if (res.ok) {
+          const freshP = await res.json();
+          populateWebConfigModal(freshP);
+          document.getElementById('web-config-modal').classList.remove('hidden');
+          if (window.lucide) lucide.createIcons();
+        } else if (!p) {
+          const errBody = await res.text();
+          throw new Error(`HTTP ${res.status}: ${errBody}`);
+        }
+      } catch (err) {
+        console.error('Error al sincronizar datos web para SKU ' + sku + ':', err);
+        if (!p) {
+          showToast('Error al abrir la configuración web del producto: ' + err.message, 'error');
+        }
+      }
+    }
+
+    function populateWebConfigModal(p) {
+      if (!p) return;
+      const skuVal = p.sku || '';
+      document.getElementById('web-modal-sku-badge').textContent = `COD: ${skuVal}`;
+      document.getElementById('web-modal-sku-input').value = skuVal;
+      document.getElementById('web-modal-product-title').textContent = p.nombre || p.descripcion || 'Producto';
+      document.getElementById('web-modal-brand-badge').textContent = p.marca || 'Marca';
+      document.getElementById('web-modal-category-text').textContent = p.categoria || 'Categoría';
+      
+      const precioVal = typeof p.precio_venta === 'number' ? p.precio_venta : parseFloat(p.precio_venta || 0);
+      document.getElementById('web-modal-price').textContent = `S/ ${formatMoney(precioVal)}`;
+
+      let extraImgs = [];
+      const rawGal = p.imagenes_galeria || p.imagenes_extra || '';
+      if (rawGal) {
+        try {
+          extraImgs = JSON.parse(rawGal);
+        } catch(e) {
+          extraImgs = String(rawGal).split(',').map(s => s.trim()).filter(Boolean);
+        }
+      }
+      if (!Array.isArray(extraImgs)) extraImgs = [];
+
+      document.getElementById('web-form-img1').value = p.imagen || '';
+      document.getElementById('web-form-img2').value = extraImgs[0] || '';
+      document.getElementById('web-form-img3').value = extraImgs[1] || '';
+      document.getElementById('web-form-img4').value = extraImgs[2] || '';
+
+      const rawVars = p.lista_variantes || p.variantes || (p.variantes_raw || '');
+      const namesOnly = rawVars.split(',').map(s => s.trim()).map(part => part.includes(':') ? part.split(':')[0].trim() : part).filter(Boolean).join(', ');
+      document.getElementById('web-form-variantes').value = namesOnly;
+      document.getElementById('web-form-descripcion-larga').value = p.descripcion_larga || p.descripcion_detallada || p.descripcion || '';
+      document.getElementById('web-form-destacado-popular').checked = Boolean(p.destacado_popular || p.es_popular);
+      document.getElementById('web-form-ocultar-web').checked = Boolean(p.ocultar_web);
+
+      updateImagePreviews();
+      renderVariantChipsFromInput();
+    }
+
+    const abrirModalConfigurarWeb = openWebConfigModal;
+
+    function closeWebConfigModal() {
+      document.getElementById('web-config-modal').classList.add('hidden');
+    }
+
+    function updateImagePreviews() {
+      for (let i = 1; i <= 4; i++) {
+        const val = (document.getElementById(`web-form-img${i}`)?.value || '').trim();
+        const imgEl = document.getElementById(`web-preview-img${i}`);
+        if (!imgEl) continue;
+
+        if (val) {
+          const src = getImageUrl(val);
+          imgEl.src = src;
+          imgEl.classList.remove('hidden');
+          if (imgEl.nextElementSibling) imgEl.nextElementSibling.classList.add('hidden');
+        } else {
+          imgEl.src = '';
+          imgEl.classList.add('hidden');
+          if (imgEl.nextElementSibling) imgEl.nextElementSibling.classList.remove('hidden');
+        }
+      }
+    }
+
+    function triggerGalleryFileInput(index) {
+      const fileInput = document.getElementById(`web-file-input-${index}`);
+      if (fileInput) fileInput.click();
+    }
+
+    async function uploadWebGalleryImage(e, index) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const tempUrl = URL.createObjectURL(file);
+      const imgEl = document.getElementById(`web-preview-img${index}`);
+      if (imgEl) {
+        imgEl.src = tempUrl;
+        imgEl.classList.remove('hidden');
+        if (imgEl.nextElementSibling) imgEl.nextElementSibling.classList.add('hidden');
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('imagen', file);
+
+      try {
+        const res = await fetch('/api/subir-imagen', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (res.ok && (data.status === 'success' || data.filename)) {
+          const uploadedName = data.filename || data.url || file.name;
+          const inputEl = document.getElementById(`web-form-img${index}`);
+          if (inputEl) {
+            inputEl.value = uploadedName;
+          }
+          updateImagePreviews();
+          showToast(`¡Foto ${index} subida correctamente!`, 'success');
+        } else {
+          showToast(data.error || 'Error al subir la imagen', 'error');
+        }
+      } catch (err) {
+        console.error('Error subiendo imagen de galería:', err);
+        showToast('Error de conexión al subir la imagen', 'error');
+      }
+    }
+
+    function renderVariantChipsFromInput() {
+      const input = document.getElementById('web-form-variantes');
+      const container = document.getElementById('web-variant-chips-preview');
+      if (!input || !container) return;
+
+      const raw = input.value.trim();
+      if (!raw) {
+        container.innerHTML = `<span class="text-[11px] text-slate-400 italic">Escribe opciones arriba para previsualizar botones...</span>`;
+        return;
+      }
+
+      const parts = raw.split(',').map(s => s.trim()).filter(Boolean);
+      if (parts.length === 0) {
+        container.innerHTML = `<span class="text-[11px] text-slate-400 italic">Escribe opciones arriba para previsualizar botones...</span>`;
+        return;
+      }
+
+      container.innerHTML = parts.map(v => {
+        let cleanName = v;
+        if (cleanName.includes(':')) {
+          cleanName = cleanName.split(':')[0].trim();
+        }
+        return `
+        <span class="inline-flex items-center gap-1 px-3 py-1 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-800 font-extrabold text-xs shadow-xs">
+          ${cleanName}
+        </span>
+      `;
+      }).join('');
+    }
+
+    function appendVariantPreset(text) {
+      const input = document.getElementById('web-form-variantes');
+      if (!input) return;
+      if (!input.value.trim()) {
+        input.value = text;
+      } else {
+        input.value = input.value.trim() + ', ' + text;
+      }
+      renderVariantChipsFromInput();
+    }
+
+    async function saveWebConfig(e) {
+      e.preventDefault();
+      const sku = document.getElementById('web-modal-sku-input').value;
+      if (!sku) return;
+
+      const img1 = document.getElementById('web-form-img1').value.trim();
+      const img2 = document.getElementById('web-form-img2').value.trim();
+      const img3 = document.getElementById('web-form-img3').value.trim();
+      const img4 = document.getElementById('web-form-img4').value.trim();
+
+      const extraImgs = [img2, img3, img4].filter(Boolean);
+      const variantes = document.getElementById('web-form-variantes').value.trim();
+      const descLarga = document.getElementById('web-form-descripcion-larga').value.trim();
+      const esPopular = document.getElementById('web-form-destacado-popular').checked;
+      const ocultarWeb = document.getElementById('web-form-ocultar-web').checked;
+
+      try {
+        const res = await fetch('/api/producto/configurar-web', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sku: sku,
+            imagen_principal: img1,
+            imagen: img1,
+            imagenes_galeria: extraImgs,
+            imagenes_extra: extraImgs,
+            lista_variantes: variantes,
+            variantes: variantes,
+            descripcion_larga: descLarga,
+            descripcion_detallada: descLarga,
+            destacado_popular: esPopular,
+            es_popular: esPopular,
+            ocultar_web: ocultarWeb,
+            ocultar_en_web: ocultarWeb
+          })
+        });
+
+        const data = await res.json().catch(() => ({ error: `Error del servidor (código ${res.status})` }));
+        if (!res.ok) throw new Error(data.error || 'Error guardando datos');
+
+        showToast(data.message || 'Ficha web actualizada correctamente', 'success');
+        closeWebConfigModal();
+        loadInventory();
+        if (typeof loadWebCatalogPage === 'function') loadWebCatalogPage();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    // Notificaciones Toast
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const typeStyles = {
+        success: 'bg-emerald-600 text-white',
+        error: 'bg-rose-600 text-white',
+        warning: 'bg-amber-500 text-white',
+        info: 'bg-slate-800 text-white'
+      };
+
+      toast.className = `flex items-center gap-3 p-3 rounded-xl shadow-xl text-xs font-bold pointer-events-auto transition-all duration-300 transform translate-x-10 opacity-0 ${typeStyles[type] || typeStyles.info}`;
+      toast.innerHTML = `
+        <span class="flex-1">${message}</span>
+        <button onclick="this.parentElement.remove()" class="opacity-70 hover:opacity-100"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+      `;
+
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.remove('translate-x-10', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-x-10');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // ========================================================
+    // LOGICA PESTAÑA 1: VENTAS & CARRITO & WHATSAPP
+    // ========================================================
+
+    // ========================================================
+    // LOGICA PESTAÑA 1: VENTAS & CARRITO & WHATSAPP
+    // ========================================================
+
+    function handleSalesSearch(e) {
+      const query = e.target.value.trim().toLowerCase();
+      const resultsContainer = document.getElementById('sales-search-results');
+      
+      if (!query) {
+        resultsContainer.classList.add('hidden');
+        return;
+      }
+
+      const matches = productsList.filter(p => 
+        p.sku.toLowerCase().includes(query) ||
+        p.descripcion.toLowerCase().includes(query) ||
+        p.marca.toLowerCase().includes(query) ||
+        p.categoria.toLowerCase().includes(query)
+      ).slice(0, 8);
+
+      if (matches.length === 0) {
+        resultsContainer.innerHTML = `<div class="p-3 text-xs text-slate-400 text-center">No se encontraron repuestos con "${query}"</div>`;
+      } else {
+        resultsContainer.innerHTML = matches.map(p => `
+          <div onclick="selectProductForSales('${p.sku}')" class="p-3 hover:bg-slate-50 cursor-pointer flex items-center justify-between transition border-b border-slate-100 last:border-0">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200">${p.sku}</span>
+                <span class="font-bold text-slate-800 text-xs">${p.descripcion}</span>
+              </div>
+              <span class="text-[11px] text-slate-500">${p.marca} • ${p.categoria} ${p.variantes ? '• ' + p.variantes : ''}</span>
+            </div>
+            <div class="text-right">
+              <span class="font-mono font-bold text-indigo-700 text-xs block">S/ ${formatMoney(p.precio_venta)}</span>
+              <span class="text-[10px] ${p.stock_actual > 0 ? 'text-slate-500 font-semibold' : 'text-rose-600 font-bold'}">Stock: ${p.stock_actual}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      resultsContainer.classList.remove('hidden');
+    }
+
+    function selectProductForSales(sku) {
+      document.getElementById('sales-search-results').classList.add('hidden');
+      document.getElementById('sales-search-input').value = '';
+
+      const product = productsList.find(p => p.sku.toUpperCase() === sku.toUpperCase());
+      if (!product) {
+        showToast(`El producto con SKU ${sku} no existe.`, 'error');
+        return;
+      }
+
+      const varStr = product.lista_variantes || product.variantes || (product.variantes_raw || '');
+      const parsedVariants = parseVariantStringJS(varStr);
+
+      if (parsedVariants.length > 0) {
+        document.getElementById('sales-variant-modal-sku').textContent = `COD: ${product.sku}`;
+        document.getElementById('sales-variant-modal-title').textContent = product.descripcion;
+        
+        const listContainer = document.getElementById('sales-variant-modal-list');
+        listContainer.innerHTML = parsedVariants.map(v => {
+          const isAvailable = v.stock > 0;
+          if (isAvailable) {
+            return `
+              <button type="button" onclick="confirmVariantSelection('${product.sku}', '${v.name}', ${v.stock})"
+                class="w-full px-4 py-3 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-600 hover:text-white font-bold text-xs flex items-center justify-between transition group shadow-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 group-hover:bg-white"></span>
+                  <span>Variante: <strong>${v.name}</strong></span>
+                </div>
+                <span class="text-[11px] font-mono opacity-90 font-semibold">(${v.stock} disp.)</span>
+              </button>
+            `;
+          } else {
+            return `
+              <button type="button" disabled
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-100 text-slate-400 font-bold text-xs opacity-50 cursor-not-allowed flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                  <span class="line-through">Variante: ${v.name}</span>
+                </div>
+                <span class="text-[10px] font-normal">(Agotado)</span>
+              </button>
+            `;
+          }
+        }).join('');
+
+        document.getElementById('sales-variant-modal').classList.remove('hidden');
+        lucide.createIcons();
+      } else {
+        addVariantToSalesCart(product, 'Único', 1, product.stock_actual);
+      }
+    }
+
+    function closeSalesVariantModal() {
+      document.getElementById('sales-variant-modal').classList.add('hidden');
+    }
+
+    function confirmVariantSelection(sku, variantName, variantStock) {
+      const product = productsList.find(p => p.sku.toUpperCase() === sku.toUpperCase());
+      if (product) {
+        addVariantToSalesCart(product, variantName, 1, variantStock);
+      }
+      closeSalesVariantModal();
+    }
+
+    function addVariantToSalesCart(product, variantName, qty = 1, variantStock = 1) {
+      const vName = variantName || 'Único';
+      const cartId = `${product.sku}_${vName}`;
+
+      const maxStock = typeof variantStock === 'number' ? variantStock : product.stock_actual;
+      if (maxStock <= 0) {
+        showToast(`La variante ${vName} de ${product.sku} está AGOTADA.`, 'warning');
+        return;
+      }
+
+      const existingItem = cart.find(item => item.cartId === cartId);
+      const currentCartQty = existingItem ? existingItem.cantidad : 0;
+      
+      if (currentCartQty + qty > maxStock) {
+        showToast(`Stock máximo disponible para variante ${vName}: ${maxStock} unids`, 'warning');
+        return;
+      }
+
+      if (existingItem) {
+        existingItem.cantidad += qty;
+      } else {
+        cart.push({
+          cartId: cartId,
+          sku: product.sku,
+          descripcion: product.descripcion,
+          marca: product.marca,
+          variante: vName,
+          variantes: vName,
+          precio_venta: product.precio_venta,
+          stock_actual: maxStock,
+          cantidad: qty
+        });
+      }
+
+      showToast(`¡Agregado ${product.sku} (${vName}) al carrito!`, 'success');
+      renderCart();
+    }
+
+    const addToCartBySku = function(sku, quantity = 1) {
+      selectProductForSales(sku);
+    };
+
+    function updateCartQuantityByCartId(cartId, newQty) {
+      const item = cart.find(i => i.cartId === cartId);
+      if (!item) return;
+
+      const qty = parseInt(newQty);
+      if (isNaN(qty) || qty <= 0) {
+        removeFromCartByCartId(cartId);
+        return;
+      }
+
+      if (qty > item.stock_actual) {
+        showToast(`Cantidad excede el stock disponible para ${item.variante} (${item.stock_actual} unids)`, 'warning');
+        item.cantidad = item.stock_actual;
+      } else {
+        item.cantidad = qty;
+      }
+
+      renderCart();
+    }
+
+    const updateCartQuantity = updateCartQuantityByCartId;
+
+    function openEditCartItemModal(cartId) {
+      const item = cart.find(i => i.cartId === cartId || i.sku === cartId);
+      if (!item) return;
+
+      document.getElementById('edit-modal-sku').value = item.cartId || item.sku;
+      document.getElementById('edit-modal-sku-badge').textContent = `${item.sku} (${item.variante})`;
+      document.getElementById('edit-modal-description').textContent = `${item.descripcion} (${item.marca})`;
+      document.getElementById('edit-modal-stock-badge').textContent = `Stock Disponible: ${item.stock_actual} unids`;
+      document.getElementById('edit-modal-price').value = item.precio_venta.toFixed(2);
+      document.getElementById('edit-modal-qty').value = item.cantidad;
+      document.getElementById('edit-modal-error').classList.add('hidden');
+
+      document.getElementById('edit-cart-item-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeEditCartItemModal() {
+      document.getElementById('edit-cart-item-modal').classList.add('hidden');
+    }
+
+    function saveCartItemEdit(e) {
+      e.preventDefault();
+      const cartId = document.getElementById('edit-modal-sku').value;
+      const item = cart.find(i => i.cartId === cartId || i.sku === cartId);
+      if (!item) return;
+
+      const newPrice = parseFloat(document.getElementById('edit-modal-price').value);
+      const newQty = parseInt(document.getElementById('edit-modal-qty').value);
+      const errorDiv = document.getElementById('edit-modal-error');
+
+      if (isNaN(newPrice) || newPrice < 0) {
+        errorDiv.textContent = 'El precio ingresado no es válido.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      if (isNaN(newQty) || newQty <= 0) {
+        errorDiv.textContent = 'La cantidad ingresada no es válida.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      if (newQty > item.stock_actual) {
+        errorDiv.textContent = `La cantidad excede el stock disponible para ${item.variante} (${item.stock_actual} unids).`;
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      item.precio_venta = newPrice;
+      item.cantidad = newQty;
+
+      showToast(`Actualizado ${item.sku} (${item.variante}): S/ ${newPrice.toFixed(2)} x ${newQty} unids.`, 'success');
+      closeEditCartItemModal();
+      renderCart();
+    }
+
+    function removeFromCartByCartId(cartId) {
+      cart = cart.filter(i => (i.cartId !== cartId && i.sku !== cartId));
+      renderCart();
+    }
+
+    const removeFromCart = removeFromCartByCartId;
+
+    function clearCart() {
+      cart = [];
+      renderCart();
+    }
+
+    function renderCart() {
+      const tbody = document.getElementById('cart-table-body');
+      const emptyMsg = document.getElementById('cart-empty-message');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      if (cart.length === 0) {
+        tbody.innerHTML = '';
+        emptyMsg.classList.remove('hidden');
+        checkoutBtn.disabled = true;
+        document.getElementById('summary-items-count').textContent = '0';
+        document.getElementById('summary-total-qty').textContent = '0';
+        document.getElementById('summary-total-amount').textContent = 'S/ 0.00';
+        return;
+      }
+
+      emptyMsg.classList.add('hidden');
+      checkoutBtn.disabled = false;
+
+      let totalItems = cart.length;
+      let totalQty = 0;
+      let totalAmount = 0;
+
+      tbody.innerHTML = cart.map(item => {
+        const subtotal = item.precio_venta * item.cantidad;
+        totalQty += item.cantidad;
+        totalAmount += subtotal;
+
+        return `
+          <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+            <td class="py-3 px-4 font-mono font-bold text-slate-800 text-xs">${item.sku}</td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-800 text-xs">${item.descripcion}</div>
+              <div class="text-[11px] text-slate-500">${item.marca} • Variante: <strong class="text-indigo-700 font-bold">${item.variante || 'Único'}</strong></div>
+            </td>
+            <td class="py-3 px-4 text-right font-mono font-bold text-slate-800 text-xs">S/ ${formatMoney(item.precio_venta)}</td>
+            <td class="py-3 px-4">
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="updateCartQuantityByCartId('${item.cartId || item.sku}', ${item.cantidad - 1})" class="w-6 h-6 rounded bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs flex items-center justify-center transition">-</button>
+                <input type="number" value="${item.cantidad}" onchange="updateCartQuantityByCartId('${item.cartId || item.sku}', this.value)" min="1" max="${item.stock_actual}"
+                  class="w-12 text-center bg-white border border-slate-300 rounded text-xs py-1 font-bold text-slate-900 focus:outline-none">
+                <button onclick="updateCartQuantityByCartId('${item.cartId || item.sku}', ${item.cantidad + 1})" class="w-6 h-6 rounded bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs flex items-center justify-center transition">+</button>
+              </div>
+            </td>
+            <td class="py-3 px-4 text-right font-mono font-extrabold text-indigo-700 text-xs">S/ ${formatMoney(subtotal)}</td>
+            
+            <td class="py-3 px-4 text-center">
+              <button onclick="openEditCartItemModal('${item.cartId || item.sku}')" class="p-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition" title="Modificar precio unitario o cantidad">
+                <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+              </button>
+            </td>
+
+            <td class="py-3 px-4 text-center">
+              <button onclick="removeFromCartByCartId('${item.cartId || item.sku}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 transition" title="Eliminar del carrito">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      document.getElementById('summary-items-count').textContent = totalItems;
+      document.getElementById('summary-total-qty').textContent = totalQty;
+      document.getElementById('summary-total-amount').textContent = `S/ ${formatMoney(totalAmount)}`;
+      lucide.createIcons();
+    }
+
+    // WHATSAPP ORDER PARSER LOGIC
+    async function parseWhatsappOrder() {
+      const rawText = document.getElementById('whatsapp-input').value.trim();
+      if (!rawText) {
+        showToast('Por favor pega el mensaje de WhatsApp primero.', 'warning');
+        return;
+      }
+
+      let payloadStr = rawText;
+      const matchCode = rawText.match(/CODIGO_PEDIDO:\[(.*?)\]/i);
+      if (matchCode && matchCode[1]) {
+        payloadStr = matchCode[1];
+      }
+
+      const tokens = payloadStr.split(/,|\n/).map(s => s.trim()).filter(Boolean);
+      if (tokens.length === 0) {
+        showToast('No se pudieron extraer ítems del texto.', 'warning');
+        return;
+      }
+
+      let addedCount = 0;
+
+      tokens.forEach(token => {
+        let itemPart = token;
+        let qty = 1;
+
+        if (itemPart.includes(':')) {
+          const colonIdx = itemPart.lastIndexOf(':');
+          const qtyVal = parseInt(itemPart.substring(colonIdx + 1).trim());
+          if (!isNaN(qtyVal) && qtyVal > 0) qty = qtyVal;
+          itemPart = itemPart.substring(0, colonIdx).trim();
+        }
+
+        let sku = itemPart;
+        let variantTarget = null;
+
+        if (itemPart.includes('_')) {
+          const underscoreIdx = itemPart.indexOf('_');
+          sku = itemPart.substring(0, underscoreIdx).trim();
+          variantTarget = itemPart.substring(underscoreIdx + 1).trim();
+        }
+
+        const product = productsList.find(p => p.sku.toUpperCase() === sku.toUpperCase());
+        if (!product) return;
+
+        const parsedVars = parseVariantStringJS(product.lista_variantes || product.variantes || product.variantes_raw || '');
+        let targetVarName = 'Único';
+        let targetVarStock = product.stock_actual;
+
+        if (variantTarget) {
+          const foundV = parsedVars.find(v => v.name.toUpperCase() === variantTarget.toUpperCase());
+          if (foundV) {
+            targetVarName = foundV.name;
+            targetVarStock = foundV.stock;
+          } else {
+            targetVarName = variantTarget;
+          }
+        } else if (parsedVars.length > 0) {
+          const firstInStock = parsedVars.find(v => v.stock > 0);
+          if (firstInStock) {
+            targetVarName = firstInStock.name;
+            targetVarStock = firstInStock.stock;
+          } else {
+            targetVarName = parsedVars[0].name;
+            targetVarStock = parsedVars[0].stock;
+          }
+        }
+
+        addVariantToSalesCart(product, targetVarName, qty, targetVarStock);
+        addedCount++;
+      });
+
+      if (addedCount > 0) {
+        showToast(`¡Se cargaron ${addedCount} ítems del pedido de WhatsApp al carrito!`, 'success');
+        document.getElementById('whatsapp-input').value = '';
+        document.getElementById('whatsapp-module-container').classList.add('hidden');
+      } else {
+        showToast('No se encontraron SKUs coincidentes en el pedido de WhatsApp.', 'warning');
+      }
+    }
+
+    function processSale() {
+      if (cart.length === 0) return;
+
+      const customerName = document.getElementById('customer-name').value.trim() || 'Cliente General';
+      const datetimeStr = document.getElementById('sales-datetime').value;
+
+      document.getElementById('confirm-receipt-client').textContent = customerName;
+      document.getElementById('confirm-receipt-date').textContent = `Fecha: ${datetimeStr}`;
+
+      let totalAmount = 0;
+      const itemsList = document.getElementById('confirm-receipt-items-list');
+      itemsList.innerHTML = cart.map(i => {
+        const subtotal = i.precio_venta * i.cantidad;
+        totalAmount += subtotal;
+        return `
+          <div class="flex justify-between text-slate-800 text-[11px] py-0.5">
+            <span>${i.cantidad}x ${i.descripcion} (${i.sku} • Variante: ${i.variante || 'Único'})</span>
+            <span class="font-bold font-mono">S/ ${formatMoney(subtotal)}</span>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('confirm-receipt-total').textContent = `S/ ${formatMoney(totalAmount)}`;
+      document.getElementById('confirm-sale-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeConfirmSaleModal() {
+      document.getElementById('confirm-sale-modal').classList.add('hidden');
+    }
+
+    async function executeSaleProcess() {
+      closeConfirmSaleModal();
+
+      const customerName = document.getElementById('customer-name').value.trim() || 'Cliente General';
+
+      const payload = {
+        cliente: customerName,
+        items: cart.map(i => ({
+          sku: i.sku,
+          variante: i.variante || 'Único',
+          cantidad: i.cantidad,
+          precio: i.precio_venta
+        }))
+      };
+
+      try {
+        const res = await fetch('/api/procesar-venta', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          showToast(data.error || 'Error al procesar la venta', 'error');
+          return;
+        }
+
+        showToast(`¡Venta #${data.venta_id || ''} procesada exitosamente! Stock descontado por variante.`, 'success');
+        cart = [];
+        renderCart();
+        loadInventory();
+        loadReports();
+
+      } catch (err) {
+        showToast('Error de conexión al procesar la venta', 'error');
+      }
+    }
+
+    function showReceiptModal(saleData, saleItems) {
+      document.getElementById('receipt-id').textContent = `Venta #${saleData.venta_id}`;
+      document.getElementById('receipt-date').textContent = `Fecha: ${saleData.fecha_hora}`;
+      document.getElementById('receipt-client').textContent = saleData.cliente;
+      document.getElementById('receipt-total').textContent = `S/ ${formatMoney(saleData.total)}`;
+
+      const itemsList = document.getElementById('receipt-items-list');
+      itemsList.innerHTML = saleItems.map(i => `
+        <div class="flex justify-between text-slate-800 text-[11px]">
+          <span>${i.cantidad}x ${i.descripcion} (${i.sku})</span>
+          <span class="font-bold">S/ ${formatMoney(i.precio_venta * i.cantidad)}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('sale-detail-modal').classList.remove('hidden');
+    }
+
+    function closeSaleModal() {
+      document.getElementById('sale-detail-modal').classList.add('hidden');
+    }
+
+
+    // ========================================================
+    // LOGICA PESTAÑA 2: INVENTARIO (CRUD)
+    // ========================================================
+
+    async function loadInventory() {
+      const search = document.getElementById('inventory-search').value.trim();
+      
+      try {
+        const url = `/api/productos?q=${encodeURIComponent(search)}&status=all`;
+        const res = await fetch(url);
+        productsList = await res.json();
+
+        renderInventoryTable();
+      } catch (err) {
+        console.error("Error cargando inventario:", err);
+      }
+    }
+
+    // Función auxiliar para ordenar productos dinámicamente
+    function sortProductsList(list, sortType) {
+      const sorted = [...list];
+      switch (sortType) {
+        case 'name_asc':
+          sorted.sort((a, b) => a.descripcion.localeCompare(b.descripcion, 'es', { sensitivity: 'base' }));
+          break;
+        case 'stock_desc':
+          sorted.sort((a, b) => b.stock_actual - a.stock_actual);
+          break;
+        case 'stock_asc':
+          sorted.sort((a, b) => a.stock_actual - b.stock_actual);
+          break;
+        case 'margin_desc':
+          sorted.sort((a, b) => {
+            const marginA = a.costo_compra > 0 ? ((a.precio_venta - a.costo_compra) / a.costo_compra) : 0;
+            const marginB = b.costo_compra > 0 ? ((b.precio_venta - b.costo_compra) / b.costo_compra) : 0;
+            return marginB - marginA;
+          });
+          break;
+        case 'value_desc':
+          sorted.sort((a, b) => (b.stock_actual * b.precio_venta) - (a.stock_actual * a.precio_venta));
+          break;
+        default:
+          break;
+      }
+      return sorted;
+    }
+
+    function renderInventoryTable() {
+      const tbody = document.getElementById('inventory-table-body');
+      const emptyState = document.getElementById('inventory-empty-state');
+      const paginationCounter = document.getElementById('inventory-pagination-counter');
+      const pageInfo = document.getElementById('inventory-page-info');
+      const prevBtn = document.getElementById('inventory-prev-btn');
+      const nextBtn = document.getElementById('inventory-next-btn');
+
+      if (!productsList || productsList.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        if (paginationCounter) paginationCounter.textContent = 'Mostrando 0-0 de 0 productos';
+        if (pageInfo) pageInfo.textContent = 'Página 1 de 1';
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      const sortType = document.getElementById('inventory-sort')?.value || 'name_asc';
+      const sortedList = sortProductsList(productsList, sortType);
+
+      const totalItems = sortedList.length;
+      const totalPages = Math.ceil(totalItems / INVENTORY_PER_PAGE) || 1;
+
+      if (currentInventoryPage > totalPages) currentInventoryPage = totalPages;
+      if (currentInventoryPage < 1) currentInventoryPage = 1;
+
+      const startIdx = (currentInventoryPage - 1) * INVENTORY_PER_PAGE;
+      const endIdx = startIdx + INVENTORY_PER_PAGE;
+      const pagedList = sortedList.slice(startIdx, endIdx);
+
+      tbody.innerHTML = pagedList.map(p => {
+        const stockAct = Number(p.stock_actual !== undefined ? p.stock_actual : 0);
+        const stockMin = Number(p.stock_minimo !== undefined ? p.stock_minimo : 2);
+        const estadoCode = p.estado || (stockAct === 0 ? 'agotado' : (stockAct <= stockMin ? 'reponer' : 'instock'));
+
+        let badgeHTML = `<span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">En Stock</span>`;
+        if (estadoCode === 'agotado') {
+          badgeHTML = `<span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-rose-100 text-rose-700">Agotado</span>`;
+        } else if (estadoCode === 'reponer') {
+          badgeHTML = `<span class="inline-block px-3 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">⚠️ Reponer</span>`;
+        }
+
+        return `
+          <tr class="hover:bg-slate-50 transition border-b border-slate-100 ${p.ocultar_web ? 'bg-slate-50/50' : ''}">
+            <td class="py-3 px-4 font-mono font-bold text-slate-800 text-xs">${p.sku}</td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                <span>${p.descripcion}</span>
+                ${p.ocultar_web ? '<span class="px-1.5 py-0.5 text-[9px] font-extrabold bg-rose-100 text-rose-700 border border-rose-200 rounded">🚫 Oculto en Web</span>' : ''}
+              </div>
+              <div class="text-[11px] text-slate-400">${p.variantes ? p.variantes : 'Sin variantes'}</div>
+            </td>
+            <td class="py-3 px-3 uppercase text-[11px] font-semibold text-slate-600">${p.marca}</td>
+            <td class="py-3 px-3 uppercase text-[11px] font-semibold text-slate-600">${p.categoria}</td>
+            
+            <td class="py-3 px-3 text-center">
+              <span class="inline-block border border-blue-500 text-blue-600 font-bold px-3 py-1 rounded-md bg-blue-50/40 text-xs font-mono">
+                S/ ${formatMoney(p.precio_venta)}
+              </span>
+            </td>
+
+            <td class="py-3 px-3 text-center font-bold text-slate-800 text-xs">${p.stock_actual}</td>
+            <td class="py-3 px-3 text-center font-semibold text-slate-400 text-xs">${p.stock_minimo}</td>
+            <td class="py-3 px-3 text-center">${badgeHTML}</td>
+            
+            <td class="py-3 px-4 text-center">
+              <div class="flex items-center justify-center gap-1.5 flex-wrap">
+                <button onclick="openWebConfigModal('${p.sku}')" class="px-2 py-1 rounded-lg bg-indigo-50 border border-indigo-300 text-indigo-700 font-extrabold hover:bg-indigo-100 flex items-center gap-1 transition text-[10px]" title="Configuración Catálogo Web">
+                  ⚙️ Detalles Web
+                </button>
+                <button onclick="openQuickStockModal('${p.sku}')" class="w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-700 font-bold hover:bg-emerald-100 flex items-center justify-center transition" title="Ingreso Rápido de Mercadería">
+                  +
+                </button>
+                <button onclick="openProductModal('${p.sku}')" class="w-7 h-7 rounded-lg bg-blue-50 border border-blue-300 text-blue-700 font-bold hover:bg-blue-100 flex items-center justify-center transition" title="Editar Producto DB">
+                  <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="deleteProduct('${p.sku}')" class="w-7 h-7 rounded-lg bg-rose-50 border border-rose-300 text-rose-700 font-bold hover:bg-rose-100 flex items-center justify-center transition" title="Eliminar Producto">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      if (paginationCounter) {
+        paginationCounter.textContent = `Mostrando ${startIdx + 1}-${Math.min(endIdx, totalItems)} de ${totalItems} productos`;
+      }
+      if (pageInfo) {
+        pageInfo.textContent = `Página ${currentInventoryPage} de ${totalPages}`;
+      }
+      if (prevBtn) prevBtn.disabled = currentInventoryPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentInventoryPage >= totalPages;
+
+      lucide.createIcons();
+    }
+
+    function changeInventoryPage(delta) {
+      const totalPages = Math.ceil(productsList.length / INVENTORY_PER_PAGE) || 1;
+      currentInventoryPage += delta;
+      if (currentInventoryPage < 1) currentInventoryPage = 1;
+      if (currentInventoryPage > totalPages) currentInventoryPage = totalPages;
+      renderInventoryTable();
+    }
+
+
+
+    // Modal de Ingreso Rápido de Mercadería (Con Desglose Interactivo por Variante)
+    function parseVariantStringJS(varStr) {
+      if (!varStr || !String(varStr).trim()) return [];
+      const parts = String(varStr).split(',').map(s => s.trim()).filter(Boolean);
+      const result = [];
+      parts.forEach(p => {
+        if (p.includes(':')) {
+          const idx = p.indexOf(':');
+          const name = p.substring(0, idx).trim();
+          const stock = parseInt(p.substring(idx + 1).trim()) || 0;
+          if (name) result.push({ name: name, stock: stock });
+        } else {
+          if (p) result.push({ name: p, stock: 0 });
+        }
+      });
+      return result;
+    }
+
+    function openQuickStockModal(sku) {
+      const p = productsList.find(item => item.sku === sku);
+      if (!p) return;
+
+      document.getElementById('quick-stock-sku').value = p.sku;
+      document.getElementById('quick-stock-product-name').textContent = p.descripcion;
+      document.getElementById('quick-stock-current').textContent = `${p.stock_actual} unidades`;
+
+      const varStr = p.lista_variantes || p.variantes || (p.variantes_raw || '');
+      const parsedVariants = parseVariantStringJS(varStr);
+
+      const simpleContainer = document.getElementById('quick-stock-simple-container');
+      const variantsContainer = document.getElementById('quick-stock-variants-container');
+      const variantsList = document.getElementById('quick-stock-variants-list');
+
+      if (parsedVariants.length > 0) {
+        simpleContainer.classList.add('hidden');
+        document.getElementById('quick-stock-qty').removeAttribute('required');
+        variantsContainer.classList.remove('hidden');
+
+        variantsList.innerHTML = parsedVariants.map((v, i) => `
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-between gap-3">
+            <div class="space-y-0.5">
+              <span class="font-bold text-slate-800 text-xs block">Talla / Color: <strong class="text-indigo-700">${v.name}</strong></span>
+              <span class="text-[10px] text-slate-500 font-semibold block">(Stock actual: ${v.stock})</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-emerald-700">+ Ingreso</span>
+              <input type="number" min="0" value="0" 
+                data-variant-name="${v.name}"
+                data-current-stock="${v.stock}"
+                class="variant-stock-input w-24 bg-white border-2 border-slate-300 rounded-lg px-3 py-1.5 text-right font-mono font-bold text-sm text-slate-900 focus:outline-none focus:border-emerald-600">
+            </div>
+          </div>
+        `).join('');
+      } else {
+        variantsContainer.classList.add('hidden');
+        variantsList.innerHTML = '';
+        simpleContainer.classList.remove('hidden');
+        document.getElementById('quick-stock-qty').value = 0;
+        document.getElementById('quick-stock-qty').setAttribute('required', 'required');
+      }
+
+      document.getElementById('quick-stock-modal').classList.remove('hidden');
+      if (parsedVariants.length === 0) {
+        const inputQty = document.getElementById('quick-stock-qty');
+        inputQty.focus();
+        inputQty.select();
+      }
+      lucide.createIcons();
+    }
+
+    function closeQuickStockModal() {
+      document.getElementById('quick-stock-modal').classList.add('hidden');
+    }
+
+    async function confirmarIngresoMercaderia(e) {
+      if (e) e.preventDefault();
+      const sku = document.getElementById('quick-stock-sku').value;
+      if (!sku) return;
+
+      const varInputs = document.querySelectorAll('.variant-stock-input');
+      let payload = {};
+      let totalQtyAdded = 0;
+
+      if (varInputs.length > 0) {
+        const ingresosMap = {};
+        varInputs.forEach(input => {
+          const vName = input.getAttribute('data-variant-name');
+          const addSt = parseInt(input.value || '0');
+          ingresosMap[vName] = Math.max(0, addSt);
+          totalQtyAdded += Math.max(0, addSt);
+        });
+
+        if (totalQtyAdded <= 0) {
+          showToast('Ingresa una cantidad mayor a 0 en al menos una variante.', 'warning');
+          return;
+        }
+
+        payload = {
+          sku: sku,
+          ingresos: ingresosMap
+        };
+      } else {
+        const qtyToAdd = parseInt(document.getElementById('quick-stock-qty').value || '0');
+        if (isNaN(qtyToAdd) || qtyToAdd <= 0) {
+          showToast('Por favor ingresa una cantidad válida mayor a 0.', 'warning');
+          return;
+        }
+        totalQtyAdded = qtyToAdd;
+        payload = {
+          sku: sku,
+          ingresos: qtyToAdd,
+          cantidad: qtyToAdd
+        };
+      }
+
+      try {
+        const res = await fetch('/api/producto/ingreso-rapido', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showToast(`¡Se ingresaron +${totalQtyAdded} unidades al stock de ${sku}!`, 'success');
+          closeQuickStockModal();
+          loadInventory();
+          loadReports();
+        } else {
+          showToast(data.error || 'Error al actualizar el stock.', 'error');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Error de conexión con el servidor.', 'error');
+      }
+    }
+
+    const submitQuickStockIncrease = confirmarIngresoMercaderia;
+
+    async function quickStockChange(sku, action) {
+      try {
+        const res = await fetch(`/api/productos/${sku}/stock`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: action, value: 1 })
+        });
+        if (res.ok) {
+          loadInventory();
+          loadReports();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // PRODUCT MODAL LOGIC & MARGIN CALCULATIONS
+    function handleFormVariantesInput() {
+      const varInput = document.getElementById('form-variantes');
+      const stockInput = document.getElementById('form-stock');
+      if (!varInput || !stockInput) return;
+
+      const rawVal = varInput.value.trim();
+      if (!rawVal) {
+        stockInput.readOnly = false;
+        stockInput.disabled = false;
+        stockInput.classList.remove('bg-slate-100', 'text-slate-500', 'cursor-not-allowed');
+        return;
+      }
+
+      const parts = rawVal.split(',').map(s => s.trim()).filter(Boolean);
+      let hasPairWithStock = false;
+      let totalStockFromVariants = 0;
+
+      parts.forEach(part => {
+        if (part.includes(':')) {
+          const idx = part.indexOf(':');
+          const stockStr = part.substring(idx + 1).trim();
+          if (stockStr !== '' && !isNaN(parseInt(stockStr))) {
+            hasPairWithStock = true;
+            totalStockFromVariants += Math.max(0, parseInt(stockStr));
+          }
+        }
+      });
+
+      if (hasPairWithStock) {
+        stockInput.value = totalStockFromVariants;
+        stockInput.readOnly = true;
+        stockInput.disabled = true;
+        stockInput.classList.add('bg-slate-100', 'text-slate-500', 'cursor-not-allowed');
+      } else {
+        stockInput.readOnly = false;
+        stockInput.disabled = false;
+        stockInput.classList.remove('bg-slate-100', 'text-slate-500', 'cursor-not-allowed');
+      }
+    }
+
+    function calculateMargins() {
+      const costo = parseFloat(document.getElementById('form-costo').value) || 0;
+      const precio = parseFloat(document.getElementById('form-precio').value) || 0;
+
+      const ganancia = precio - costo;
+      const markup = costo > 0 ? ((precio - costo) / costo * 100) : 0;
+      const margen = precio > 0 ? ((precio - costo) / precio * 100) : 0;
+
+      document.getElementById('indicator-markup').textContent = `${markup.toFixed(1)}%`;
+      document.getElementById('indicator-margen').textContent = `${margen.toFixed(1)}%`;
+      const ganEl = document.getElementById('indicator-ganancia');
+      if (ganEl) ganEl.textContent = `S/ ${formatMoney(ganancia)}`;
+    }
+
+    async function openProductModal(sku = null) {
+      const modal = document.getElementById('product-modal');
+      const isEditInput = document.getElementById('modal-is-edit');
+      const skuInput = document.getElementById('form-sku');
+
+      if (sku) {
+        document.getElementById('modal-title').innerHTML = `<span>📦 Editar Repuesto SKU: ${sku}</span>`;
+        isEditInput.value = "true";
+        skuInput.readOnly = true;
+
+        try {
+          const res = await fetch(`/api/productos/${sku}`);
+          const p = await res.json();
+
+          skuInput.value = p.sku;
+          document.getElementById('form-marca').value = p.marca;
+          document.getElementById('form-categoria').value = p.categoria;
+          document.getElementById('form-descripcion').value = p.descripcion;
+          document.getElementById('form-variantes').value = p.variantes;
+          document.getElementById('form-costo').value = p.costo_compra;
+          document.getElementById('form-precio').value = p.precio_venta;
+          document.getElementById('form-stock').value = p.stock_actual;
+          document.getElementById('form-stock-min').value = p.stock_minimo;
+          document.getElementById('form-imagen').value = p.imagen;
+
+          calculateMargins();
+          handleFormVariantesInput();
+        } catch (err) {
+          showToast('Error cargando datos del producto', 'error');
+          return;
+        }
+      } else {
+        document.getElementById('modal-title').innerHTML = `<span>📦 Registrar Nuevo Repuesto</span>`;
+        isEditInput.value = "false";
+        skuInput.readOnly = false;
+        document.getElementById('product-form').reset();
+        document.getElementById('form-stock-min').value = 2;
+        calculateMargins();
+        handleFormVariantesInput();
+      }
+
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    async function uploadImageFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const res = await fetch('/api/upload-imagen', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (res.ok) {
+          document.getElementById('form-imagen').value = data.filename;
+          showToast('Imagen subida correctamente', 'success');
+        } else {
+          showToast(data.error || 'Error subiendo imagen', 'error');
+        }
+      } catch (err) {
+        showToast('Error en subida de archivo', 'error');
+      }
+    }
+
+    async function saveProduct(e) {
+      e.preventDefault();
+      const isEdit = document.getElementById('modal-is-edit').value === "true";
+      const sku = document.getElementById('form-sku').value.trim().toUpperCase();
+
+      const payload = {
+        sku: sku,
+        marca: document.getElementById('form-marca').value.trim() || 'AGR',
+        categoria: document.getElementById('form-categoria').value.trim() || 'Otros',
+        descripcion: document.getElementById('form-descripcion').value.trim(),
+        variantes: document.getElementById('form-variantes').value.trim(),
+        costo_compra: parseFloat(document.getElementById('form-costo').value),
+        precio_venta: parseFloat(document.getElementById('form-precio').value),
+        stock_actual: parseInt(document.getElementById('form-stock').value),
+        stock_minimo: parseInt(document.getElementById('form-stock-min').value),
+        imagen: document.getElementById('form-imagen').value.trim()
+      };
+
+      try {
+        const url = isEdit ? `/api/productos/${sku}` : '/api/productos';
+        const method = isEdit ? 'PUT' : 'POST';
+
+        const res = await fetch(url, {
+          method: method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(() => ({ error: `Error del servidor (código ${res.status})` }));
+
+        if (!res.ok) {
+          showToast(data.error || 'Error al guardar el producto', 'error');
+          return;
+        }
+
+        showToast(isEdit ? `Producto ${sku} actualizado` : `Producto ${sku} registrado con éxito`, 'success');
+        closeProductModal();
+        loadInventory();
+        loadReports();
+
+      } catch (err) {
+        showToast('Error al conectar con el servidor', 'error');
+      }
+    }
+
+    async function deleteProduct(sku) {
+      if (!confirm(`¿Estás seguro de eliminar permanentemente el producto SKU ${sku}?`)) return;
+
+      try {
+        const res = await fetch(`/api/productos/${sku}`, { method: 'DELETE' });
+        if (res.ok) {
+          showToast(`Producto ${sku} eliminado`, 'info');
+          loadInventory();
+          loadReports();
+        } else {
+          showToast('Error eliminando producto', 'error');
+        }
+      } catch (err) {
+        showToast('Error en el servidor', 'error');
+      }
+    }
+
+    // EXPORT TO EXCEL / CSV
+    function exportToExcel() {
+      if (productsList.length === 0) {
+        showToast('No hay productos para exportar', 'warning');
+        return;
+      }
+
+      let csv = '\uFEFF'; // UTF-8 BOM
+      csv += 'SKU,Categoría,Marca,Descripción,Variantes,Costo Compra (S/),Precio Venta (S/),Stock Actual,Stock Mínimo,Estado\n';
+
+      productsList.forEach(p => {
+        const row = [
+          `"${p.sku}"`,
+          `"${p.categoria}"`,
+          `"${p.marca}"`,
+          `"${p.descripcion.replace(/"/g, '""')}"`,
+          `"${(p.variantes || '').replace(/"/g, '""')}"`,
+          p.costo_compra.toFixed(2),
+          p.precio_venta.toFixed(2),
+          p.stock_actual,
+          p.stock_minimo,
+          `"${p.estado_label}"`
+        ];
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `inventario_agr_importaciones_${new Date().toISOString().slice(0,10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('Archivo CSV/Excel generado con éxito', 'success');
+    }
+
+    // ========================================================
+    // LOGICA PESTAÑA 3: REPORTES & TICKETS DE VENTAS
+    // ========================================================
+
+    let currentLoadedSales = [];
+
+    async function loadReports() {
+      const q = document.getElementById('report-search-input')?.value.trim() || '';
+      const desde = document.getElementById('report-date-start')?.value.trim() || '';
+      const hasta = document.getElementById('report-date-end')?.value.trim() || '';
+
+      try {
+        const url = `/api/reportes?q=${encodeURIComponent(q)}&desde=${encodeURIComponent(desde)}&hasta=${encodeURIComponent(hasta)}`;
+        const res = await fetch(url);
+        const r = await res.json();
+
+        currentLoadedSales = r.historial_ventas || [];
+
+        // Actualizar KPIs de Resumen
+        document.getElementById('kpi-recaudado-total').textContent = `S/ ${formatMoney(r.recaudado_total)}`;
+        document.getElementById('kpi-ganancia-neta').textContent = `S/ ${formatMoney(r.ganancia_neta)}`;
+        document.getElementById('kpi-valor-costo').textContent = `S/ ${formatMoney(r.valor_costo)}`;
+        document.getElementById('kpi-valor-venta').textContent = `S/ ${formatMoney(r.valor_venta)}`;
+        document.getElementById('kpi-ganancia-potencial-sub').textContent = `Ganancia en Stock: S/ ${formatMoney(r.ganancia_potencial)}`;
+
+        // Historial de Tickets / Ventas
+        renderReportsTable();
+
+      } catch (err) {
+        console.error("Error cargando reportes:", err);
+      }
+    }
+
+    function renderReportsTable() {
+      const tbody = document.getElementById('sales-history-table-body');
+      const emptyState = document.getElementById('reports-empty-state');
+      const paginationCounter = document.getElementById('reports-pagination-counter');
+      const pageInfo = document.getElementById('reports-page-info');
+      const prevBtn = document.getElementById('reports-prev-btn');
+      const nextBtn = document.getElementById('reports-next-btn');
+
+      if (!currentLoadedSales || currentLoadedSales.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        if (paginationCounter) paginationCounter.textContent = 'Mostrando 0-0 de 0 ventas';
+        if (pageInfo) pageInfo.textContent = 'Página 1 de 1';
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      const totalItems = currentLoadedSales.length;
+      const totalPages = Math.ceil(totalItems / REPORTS_PER_PAGE) || 1;
+
+      if (currentReportsPage > totalPages) currentReportsPage = totalPages;
+      if (currentReportsPage < 1) currentReportsPage = 1;
+
+      const startIdx = (currentReportsPage - 1) * REPORTS_PER_PAGE;
+      const endIdx = startIdx + REPORTS_PER_PAGE;
+      const pagedSales = currentLoadedSales.slice(startIdx, endIdx);
+
+      tbody.innerHTML = pagedSales.map(v => {
+        const itemsSummary = v.items.map(i => `${i.descripcion || i.sku} (x${i.cantidad})`).join(', ');
+
+        const innerRowsHTML = v.items.map(i => `
+          <tr class="border-b border-slate-100 hover:bg-slate-100/60">
+            <td class="py-2 px-3 font-mono font-bold text-slate-800">${i.sku}</td>
+            <td class="py-2 px-3 font-bold text-slate-800">${i.descripcion} ${i.marca ? '• ' + i.marca : ''}</td>
+            <td class="py-2 px-3 text-center font-bold text-slate-900">${i.cantidad}</td>
+            <td class="py-2 px-3 text-right font-mono font-semibold text-slate-800">S/ ${formatMoney(i.precio_unitario)}</td>
+            <td class="py-2 px-3 text-right font-mono font-bold text-emerald-600">S/ ${formatMoney(i.subtotal)}</td>
+          </tr>
+        `).join('');
+
+        return `
+          <!-- Fila Principal del Ticket -->
+          <tr class="hover:bg-slate-50 transition border-b border-slate-200">
+            <td class="py-3 px-3 text-center">
+              <input type="radio" name="selected_sale" value="${v.id}" class="w-4 h-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 cursor-pointer">
+            </td>
+            <td class="py-3 px-4 font-mono text-slate-700 text-xs font-semibold whitespace-nowrap">${v.fecha_hora}</td>
+            <td class="py-3 px-4 font-bold text-slate-800 text-xs whitespace-nowrap">${v.cliente}</td>
+            
+            <td class="py-3 px-4 text-xs">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-slate-700 font-medium truncate max-w-sm" title="${itemsSummary}">${itemsSummary}</span>
+                <button type="button" onclick="toggleTicketDetails(${v.id})" 
+                  class="px-2.5 py-1 rounded bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition font-bold text-[11px] flex items-center gap-1 shrink-0">
+                  <span id="toggle-btn-text-${v.id}">▼ Desglosar</span>
+                </button>
+              </div>
+            </td>
+
+            <td class="py-3 px-3 text-center font-extrabold text-slate-800 text-xs">${v.total_cant}</td>
+            <td class="py-3 px-4 text-right font-mono font-extrabold text-emerald-600 text-xs">S/ ${formatMoney(v.total)}</td>
+            <td class="py-3 px-4 text-right font-mono font-extrabold text-slate-900 text-xs">S/ ${formatMoney(v.ganancia)}</td>
+          </tr>
+
+          <!-- Fila Desplegable con Desglose Completo de Productos -->
+          <tr id="ticket-detail-row-${v.id}" class="hidden bg-slate-50/90 border-b border-slate-200">
+            <td colspan="7" class="p-4">
+              <div class="bg-white border border-slate-200 rounded-xl p-3.5 space-y-3 shadow-xs">
+                <div class="flex items-center justify-between text-xs font-bold border-b border-slate-100 pb-2">
+                  <span class="text-indigo-800 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>📦</span>
+                    <span>Desglose de Productos (${v.items.length} ítems)</span>
+                  </span>
+                  <span class="text-slate-500 font-mono">ID Venta: <strong class="text-indigo-700">TICKET-#${v.id}</strong> | Cliente: <strong class="text-slate-800">${v.cliente}</strong></span>
+                </div>
+
+                <table class="w-full text-left text-[11px]">
+                  <thead class="bg-slate-100 text-slate-600 uppercase font-extrabold">
+                    <tr>
+                      <th class="py-1.5 px-3">SKU</th>
+                      <th class="py-1.5 px-3">PRODUCTO</th>
+                      <th class="py-1.5 px-3 text-center">CANTIDAD</th>
+                      <th class="py-1.5 px-3 text-right">PRECIO U.</th>
+                      <th class="py-1.5 px-3 text-right">SUBTOTAL</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    ${innerRowsHTML}
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      if (paginationCounter) {
+        paginationCounter.textContent = `Mostrando ${startIdx + 1}-${Math.min(endIdx, totalItems)} de ${totalItems} ventas`;
+      }
+      if (pageInfo) {
+        pageInfo.textContent = `Página ${currentReportsPage} de ${totalPages}`;
+      }
+      if (prevBtn) prevBtn.disabled = currentReportsPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentReportsPage >= totalPages;
+
+      lucide.createIcons();
+    }
+
+    function changeReportsPage(delta) {
+      const totalPages = Math.ceil(currentLoadedSales.length / REPORTS_PER_PAGE) || 1;
+      currentReportsPage += delta;
+      if (currentReportsPage < 1) currentReportsPage = 1;
+      if (currentReportsPage > totalPages) currentReportsPage = totalPages;
+      renderReportsTable();
+    }
+
+    function toggleTicketDetails(saleId) {
+      const detailRow = document.getElementById(`ticket-detail-row-${saleId}`);
+      const btnText = document.getElementById(`toggle-btn-text-${saleId}`);
+
+      if (detailRow.classList.contains('hidden')) {
+        detailRow.classList.remove('hidden');
+        if (btnText) btnText.textContent = '▲ Ocultar';
+      } else {
+        detailRow.classList.add('hidden');
+        if (btnText) btnText.textContent = '▼ Desglosar';
+      }
+    }
+
+    function viewSelectedTicketReceipt() {
+      const selected = document.querySelector('input[name="selected_sale"]:checked');
+      if (!selected) {
+        showToast('Por favor marca la casilla SEL de la venta que deseas ver.', 'warning');
+        return;
+      }
+
+      const saleId = parseInt(selected.value);
+      const sale = currentLoadedSales.find(s => s.id === saleId);
+      if (!sale) {
+        showToast('Venta no encontrada.', 'error');
+        return;
+      }
+
+      showReceiptModal({
+        venta_id: sale.id,
+        fecha_hora: sale.fecha_hora,
+        cliente: sale.cliente,
+        total: sale.total
+      }, sale.items);
+    }
+
+    async function voidSelectedTicket() {
+      const selected = document.querySelector('input[name="selected_sale"]:checked');
+      if (!selected) {
+        showToast('Por favor marca la casilla SEL de la venta que deseas anular.', 'warning');
+        return;
+      }
+
+      const saleId = parseInt(selected.value);
+      const sale = currentLoadedSales.find(s => s.id === saleId);
+      if (!sale) return;
+
+      const confirmVoid = confirm(`⚠️ ¿Estás seguro de ANULAR la Venta #${sale.id} de "${sale.cliente}" por S/ ${formatMoney(sale.total)}?\n\nLos productos vendidos se devolverán automáticamente al stock del almacén.`);
+      if (!confirmVoid) return;
+
+      try {
+        const res = await fetch(`/api/ventas/${saleId}`, {
+          method: 'DELETE'
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          showToast(`¡Venta #${saleId} anulada con éxito y stock devuelto!`, 'success');
+          loadReports();
+          loadInventory();
+        } else {
+          showToast(data.error || 'Error al anular la venta.', 'error');
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('Error de conexión con el servidor.', 'error');
+      }
+    }
+
+    /* ========================================================
+       LÓGICA ACCIONES EXCEL (DROPDOWN E IMPORTACIÓN MASIVA)
+    ======================================================== */
+    function toggleExcelDropdown(e) {
+      if (e) e.stopPropagation();
+      const menu = document.getElementById('excel-dropdown-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function closeExcelDropdown() {
+      const menu = document.getElementById('excel-dropdown-menu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const container = document.getElementById('excel-actions-dropdown-container');
+      if (container && !container.contains(e.target)) {
+        closeExcelDropdown();
+      }
+    });
+
+    function openImportModal() {
+      const modal = document.getElementById('import-excel-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.getElementById('import-file-input').value = '';
+        document.getElementById('selected-file-name').innerText = 'Haz clic aquí para elegir un archivo (.xlsx o .csv)';
+        document.getElementById('submit-import-btn').disabled = true;
+      }
+    }
+
+    function closeImportModal() {
+      const modal = document.getElementById('import-excel-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleFileSelect(input) {
+      const file = input.files[0];
+      const nameSpan = document.getElementById('selected-file-name');
+      const submitBtn = document.getElementById('submit-import-btn');
+      
+      if (file) {
+        nameSpan.innerHTML = `📄 Archivo seleccionado: <strong class="text-emerald-700">${file.name}</strong> (${(file.size / 1024).toFixed(1)} KB)`;
+        submitBtn.disabled = false;
+      } else {
+        nameSpan.innerText = 'Haz clic aquí para elegir un archivo (.xlsx o .csv)';
+        submitBtn.disabled = true;
+      }
+    }
+
+    async function uploadImportFile() {
+      const input = document.getElementById('import-file-input');
+      if (!input.files || input.files.length === 0) return;
+
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const submitBtn = document.getElementById('submit-import-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>⏳ Procesando e importando...</span>`;
+
+      try {
+        const res = await fetch('/api/importar-excel', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error al importar archivo');
+
+        closeImportModal();
+        showToast(`✅ ${data.message}`, 'success');
+        loadInventory();
+      } catch (err) {
+        showToast(`❌ ${err.message}`, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
+  </script>
+</body>
+</html>

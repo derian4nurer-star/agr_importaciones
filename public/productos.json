@@ -1,0 +1,1253 @@
+[
+  {
+    "sku": "MQ-20",
+    "nombre": "Asiento En Gel",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 30.0,
+    "stock_total": 13,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/mq20_1.png",
+      "imagenes/mq20_2.webp",
+      "imagenes/mq20_33.jpeg",
+      "imagenes/mq20_4.webp"
+    ],
+    "descripcion": "Asiento En Gel",
+    "popular": true,
+    "stock": 13,
+    "stock_actual": 13,
+    "precio_venta": 30.0,
+    "descripcion_detallada": "Asiento En Gel",
+    "imagen": "mq20_1.png",
+    "es_popular": true,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "MQ-122",
+    "nombre": "Base De Exploradora Para Barras Telescópicas",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 18.0,
+    "stock_total": 5,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 5
+      }
+    ],
+    "imagenes": [
+      "imagenes/MQ-122.jpg"
+    ],
+    "descripcion": "Base De Exploradora Para Barras Telescópicas",
+    "popular": false,
+    "stock": 5,
+    "stock_actual": 5,
+    "precio_venta": 18.0,
+    "descripcion_detallada": "Base De Exploradora Para Barras Telescópicas",
+    "imagen": "MQ-122.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:5"
+  },
+  {
+    "sku": "A-005",
+    "nombre": "Base De Exploradora Para Timón (PAR)",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 16.0,
+    "stock_total": 36,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/a-005_1.png",
+      "imagenes/a-005_2.webp",
+      "imagenes/a-005_3.webp",
+      "imagenes/a-005_4.webp"
+    ],
+    "descripcion": "Base De Exploradora Para Timón",
+    "popular": false,
+    "stock": 36,
+    "stock_actual": 36,
+    "precio_venta": 16.0,
+    "descripcion_detallada": "Base De Exploradora Para Timón",
+    "imagen": "a-005_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "529",
+    "nombre": "Cadena De Seguridad Para Cascos",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 8.5,
+    "stock_total": 25,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 25
+      }
+    ],
+    "imagenes": [
+      "imagenes/529.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Para Cascos",
+    "popular": false,
+    "stock": 25,
+    "stock_actual": 25,
+    "precio_venta": 8.5,
+    "descripcion_detallada": "Cadena De Seguridad Para Cascos",
+    "imagen": "529.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:25"
+  },
+  {
+    "sku": "2015",
+    "nombre": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 23.5,
+    "stock_total": 86,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 86
+      }
+    ],
+    "imagenes": [
+      "imagenes/2015.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
+    "popular": false,
+    "stock": 86,
+    "stock_actual": 86,
+    "precio_venta": 23.5,
+    "descripcion_detallada": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
+    "imagen": "2015.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:86"
+  },
+  {
+    "sku": "20X150",
+    "nombre": "Cadena De Seguridad Reforzado 20mm x 1.50cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 22.0,
+    "stock_total": 46,
+    "variantes": [
+      {
+        "nombre": "Medida",
+        "stock": 46
+      }
+    ],
+    "imagenes": [
+      "imagenes/20X150.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.50cm",
+    "popular": false,
+    "stock": 46,
+    "stock_actual": 46,
+    "precio_venta": 22.0,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.50cm",
+    "imagen": "20X150.jpg",
+    "es_popular": false,
+    "variantes_raw": "Medida:46"
+  },
+  {
+    "sku": "2018",
+    "nombre": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 25.5,
+    "stock_total": 187,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 187
+      }
+    ],
+    "imagenes": [
+      "imagenes/2018.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "popular": false,
+    "stock": 187,
+    "stock_actual": 187,
+    "precio_venta": 25.5,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "imagen": "2018.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:187"
+  },
+  {
+    "sku": "20X180",
+    "nombre": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 24.5,
+    "stock_total": 86,
+    "variantes": [
+      {
+        "nombre": "Medida",
+        "stock": 86
+      }
+    ],
+    "imagenes": [
+      "imagenes/20X180.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "popular": false,
+    "stock": 86,
+    "stock_actual": 86,
+    "precio_venta": 24.5,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
+    "imagen": "20X180.jpg",
+    "es_popular": false,
+    "variantes_raw": "Medida:86"
+  },
+  {
+    "sku": "2415",
+    "nombre": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 30.0,
+    "stock_total": 210,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 210
+      }
+    ],
+    "imagenes": [
+      "imagenes/2415.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
+    "popular": false,
+    "stock": 210,
+    "stock_actual": 210,
+    "precio_venta": 30.0,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
+    "imagen": "2415.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:210"
+  },
+  {
+    "sku": "25X150",
+    "nombre": "Cadena De Seguridad Reforzado 25mm x 1.50cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 26.0,
+    "stock_total": 84,
+    "variantes": [
+      {
+        "nombre": "Medida",
+        "stock": 84
+      }
+    ],
+    "imagenes": [
+      "imagenes/25X150.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 25mm x 1.50cm",
+    "popular": false,
+    "stock": 84,
+    "stock_actual": 84,
+    "precio_venta": 26.0,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 25mm x 1.50cm",
+    "imagen": "25X150.jpg",
+    "es_popular": false,
+    "variantes_raw": "Medida:84"
+  },
+  {
+    "sku": "25X180",
+    "nombre": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 29.0,
+    "stock_total": 20,
+    "variantes": [
+      {
+        "nombre": "Medida",
+        "stock": 20
+      }
+    ],
+    "imagenes": [
+      "imagenes/25X180.jpg"
+    ],
+    "descripcion": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
+    "popular": false,
+    "stock": 20,
+    "stock_actual": 20,
+    "precio_venta": 29.0,
+    "descripcion_detallada": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
+    "imagen": "25X180.jpg",
+    "es_popular": false,
+    "variantes_raw": "Medida:20"
+  },
+  {
+    "sku": "8303",
+    "nombre": "Candado De Disco Con Alarma Pesado",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 42.0,
+    "stock_total": 0,
+    "variantes": [
+      {
+        "nombre": "CROMADO",
+        "stock": 0
+      }
+    ],
+    "imagenes": [
+      "imagenes/8303_1.png",
+      "imagenes/8303_2.webp",
+      "imagenes/8303_3.webp",
+      "imagenes/8303_4.webp"
+    ],
+    "descripcion": "Candado De Disco Con Alarma Pesado",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 42.0,
+    "descripcion_detallada": "Candado De Disco Con Alarma Pesado",
+    "imagen": "8303_1.png",
+    "es_popular": false,
+    "variantes_raw": "CROMADO"
+  },
+  {
+    "sku": "103",
+    "nombre": "Cargador USB Con Doble Entrada",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 13.0,
+    "stock_total": 4,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/103_1.png",
+      "imagenes/103_2.webp",
+      "imagenes/103_3.jpg",
+      "imagenes/103_4.webp"
+    ],
+    "descripcion": "Cargador USB Con Doble Entrada",
+    "popular": false,
+    "stock": 4,
+    "stock_actual": 4,
+    "precio_venta": 13.0,
+    "descripcion_detallada": "Cargador USB Con Doble Entrada",
+    "imagen": "103_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "A-6",
+    "nombre": "Cobertor Para Moto Lineal",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 20.0,
+    "stock_total": 722,
+    "variantes": [
+      {
+        "nombre": "L",
+        "stock": 1
+      },
+      {
+        "nombre": "XL",
+        "stock": 1
+      },
+      {
+        "nombre": "XXL",
+        "stock": 1
+      }
+    ],
+    "imagenes": [
+      "imagenes/a-6_1.png",
+      "imagenes/a-6_2.jpeg",
+      "imagenes/a-6_3.jpeg",
+      "imagenes/a-6_4.jpeg"
+    ],
+    "descripcion": "Cobertor Para Moto Lineal",
+    "popular": false,
+    "stock": 722,
+    "stock_actual": 722,
+    "precio_venta": 20.0,
+    "descripcion_detallada": "Cobertor Para Moto Lineal",
+    "imagen": "a-6_1.png",
+    "es_popular": false,
+    "variantes_raw": "L:1, XL:1, XXL:1"
+  },
+  {
+    "sku": "A-8",
+    "nombre": "Corta Viento Deportivo",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 28.0,
+    "stock_total": 12,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 4
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 2
+      },
+      {
+        "nombre": "DORADO",
+        "stock": 2
+      },
+      {
+        "nombre": "PLATA",
+        "stock": 2
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 2
+      }
+    ],
+    "imagenes": [],
+    "descripcion": "Corta Viento Deportivo",
+    "popular": false,
+    "stock": 12,
+    "stock_actual": 12,
+    "precio_venta": 28.0,
+    "descripcion_detallada": "Corta Viento Deportivo",
+    "imagen": "",
+    "es_popular": false,
+    "variantes_raw": "ROJO:4, NEGRO:2, DORADO:2, PLATA:2, AZUL:2"
+  },
+  {
+    "sku": "A-008",
+    "nombre": "Intercomunicador Para Cascos",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 67.0,
+    "stock_total": 12,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 12
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-008.jpg"
+    ],
+    "descripcion": "Intercomunicador Para Cascos",
+    "popular": false,
+    "stock": 12,
+    "stock_actual": 12,
+    "precio_venta": 67.0,
+    "descripcion_detallada": "Intercomunicador Para Cascos",
+    "imagen": "A-008.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:12"
+  },
+  {
+    "sku": "A-0019",
+    "nombre": "Interruptor De 2 Tiempos Con 3 Cables",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 8.0,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/a-0019_1.png",
+      "imagenes/a-0019_2.webp",
+      "imagenes/a-0019_3.jpg",
+      "imagenes/a-0019_4.webp"
+    ],
+    "descripcion": "Interruptor De 2 Tiempos Con 3 Cables",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 8.0,
+    "descripcion_detallada": "Interruptor De 2 Tiempos Con 3 Cables",
+    "imagen": "a-0019_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "419-2",
+    "nombre": "Interruptor De Luz Universal",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 10.0,
+    "stock_total": 233,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/419-2_.png",
+      "imagenes/419-2_2.webp",
+      "imagenes/419-2_3.webp",
+      "imagenes/419-2_4.webp"
+    ],
+    "descripcion": "Interruptor De Luz Universal",
+    "popular": false,
+    "stock": 233,
+    "stock_actual": 233,
+    "precio_venta": 10.0,
+    "descripcion_detallada": "Interruptor De Luz Universal",
+    "imagen": "419-2_.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "8306",
+    "nombre": "Kit Candado De Disco Con Alarma",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 38.0,
+    "stock_total": 171,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/8306_1.png",
+      "imagenes/8306_2.webp",
+      "imagenes/8306_3.webp",
+      "imagenes/8306_4.webp"
+    ],
+    "descripcion": "Kit Candado De Disco Con Alarma",
+    "popular": false,
+    "stock": 171,
+    "stock_actual": 171,
+    "precio_venta": 38.0,
+    "descripcion_detallada": "Kit Candado De Disco Con Alarma",
+    "imagen": "8306_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "A-003",
+    "nombre": "Luz Dual U94 M2",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 43.0,
+    "stock_total": 28,
+    "variantes": [
+      {
+        "nombre": "NEGRO-ROJO",
+        "stock": 28
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-003.jpg"
+    ],
+    "descripcion": "Luz Dual U94 M2",
+    "popular": false,
+    "stock": 28,
+    "stock_actual": 28,
+    "precio_venta": 43.0,
+    "descripcion_detallada": "Luz Dual U94 M2",
+    "imagen": "A-003.jpg",
+    "es_popular": false,
+    "variantes_raw": "NEGRO-ROJO:28"
+  },
+  {
+    "sku": "419-1",
+    "nombre": "Malla Elástica Reflectiva Scoyco",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 9.5,
+    "stock_total": 128,
+    "variantes": [
+      {
+        "nombre": "NEGRO",
+        "stock": 50
+      },
+      {
+        "nombre": "ROJO",
+        "stock": 47
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 31
+      }
+    ],
+    "imagenes": [
+      "imagenes/419-1_1.png",
+      "imagenes/419-1_2.webp",
+      "imagenes/419-1_3.webp",
+      "imagenes/419-1_4.webp"
+    ],
+    "descripcion": "Malla Elástica Reflectiva Scoyco",
+    "popular": false,
+    "stock": 128,
+    "stock_actual": 128,
+    "precio_venta": 9.5,
+    "descripcion_detallada": "Malla Elástica Reflectiva Scoyco",
+    "imagen": "419-1_1.png",
+    "es_popular": false,
+    "variantes_raw": "NEGRO:50, ROJO:47, AZUL:31"
+  },
+  {
+    "sku": "A-010",
+    "nombre": "Manija Rancing Universal",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 60.0,
+    "stock_total": 393,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 112
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 100
+      },
+      {
+        "nombre": "DORADO",
+        "stock": 46
+      },
+      {
+        "nombre": "PLATA",
+        "stock": 50
+      },
+      {
+        "nombre": "NARANJA",
+        "stock": 45
+      },
+      {
+        "nombre": "VERDE",
+        "stock": 40
+      }
+    ],
+    "imagenes": [
+      "imagenes/a-010_1.png",
+      "imagenes/a-010_2.jpg",
+      "imagenes/a-010_3.jpg",
+      "imagenes/a-010_4.jpg"
+    ],
+    "descripcion": "Manija Rancing Universal",
+    "popular": true,
+    "stock": 393,
+    "stock_actual": 393,
+    "precio_venta": 60.0,
+    "descripcion_detallada": "Manija Rancing Universal",
+    "imagen": "a-010_1.png",
+    "es_popular": true,
+    "variantes_raw": "ROJO:112, NEGRO:100, DORADO:46, PLATA:50, NARANJA:45, VERDE:40"
+  },
+  {
+    "sku": "A-004",
+    "nombre": "Manubrios De Aluminio",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 15.0,
+    "stock_total": 199,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 29
+      },
+      {
+        "nombre": "VERDE",
+        "stock": 0
+      },
+      {
+        "nombre": "DORADO",
+        "stock": 26
+      },
+      {
+        "nombre": "PLATA",
+        "stock": 32
+      },
+      {
+        "nombre": "NARANJA",
+        "stock": 83
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 29
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 57
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-004.jpg"
+    ],
+    "descripcion": "Manubrios De Aluminio",
+    "popular": false,
+    "stock": 199,
+    "stock_actual": 199,
+    "precio_venta": 15.0,
+    "descripcion_detallada": "Manubrios De Aluminio",
+    "imagen": "A-004.jpg",
+    "es_popular": false,
+    "variantes_raw": "ROJO:29, VERDE:0, DORADO:26, PLATA:32, NARANJA:83, NEGRO:29, AZUL:57"
+  },
+  {
+    "sku": "A-10",
+    "nombre": "Manubrios Deportivos Rizoma",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 21.5,
+    "stock_total": 307,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 164
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 28
+      },
+      {
+        "nombre": "DORADO",
+        "stock": 15
+      },
+      {
+        "nombre": "PLATA",
+        "stock": 17
+      },
+      {
+        "nombre": "NARANJA",
+        "stock": 44
+      },
+      {
+        "nombre": "VERDE",
+        "stock": 39
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 90
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-10.jpg"
+    ],
+    "descripcion": "Manubrios Deportivos Rizoma",
+    "popular": false,
+    "stock": 307,
+    "stock_actual": 307,
+    "precio_venta": 21.5,
+    "descripcion_detallada": "Manubrios Deportivos Rizoma",
+    "imagen": "A-10.jpg",
+    "es_popular": false,
+    "variantes_raw": "ROJO:164, NEGRO:28, DORADO:15, PLATA:17, NARANJA:44, VERDE:39, AZUL:90"
+  },
+  {
+    "sku": "CD1",
+    "nombre": "Porta Celular De Aluminio Base Timón Con Cargador",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 12.0,
+    "stock_total": 0,
+    "variantes": [
+      {
+        "nombre": "NEGRO",
+        "stock": 0
+      }
+    ],
+    "imagenes": [
+      "imagenes/CD1.jpg"
+    ],
+    "descripcion": "Porta Celular De Aluminio Base Timón Con Cargador",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 12.0,
+    "descripcion_detallada": "Porta Celular De Aluminio Base Timón Con Cargador",
+    "imagen": "CD1.jpg",
+    "es_popular": false,
+    "variantes_raw": "NEGRO:0"
+  },
+  {
+    "sku": "JT00",
+    "nombre": "Posa Pies Deportivos De Lujo",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 14.7,
+    "stock_total": 3,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 0
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 0
+      },
+      {
+        "nombre": "BLANCO",
+        "stock": 3
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 7
+      }
+    ],
+    "imagenes": [
+      "imagenes/JT00.jpg"
+    ],
+    "descripcion": "Posa Pies Deportivos De Lujo",
+    "popular": false,
+    "stock": 3,
+    "stock_actual": 3,
+    "precio_venta": 14.7,
+    "descripcion_detallada": "Posa Pies Deportivos De Lujo",
+    "imagen": "JT00.jpg",
+    "es_popular": false,
+    "variantes_raw": "ROJO:0, NEGRO:0, BLANCO:3, AZUL:7"
+  },
+  {
+    "sku": "A-7",
+    "nombre": "Protector De Mano Carbono",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 16.0,
+    "stock_total": 20,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 1
+      },
+      {
+        "nombre": "NEGRO",
+        "stock": 19
+      },
+      {
+        "nombre": "PLATA",
+        "stock": 0
+      },
+      {
+        "nombre": "DORADO",
+        "stock": 0
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 2
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-7.jpg"
+    ],
+    "descripcion": "Protector De Mano Carbono",
+    "popular": false,
+    "stock": 20,
+    "stock_actual": 20,
+    "precio_venta": 16.0,
+    "descripcion_detallada": "Protector De Mano Carbono",
+    "imagen": "A-7.jpg",
+    "es_popular": false,
+    "variantes_raw": "ROJO:1, NEGRO:19, PLATA:0, DORADO:0, AZUL:2"
+  },
+  {
+    "sku": "1770",
+    "nombre": "Tapabarro Delantero Nexus 150",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 29.0,
+    "stock_total": 45,
+    "variantes": [
+      {
+        "nombre": "VERDE Y NEGRO",
+        "stock": 45
+      }
+    ],
+    "imagenes": [
+      "imagenes/1770.jpg"
+    ],
+    "descripcion": "Tapabarro Delantero Nexus 150",
+    "popular": false,
+    "stock": 45,
+    "stock_actual": 45,
+    "precio_venta": 29.0,
+    "descripcion_detallada": "Tapabarro Delantero Nexus 150",
+    "imagen": "1770.jpg",
+    "es_popular": false,
+    "variantes_raw": "VERDE Y NEGRO:45"
+  },
+  {
+    "sku": "A-006",
+    "nombre": "Tapabarro Posterior Universal",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 28.0,
+    "stock_total": 461,
+    "variantes": [
+      {
+        "nombre": "Único",
+        "stock": 461
+      }
+    ],
+    "imagenes": [
+      "imagenes/A-006.jpg"
+    ],
+    "descripcion": "Tapabarro Posterior Universal",
+    "popular": false,
+    "stock": 461,
+    "stock_actual": 461,
+    "precio_venta": 28.0,
+    "descripcion_detallada": "Tapabarro Posterior Universal",
+    "imagen": "A-006.jpg",
+    "es_popular": false,
+    "variantes_raw": "Único:461"
+  },
+  {
+    "sku": "X-20",
+    "nombre": "Bluetooth Para Casco",
+    "marca": "AGR",
+    "categoria": "Accesorios Biker",
+    "precio": 36.0,
+    "stock_total": 897,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/x-20_1.png",
+      "imagenes/x-20_2.webp",
+      "imagenes/x-20_3.jpeg",
+      "imagenes/x-20_4.jpeg"
+    ],
+    "descripcion": "Bluetooth Para Casco",
+    "popular": true,
+    "stock": 897,
+    "stock_actual": 897,
+    "precio_venta": 36.0,
+    "descripcion_detallada": "Bluetooth Para Casco",
+    "imagen": "x-20_1.png",
+    "es_popular": true,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "MQ-402",
+    "nombre": "Guantes De Cuero Icon",
+    "marca": "AGR",
+    "categoria": "Accesorios Biker",
+    "precio": 52.5,
+    "stock_total": 8,
+    "variantes": [
+      {
+        "nombre": "M",
+        "stock": 5
+      },
+      {
+        "nombre": "L",
+        "stock": 2
+      },
+      {
+        "nombre": "XL",
+        "stock": 1
+      }
+    ],
+    "imagenes": [
+      "imagenes/mq_1.png",
+      "imagenes/mq_2.webp",
+      "imagenes/mq_3.webp",
+      "imagenes/mq_4.webp"
+    ],
+    "descripcion": "Guantes De Cuero Icon",
+    "popular": false,
+    "stock": 8,
+    "stock_actual": 8,
+    "precio_venta": 52.5,
+    "descripcion_detallada": "Guantes De Cuero Icon",
+    "imagen": "mq_1.png",
+    "es_popular": false,
+    "variantes_raw": "M:5, L:2, XL:1"
+  },
+  {
+    "sku": "Y-01",
+    "nombre": "Lentes Cros Transparente",
+    "marca": "AGR",
+    "categoria": "Accesorios Biker",
+    "precio": 8.0,
+    "stock_total": 448,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/y01_1.png",
+      "imagenes/y01_5.jpg",
+      "imagenes/y01_3.jpg",
+      "imagenes/y01_4.webp"
+    ],
+    "descripcion": "Lentes Cros Transparente",
+    "popular": false,
+    "stock": 448,
+    "stock_actual": 448,
+    "precio_venta": 8.0,
+    "descripcion_detallada": "Lentes Cros Transparente",
+    "imagen": "y01_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "Y-02",
+    "nombre": "Lentes Cross Tornasol",
+    "marca": "AGR",
+    "categoria": "Accesorios Biker",
+    "precio": 8.0,
+    "stock_total": 294,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/y02_1.png",
+      "imagenes/y02_2.jpg",
+      "imagenes/y02_3.jpg",
+      "imagenes/y02_4.webp"
+    ],
+    "descripcion": "Lentes Cross Tornasol",
+    "popular": false,
+    "stock": 294,
+    "stock_actual": 294,
+    "precio_venta": 8.0,
+    "descripcion_detallada": "Lentes Cross Tornasol",
+    "imagen": "y02_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "C88",
+    "nombre": "Rodilleras Codera HX-P19",
+    "marca": "AGR",
+    "categoria": "Accesorios Biker",
+    "precio": 88.5,
+    "stock_total": 79,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/c88_1.png",
+      "imagenes/c88_2.webp",
+      "imagenes/c88_3.webp",
+      "imagenes/c88_4.jpeg"
+    ],
+    "descripcion": "Rodilleras Codera HX-P19",
+    "popular": false,
+    "stock": 79,
+    "stock_actual": 79,
+    "precio_venta": 88.5,
+    "descripcion_detallada": "Rodilleras Codera HX-P19",
+    "imagen": "c88_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "F-258",
+    "nombre": "Holder Carga Inalámbrica",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 78.0,
+    "stock_total": 51,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/f-25_1.png",
+      "imagenes/f-25_2.webp",
+      "imagenes/f-25_3.jpg",
+      "imagenes/f-25_4.webp"
+    ],
+    "descripcion": "Holder Carga Inalámbrica",
+    "popular": false,
+    "stock": 51,
+    "stock_actual": 51,
+    "precio_venta": 78.0,
+    "descripcion_detallada": "Holder Carga Inalámbrica",
+    "imagen": "f-25_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "SX20",
+    "nombre": "Porta Celular 5 Agarres Full Aluminio Antivibración",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 36.0,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/sx20_01.png",
+      "imagenes/SX20_2.png",
+      "imagenes/sx20_1.jpg"
+    ],
+    "descripcion": "Porta Celular 5 Agarres Full Aluminio Antivibración para timón",
+    "popular": true,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 36.0,
+    "descripcion_detallada": "Porta Celular 5 Agarres Full Aluminio Antivibración para timón",
+    "imagen": "sx20_01.png",
+    "es_popular": true,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "H-108",
+    "nombre": "Porta Celular 8 Agarres Antivibración Timón",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 38.0,
+    "stock_total": 20,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/h-111111.png",
+      "imagenes/H-108_4.jpg",
+      "imagenes/H-108_2.jpg",
+      "imagenes/H-108.png"
+    ],
+    "descripcion": "Porta Celular 8 Agarres Antivibración Timón",
+    "popular": false,
+    "stock": 20,
+    "stock_actual": 20,
+    "precio_venta": 38.0,
+    "descripcion_detallada": "Porta Celular 8 Agarres Antivibración Timón",
+    "imagen": "h-111111.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "71018",
+    "nombre": "Porta Celular Con Sombra",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 16.5,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/701111.png",
+      "imagenes/70123.webp",
+      "imagenes/710_2.jpg",
+      "imagenes/710_1.jpg"
+    ],
+    "descripcion": "Porta Celular Con Sombra",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 16.5,
+    "descripcion_detallada": "Porta Celular Con Sombra",
+    "imagen": "701111.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "MT-E01",
+    "nombre": "Porta Celular De 8 Agarres Antivibración Económico",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 22.0,
+    "stock_total": 2,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/mt4.png",
+      "imagenes/imagen3-1.jpeg",
+      "imagenes/mt1.jpeg",
+      "imagenes/mt2.jpg"
+    ],
+    "descripcion": "Porta Celular De 8 Agarres Antivibración Económico",
+    "popular": true,
+    "stock": 2,
+    "stock_actual": 2,
+    "precio_venta": 22.0,
+    "descripcion_detallada": "Porta Celular De 8 Agarres Antivibración Económico",
+    "imagen": "mt4.png",
+    "es_popular": true,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "SX18-1",
+    "nombre": "Porta Celular De 8 Agarres Para Espejo",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 22.0,
+    "stock_total": 1,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/sx18-1_1.png",
+      "imagenes/sx18-1_2.jpg",
+      "imagenes/sx18-1_3.jpg"
+    ],
+    "descripcion": "Porta Celular De 8 Agarres Para Espejo",
+    "popular": false,
+    "stock": 1,
+    "stock_actual": 1,
+    "precio_venta": 22.0,
+    "descripcion_detallada": "Porta Celular De 8 Agarres Para Espejo",
+    "imagen": "sx18-1_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "SX18",
+    "nombre": "Porta Celular De 8 Agarres Para Timón",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 22.0,
+    "stock_total": 1,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/sx18_1.png",
+      "imagenes/sx18_2.jpg",
+      "imagenes/sx18_3.jpg",
+      "imagenes/sx18_4.jpg"
+    ],
+    "descripcion": "Porta Celular De 8 Agarres Para Timón",
+    "popular": false,
+    "stock": 1,
+    "stock_actual": 1,
+    "precio_venta": 22.0,
+    "descripcion_detallada": "Porta Celular De 8 Agarres Para Timón",
+    "imagen": "sx18_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "C2",
+    "nombre": "Porta Celular De Aluminio Para Espejo",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 9.0,
+    "stock_total": 67,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/c2_1_2.png",
+      "imagenes/c2_2.jpg",
+      "imagenes/c2_3.webp",
+      "imagenes/c2_4.jpg"
+    ],
+    "descripcion": "Porta Celular De Aluminio Para Espejo",
+    "popular": false,
+    "stock": 67,
+    "stock_actual": 67,
+    "precio_venta": 9.0,
+    "descripcion_detallada": "Porta Celular De Aluminio Para Espejo",
+    "imagen": "c2_1_2.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "C-32",
+    "nombre": "Porta Celular De Aluminio Para Timón",
+    "marca": "AGR",
+    "categoria": "PORTA CELULARES",
+    "precio": 10.0,
+    "stock_total": 347,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/c-32_1.png",
+      "imagenes/c-32_2.webp",
+      "imagenes/c-32_3.webp",
+      "imagenes/c-32_4.webp"
+    ],
+    "descripcion": "Porta Celular De Aluminio Para Timón",
+    "popular": false,
+    "stock": 347,
+    "stock_actual": 347,
+    "precio_venta": 10.0,
+    "descripcion_detallada": "Porta Celular De Aluminio Para Timón",
+    "imagen": "c-32_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
+    "sku": "102",
+    "nombre": "Test Product 102",
+    "marca": "AGR",
+    "categoria": "TestCat",
+    "precio": 20.0,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/102_1.png",
+      "imagenes/102_2.webp",
+      "imagenes/102_3.webp",
+      "imagenes/102_4.webp"
+    ],
+    "descripcion": "Test",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 20.0,
+    "descripcion_detallada": "Test",
+    "imagen": "102_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  }
+]
