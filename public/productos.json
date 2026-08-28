@@ -104,12 +104,7 @@
     "categoria": "Accesorios",
     "precio": 23.5,
     "stock_total": 86,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 86
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/2015.jpg"
     ],
@@ -121,7 +116,7 @@
     "descripcion_detallada": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "imagen": "2015.jpg",
     "es_popular": false,
-    "variantes_raw": "Único:86"
+    "variantes_raw": ""
   },
   {
     "sku": "20X150",
