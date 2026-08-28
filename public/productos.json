@@ -712,7 +712,10 @@
       }
     ],
     "imagenes": [
-      "imagenes/A-10.jpg"
+      "imagenes/a-10_1.png",
+      "imagenes/a-10_2.jpg",
+      "imagenes/a-10_3.jpg",
+      "imagenes/a-10_4.jpg"
     ],
     "descripcion": "Manubrios Deportivos Rizoma",
     "popular": false,
@@ -720,7 +723,7 @@
     "stock_actual": 397,
     "precio_venta": 21.5,
     "descripcion_detallada": "Manubrios Deportivos Rizoma",
-    "imagen": "A-10.jpg",
+    "imagen": "a-10_1.png",
     "es_popular": false,
     "variantes_raw": "ROJO:164, NEGRO:28, DORADO:15, PLATA:17, NARANJA:44, VERDE:39, AZUL:90"
   },
