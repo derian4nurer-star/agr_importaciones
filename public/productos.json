@@ -662,7 +662,10 @@
       }
     ],
     "imagenes": [
-      "imagenes/A-004.jpg"
+      "imagenes/a-004_1.png",
+      "imagenes/a-004_2.jpg",
+      "imagenes/a-004_3.jpg",
+      "imagenes/a-004_4.png"
     ],
     "descripcion": "Manubrios De Aluminio",
     "popular": false,
@@ -670,7 +673,7 @@
     "stock_actual": 256,
     "precio_venta": 15.0,
     "descripcion_detallada": "Manubrios De Aluminio",
-    "imagen": "A-004.jpg",
+    "imagen": "a-004_1.png",
     "es_popular": false,
     "variantes_raw": "ROJO:29, VERDE:0, DORADO:26, PLATA:32, NARANJA:83, NEGRO:29, AZUL:57"
   },
