@@ -30,14 +30,9 @@
     "categoria": "Accesorios",
     "precio": 18.0,
     "stock_total": 5,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 5
-      }
-    ],
+    "variantes": [],
     "imagenes": [
-      "imagenes/MQ-122.jpg"
+      "imagenes/mq122_1.png"
     ],
     "descripcion": "Base De Exploradora Para Barras Telescópicas",
     "popular": false,
@@ -45,9 +40,9 @@
     "stock_actual": 5,
     "precio_venta": 18.0,
     "descripcion_detallada": "Base De Exploradora Para Barras Telescópicas",
-    "imagen": "MQ-122.jpg",
+    "imagen": "mq122_1.png",
     "es_popular": false,
-    "variantes_raw": "Único:5"
+    "variantes_raw": ""
   },
   {
     "sku": "A-005",
