@@ -335,7 +335,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 722,
+    "stock_total": 3,
     "variantes": [
       {
         "nombre": "L",
@@ -358,8 +358,8 @@
     ],
     "descripcion": "Cobertor Para Moto Lineal",
     "popular": false,
-    "stock": 722,
-    "stock_actual": 722,
+    "stock": 3,
+    "stock_actual": 3,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cobertor Para Moto Lineal",
     "imagen": "a-6_1.png",
@@ -622,7 +622,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 15.0,
-    "stock_total": 199,
+    "stock_total": 256,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -658,8 +658,8 @@
     ],
     "descripcion": "Manubrios De Aluminio",
     "popular": false,
-    "stock": 199,
-    "stock_actual": 199,
+    "stock": 256,
+    "stock_actual": 256,
     "precio_venta": 15.0,
     "descripcion_detallada": "Manubrios De Aluminio",
     "imagen": "A-004.jpg",
@@ -672,7 +672,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 21.5,
-    "stock_total": 307,
+    "stock_total": 397,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -708,8 +708,8 @@
     ],
     "descripcion": "Manubrios Deportivos Rizoma",
     "popular": false,
-    "stock": 307,
-    "stock_actual": 307,
+    "stock": 397,
+    "stock_actual": 397,
     "precio_venta": 21.5,
     "descripcion_detallada": "Manubrios Deportivos Rizoma",
     "imagen": "A-10.jpg",
@@ -748,7 +748,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 14.7,
-    "stock_total": 3,
+    "stock_total": 10,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -772,8 +772,8 @@
     ],
     "descripcion": "Posa Pies Deportivos De Lujo",
     "popular": false,
-    "stock": 3,
-    "stock_actual": 3,
+    "stock": 10,
+    "stock_actual": 10,
     "precio_venta": 14.7,
     "descripcion_detallada": "Posa Pies Deportivos De Lujo",
     "imagen": "JT00.jpg",
@@ -786,7 +786,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 16.0,
-    "stock_total": 20,
+    "stock_total": 22,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -814,8 +814,8 @@
     ],
     "descripcion": "Protector De Mano Carbono",
     "popular": false,
-    "stock": 20,
-    "stock_actual": 20,
+    "stock": 22,
+    "stock_actual": 22,
     "precio_venta": 16.0,
     "descripcion_detallada": "Protector De Mano Carbono",
     "imagen": "A-7.jpg",
