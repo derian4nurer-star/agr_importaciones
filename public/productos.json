@@ -41,14 +41,19 @@
     "precio": 36.0,
     "stock_total": 1,
     "variantes": [],
-    "imagenes": [],
+    "imagenes": [
+      "imagenes/k6_1.png",
+      "imagenes/k6_2.webp",
+      "imagenes/k6_3.webp",
+      "imagenes/k6_4.webp"
+    ],
     "descripcion": "Casco Open Face Kaifa Negro",
     "popular": false,
     "stock": 1,
     "stock_actual": 1,
     "precio_venta": 36.0,
     "descripcion_detallada": "Casco Open Face Kaifa Negro",
-    "imagen": "",
+    "imagen": "k6_1.png",
     "es_popular": false,
     "variantes_raw": ""
   },
