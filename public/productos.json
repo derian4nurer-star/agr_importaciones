@@ -773,32 +773,6 @@
     "variantes_raw": "ROJO:1, NEGRO:19, PLATA:0, DORADO:0, AZUL:2"
   },
   {
-    "sku": "1770",
-    "nombre": "Tapabarro Delantero Nexus 150",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 29.0,
-    "stock_total": 45,
-    "variantes": [
-      {
-        "nombre": "VERDE Y NEGRO",
-        "stock": 45
-      }
-    ],
-    "imagenes": [
-      "imagenes/1770.jpg"
-    ],
-    "descripcion": "Tapabarro Delantero Nexus 150",
-    "popular": false,
-    "stock": 45,
-    "stock_actual": 45,
-    "precio_venta": 29.0,
-    "descripcion_detallada": "Tapabarro Delantero Nexus 150",
-    "imagen": "1770.jpg",
-    "es_popular": false,
-    "variantes_raw": "VERDE Y NEGRO:45"
-  },
-  {
     "sku": "A-006",
     "nombre": "Tapabarro Posterior Universal",
     "marca": "AGR",
