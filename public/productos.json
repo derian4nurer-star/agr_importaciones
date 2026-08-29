@@ -478,27 +478,27 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 28.0,
-    "stock_total": 12,
+    "stock_total": 580,
     "variantes": [
       {
         "nombre": "ROJO",
-        "stock": 4
+        "stock": 202
       },
       {
         "nombre": "NEGRO",
-        "stock": 2
+        "stock": 225
       },
       {
         "nombre": "DORADO",
-        "stock": 2
+        "stock": 47
       },
       {
         "nombre": "PLATA",
-        "stock": 2
+        "stock": 0
       },
       {
         "nombre": "AZUL",
-        "stock": 2
+        "stock": 106
       }
     ],
     "imagenes": [
@@ -509,13 +509,13 @@
     ],
     "descripcion": "Corta Viento Deportivo",
     "popular": false,
-    "stock": 12,
-    "stock_actual": 12,
+    "stock": 580,
+    "stock_actual": 580,
     "precio_venta": 28.0,
     "descripcion_detallada": "Corta Viento Deportivo",
     "imagen": "a-8_1.png",
     "es_popular": false,
-    "variantes_raw": "ROJO:4, NEGRO:2, DORADO:2, PLATA:2, AZUL:2"
+    "variantes_raw": "ROJO:202, NEGRO:225, DORADO:47, PLATA:0, AZUL:106"
   },
   {
     "sku": "A-0019",
