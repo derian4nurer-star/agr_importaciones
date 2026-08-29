@@ -81,15 +81,20 @@
         "stock": 1
       }
     ],
-    "imagenes": [],
+    "imagenes": [
+      "imagenes/y008_1.png",
+      "imagenes/y008_2.jpg",
+      "imagenes/Captura_de_pantalla_2026-08-28_214444.png",
+      "imagenes/y008_4.webp"
+    ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
-    "popular": false,
+    "popular": true,
     "stock": 3,
     "stock_actual": 3,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
-    "imagen": "",
-    "es_popular": false,
+    "imagen": "y008_1.png",
+    "es_popular": true,
     "variantes_raw": "M:1, L:1, XL:1"
   },
   {
