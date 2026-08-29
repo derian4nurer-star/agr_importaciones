@@ -98,6 +98,25 @@
     "variantes_raw": "M:1, L:1, XL:1"
   },
   {
+    "sku": "ZS-01",
+    "nombre": "Luces Intermitentes Para Motocicleta modelo picaron",
+    "marca": "AGR",
+    "categoria": "ACCESORIOS",
+    "precio": 7.5,
+    "stock_total": 1,
+    "variantes": [],
+    "imagenes": [],
+    "descripcion": "Luces Intermitentes Para Motocicleta modelo picaron",
+    "popular": false,
+    "stock": 1,
+    "stock_actual": 1,
+    "precio_venta": 7.5,
+    "descripcion_detallada": "Luces Intermitentes Para Motocicleta modelo picaron",
+    "imagen": "",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
     "sku": "102",
     "nombre": "Test Product 102",
     "marca": "AGR",
