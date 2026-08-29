@@ -449,32 +449,6 @@
     "variantes_raw": ""
   },
   {
-    "sku": "A-003",
-    "nombre": "Luz Dual U94 M2",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 43.0,
-    "stock_total": 28,
-    "variantes": [
-      {
-        "nombre": "NEGRO-ROJO",
-        "stock": 28
-      }
-    ],
-    "imagenes": [
-      "imagenes/A-003.jpg"
-    ],
-    "descripcion": "Luz Dual U94 M2",
-    "popular": false,
-    "stock": 28,
-    "stock_actual": 28,
-    "precio_venta": 43.0,
-    "descripcion_detallada": "Luz Dual U94 M2",
-    "imagen": "A-003.jpg",
-    "es_popular": false,
-    "variantes_raw": "NEGRO-ROJO:28"
-  },
-  {
     "sku": "419-1",
     "nombre": "Malla Elástica Reflectiva Scoyco",
     "marca": "AGR",
