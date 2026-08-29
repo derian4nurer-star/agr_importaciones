@@ -212,27 +212,6 @@
     "variantes_raw": ""
   },
   {
-    "sku": "A2518",
-    "nombre": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 29.0,
-    "stock_total": 20,
-    "variantes": [],
-    "imagenes": [
-      "imagenes/25X180.jpg"
-    ],
-    "descripcion": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
-    "popular": false,
-    "stock": 20,
-    "stock_actual": 20,
-    "precio_venta": 29.0,
-    "descripcion_detallada": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
-    "imagen": "25X180.jpg",
-    "es_popular": false,
-    "variantes_raw": ""
-  },
-  {
     "sku": "8303",
     "nombre": "Candado De Disco Con Alarma Pesado",
     "marca": "AGR",
