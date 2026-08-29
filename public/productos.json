@@ -595,19 +595,19 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 9.5,
-    "stock_total": 128,
+    "stock_total": 23,
     "variantes": [
       {
         "nombre": "NEGRO",
-        "stock": 50
+        "stock": 0
       },
       {
         "nombre": "ROJO",
-        "stock": 47
+        "stock": 23
       },
       {
         "nombre": "AZUL",
-        "stock": 31
+        "stock": 0
       }
     ],
     "imagenes": [
@@ -618,13 +618,13 @@
     ],
     "descripcion": "Malla Elástica Reflectiva Scoyco",
     "popular": false,
-    "stock": 128,
-    "stock_actual": 128,
+    "stock": 23,
+    "stock_actual": 23,
     "precio_venta": 9.5,
     "descripcion_detallada": "Malla Elástica Reflectiva Scoyco",
     "imagen": "419-1_1.png",
     "es_popular": false,
-    "variantes_raw": "NEGRO:50, ROJO:47, AZUL:31"
+    "variantes_raw": "NEGRO:0, ROJO:23, AZUL:0"
   },
   {
     "sku": "A-010",
