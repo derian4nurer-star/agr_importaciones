@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es" class="dark overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,24 +111,24 @@
   </style>
 </head>
 
-<body class="text-neutral-100 min-h-screen font-sans antialiased flex flex-col selection:bg-[#C8232B] selection:text-white">
+<body class="text-neutral-100 min-h-screen font-sans antialiased flex flex-col selection:bg-[#C8232B] selection:text-white overflow-x-hidden w-full">
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
 
   <!-- 1. TOP ANNOUNCEMENT BAR (AGR BRANDING) -->
-  <div class="bg-[#040507] text-white text-[11px] font-semibold py-2 px-4 border-b border-neutral-800/80">
-    <div class="max-w-[1500px] mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-4 mx-auto sm:mx-0">
-        <span class="flex items-center gap-1.5 text-[#C8232B] font-extrabold font-cyber tracking-wider uppercase">
-          <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-          ⚡ Despacho Rápido Mayorista a Todo el Perú
+  <div class="bg-[#040507] text-white text-[11px] font-semibold py-2 px-3 sm:px-4 border-b border-neutral-800/80 overflow-hidden">
+    <div class="max-w-[1500px] mx-auto flex items-center justify-between gap-2">
+      <div class="w-full sm:w-auto text-center sm:text-left flex items-center justify-center sm:justify-start gap-3">
+        <span class="inline-flex items-center justify-center gap-1.5 text-[#C8232B] font-extrabold font-cyber tracking-wider uppercase text-[11px] sm:text-xs truncate max-w-full">
+          <span class="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping flex-shrink-0"></span>
+          <span>⚡ DESPACHO RÁPIDO MAYORISTA A TODO EL PERÚ</span>
         </span>
-        <span class="hidden md:flex items-center gap-1.5 text-neutral-300 font-medium">
+        <span class="hidden md:inline-flex items-center gap-1.5 text-neutral-300 font-medium text-[11px]">
           <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#C8232B]"></i> Stock Sincronizado en Tiempo Real
         </span>
       </div>
-      <div class="hidden sm:flex items-center gap-4 text-neutral-400 text-[11px]">
+      <div class="hidden sm:flex items-center gap-4 text-neutral-400 text-[11px] flex-shrink-0">
         <span class="flex items-center gap-1">
           <i data-lucide="phone" class="w-3.5 h-3.5 text-[#C8232B]"></i> WhatsApp Mayorista: +51 992 410 709
         </span>
@@ -139,42 +139,30 @@
   </div>
 
   <!-- 2. STICKY HEADER -->
-  <header class="bg-[#0b0d11]/85 backdrop-blur-[12px] border-b border-[#C8232B]/20 sticky top-0 z-40 shadow-2xl">
-    <div class="max-w-[1500px] mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+  <header class="bg-[#0b0d11]/90 backdrop-blur-[12px] border-b border-[#C8232B]/20 sticky top-0 z-40 shadow-2xl">
+    <div class="max-w-[1500px] mx-auto px-3 sm:px-6 py-2.5 md:py-0 md:h-20 flex flex-wrap md:flex-nowrap items-center justify-between gap-2.5 md:gap-4">
 
       <!-- Logo AGR Cyber Style -->
-      <a href="#" class="flex items-center gap-3 flex-shrink-0 group">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#DC2626] to-[#881337] p-0.5 shadow-lg shadow-red-950/60 group-hover:scale-105 transition duration-300">
-          <div class="w-full h-full bg-[#08090C] rounded-[10px] flex items-center justify-center font-black text-xl text-[#C8232B] font-cyber">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3 flex-shrink-0 group order-1">
+        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#DC2626] to-[#881337] p-0.5 shadow-lg shadow-red-950/60 group-hover:scale-105 transition duration-300">
+          <div class="w-full h-full bg-[#08090C] rounded-[10px] flex items-center justify-center font-black text-base sm:text-xl text-[#C8232B] font-cyber">
             AGR
           </div>
         </div>
         <div>
-          <span class="font-display font-black text-2xl tracking-tight text-white block leading-none">
+          <span class="font-display font-black text-xl sm:text-2xl tracking-tight text-white block leading-none">
             AGR <span class="text-[#C8232B]">IMPORT</span>
           </span>
-          <span class="text-[9px] font-cyber font-bold text-neutral-400 tracking-widest block uppercase pt-0.5">
+          <span class="text-[8px] sm:text-[9px] font-cyber font-bold text-neutral-400 tracking-widest block uppercase pt-0.5">
             REPUESTOS & ACCESORIOS DE MOTOS
           </span>
         </div>
       </a>
 
-      <!-- Buscador Central Cyber Dark -->
-      <div class="flex-1 max-w-xl mx-2">
-        <div class="relative group">
-          <input type="text" id="catalog-search-input" oninput="handleSearchInput()" placeholder="Buscar repuesto, SKU, casco, aceite, marca..."
-            class="w-full bg-[#161922] border border-neutral-700/60 focus:border-[#C8232B] focus:ring-2 focus:ring-[#C8232B]/30 rounded-full px-5 py-2.5 pl-11 text-xs font-semibold text-white placeholder-neutral-400 focus:outline-none transition duration-200 shadow-inner">
-          <i data-lucide="search" class="w-4 h-4 text-[#C8232B] absolute left-4 top-3.5"></i>
-          <button type="button" onclick="handleSearchInput()" class="absolute right-1 top-1 bottom-1 px-4 bg-[#C8232B] hover:bg-[#A81B22] text-white rounded-full text-xs font-extrabold transition shadow-md flex items-center gap-1">
-            <span>Buscar</span>
-          </button>
-        </div>
-      </div>
-
       <!-- Header Cart Button -->
-      <div class="flex items-center gap-3 flex-shrink-0">
+      <div class="flex items-center gap-3 flex-shrink-0 order-2 md:order-3">
         <button onclick="openCartDrawer()" type="button" id="header-cart-btn"
-          class="flex items-center gap-2.5 px-4 py-2.5 rounded-full font-bold text-xs bg-[#161922] border border-neutral-700/60 hover:border-[#C8232B] text-white shadow-lg transition duration-200 group relative">
+          class="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2.5 rounded-full font-bold text-xs bg-[#161922] border border-neutral-700/60 hover:border-[#C8232B] text-white shadow-lg transition duration-200 group relative">
           <i data-lucide="shopping-cart" class="w-4 h-4 text-[#C8232B] group-hover:scale-110 transition"></i>
           <span class="hidden sm:inline font-cyber text-sm tracking-wide">CESTA</span>
           <span id="header-cart-badge" class="bg-[#C8232B] text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-glow-red">0</span>
@@ -182,11 +170,23 @@
         </button>
       </div>
 
+      <!-- Buscador Central Cyber Dark -->
+      <div class="order-3 w-full md:order-2 md:flex-1 md:max-w-xl md:mx-2">
+        <div class="relative group w-full">
+          <input type="text" id="catalog-search-input" oninput="handleSearchInput()" placeholder="Buscar repuesto, SKU, casco, marca..."
+            class="w-full bg-[#161922] border border-neutral-700/60 focus:border-[#C8232B] focus:ring-2 focus:ring-[#C8232B]/30 rounded-full px-4 py-2 sm:py-2.5 pl-10 pr-24 text-xs font-semibold text-white placeholder-neutral-400 focus:outline-none transition duration-200 shadow-inner">
+          <i data-lucide="search" class="w-4 h-4 text-[#C8232B] absolute left-3.5 top-2.5 sm:top-3"></i>
+          <button type="button" onclick="handleSearchInput()" class="absolute right-1 top-1 bottom-1 px-3 sm:px-4 bg-[#C8232B] hover:bg-[#A81B22] text-white rounded-full text-xs font-extrabold transition shadow-md flex items-center justify-center gap-1">
+            <span>Buscar</span>
+          </button>
+        </div>
+      </div>
+
     </div>
   </header>
 
   <!-- 3. CONTENIDO PRINCIPAL -->
-  <main class="max-w-[1500px] mx-auto px-4 sm:px-6 py-6 flex-1 w-full space-y-8">
+  <main class="max-w-[1500px] mx-auto px-3 sm:px-6 py-4 sm:py-6 flex-1 w-full space-y-6 sm:space-y-8 overflow-x-hidden">
 
     <!-- HERO CAROUSEL / DESTACADOS: 🔥 PRODUCTOS MÁS VENDIDOS -->
     <section class="relative bg-gradient-to-r from-[#131722] via-[#0B0E17] to-[#131722] border border-neutral-800/80 rounded-3xl p-5 sm:p-6 shadow-2xl overflow-hidden">
