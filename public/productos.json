@@ -98,6 +98,30 @@
     "variantes_raw": "M:1, L:1, XL:1"
   },
   {
+    "sku": "ZS-02",
+    "nombre": "Direccionales Led Moto Luces Intermitentes",
+    "marca": "AGR",
+    "categoria": "ACCESORIOS",
+    "precio": 7.5,
+    "stock_total": 0,
+    "variantes": [
+      {
+        "nombre": "ROJO",
+        "stock": 0
+      }
+    ],
+    "imagenes": [],
+    "descripcion": "Direccionales Led Moto Luces Intermitentes",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 7.5,
+    "descripcion_detallada": "Direccionales Led Moto Luces Intermitentes",
+    "imagen": "",
+    "es_popular": false,
+    "variantes_raw": "ROJO:0"
+  },
+  {
     "sku": "ZS-01",
     "nombre": "Luces Intermitentes Para Motocicleta modelo picaron",
     "marca": "AGR",
