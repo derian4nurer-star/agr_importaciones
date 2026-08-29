@@ -105,14 +105,19 @@
     "precio": 7.5,
     "stock_total": 1,
     "variantes": [],
-    "imagenes": [],
+    "imagenes": [
+      "imagenes/z01_1.png",
+      "imagenes/z01_2.webp",
+      "imagenes/z01_3.webp",
+      "imagenes/Captura_de_pantalla_2026-08-28_215916.png"
+    ],
     "descripcion": "Luces Intermitentes Para Motocicleta modelo picaron",
     "popular": false,
     "stock": 1,
     "stock_actual": 1,
     "precio_venta": 7.5,
     "descripcion_detallada": "Luces Intermitentes Para Motocicleta modelo picaron",
-    "imagen": "",
+    "imagen": "z01_1.png",
     "es_popular": false,
     "variantes_raw": ""
   },
