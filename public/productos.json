@@ -156,7 +156,10 @@
     "stock_total": 187,
     "variantes": [],
     "imagenes": [
-      "imagenes/2018.jpg"
+      "imagenes/2015_1.png",
+      "imagenes/2015_2.webp",
+      "imagenes/2015_3.webp",
+      "imagenes/2015_4.webp"
     ],
     "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "popular": false,
@@ -164,7 +167,7 @@
     "stock_actual": 187,
     "precio_venta": 25.5,
     "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
-    "imagen": "2018.jpg",
+    "imagen": "2015_1.png",
     "es_popular": false,
     "variantes_raw": ""
   },
