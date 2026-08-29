@@ -1,5 +1,29 @@
 [
   {
+    "sku": "102",
+    "nombre": "Test Product 102",
+    "marca": "AGR",
+    "categoria": "ACCESORIOS",
+    "precio": 20.0,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [
+      "imagenes/102_1.png",
+      "imagenes/102_2.webp",
+      "imagenes/102_3.webp",
+      "imagenes/102_4.webp"
+    ],
+    "descripcion": "Test",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 20.0,
+    "descripcion_detallada": "Test",
+    "imagen": "102_1.png",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
     "sku": "MQ-20",
     "nombre": "Asiento En Gel",
     "marca": "AGR",
@@ -1142,30 +1166,6 @@
     "precio_venta": 10.0,
     "descripcion_detallada": "Porta Celular De Aluminio Para Timón",
     "imagen": "c-32_1.png",
-    "es_popular": false,
-    "variantes_raw": ""
-  },
-  {
-    "sku": "102",
-    "nombre": "Test Product 102",
-    "marca": "AGR",
-    "categoria": "TestCat",
-    "precio": 20.0,
-    "stock_total": 0,
-    "variantes": [],
-    "imagenes": [
-      "imagenes/102_1.png",
-      "imagenes/102_2.webp",
-      "imagenes/102_3.webp",
-      "imagenes/102_4.webp"
-    ],
-    "descripcion": "Test",
-    "popular": false,
-    "stock": 0,
-    "stock_actual": 0,
-    "precio_venta": 20.0,
-    "descripcion_detallada": "Test",
-    "imagen": "102_1.png",
     "es_popular": false,
     "variantes_raw": ""
   }
