@@ -351,32 +351,6 @@
     "variantes_raw": "ROJO:4, NEGRO:2, DORADO:2, PLATA:2, AZUL:2"
   },
   {
-    "sku": "A-008",
-    "nombre": "Intercomunicador Para Cascos",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 67.0,
-    "stock_total": 12,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 12
-      }
-    ],
-    "imagenes": [
-      "imagenes/A-008.jpg"
-    ],
-    "descripcion": "Intercomunicador Para Cascos",
-    "popular": false,
-    "stock": 12,
-    "stock_actual": 12,
-    "precio_venta": 67.0,
-    "descripcion_detallada": "Intercomunicador Para Cascos",
-    "imagen": "A-008.jpg",
-    "es_popular": false,
-    "variantes_raw": "Único:12"
-  },
-  {
     "sku": "A-0019",
     "nombre": "Interruptor De 2 Tiempos Con 3 Cables",
     "marca": "AGR",
