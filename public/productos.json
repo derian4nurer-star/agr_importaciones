@@ -734,37 +734,8 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 21.5,
-    "stock_total": 397,
-    "variantes": [
-      {
-        "nombre": "ROJO",
-        "stock": 164
-      },
-      {
-        "nombre": "NEGRO",
-        "stock": 28
-      },
-      {
-        "nombre": "DORADO",
-        "stock": 15
-      },
-      {
-        "nombre": "PLATA",
-        "stock": 17
-      },
-      {
-        "nombre": "NARANJA",
-        "stock": 44
-      },
-      {
-        "nombre": "VERDE",
-        "stock": 39
-      },
-      {
-        "nombre": "AZUL",
-        "stock": 90
-      }
-    ],
+    "stock_total": 347,
+    "variantes": [],
     "imagenes": [
       "imagenes/a-10_1.png",
       "imagenes/a-10_2.jpg",
@@ -773,13 +744,13 @@
     ],
     "descripcion": "Manubrios Deportivos Rizoma",
     "popular": false,
-    "stock": 397,
-    "stock_actual": 397,
+    "stock": 347,
+    "stock_actual": 347,
     "precio_venta": 21.5,
     "descripcion_detallada": "Manubrios Deportivos Rizoma",
     "imagen": "a-10_1.png",
     "es_popular": false,
-    "variantes_raw": "ROJO:164, NEGRO:28, DORADO:15, PLATA:17, NARANJA:44, VERDE:39, AZUL:90"
+    "variantes_raw": ""
   },
   {
     "sku": "A-006",
