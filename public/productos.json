@@ -1,5 +1,39 @@
 [
   {
+    "sku": "103Q",
+    "nombre": "Casco GSTK Abatible Negro",
+    "marca": "AGR",
+    "categoria": "ACCESORIO BIKER",
+    "precio": 110.0,
+    "stock_total": 3,
+    "variantes": [
+      {
+        "nombre": "M",
+        "stock": 1
+      },
+      {
+        "nombre": "L",
+        "stock": 1
+      },
+      {
+        "nombre": "XL",
+        "stock": 1
+      }
+    ],
+    "imagenes": [
+      "imagenes/102_1.png"
+    ],
+    "descripcion": "Casco GSTK Abatible Negro",
+    "popular": false,
+    "stock": 3,
+    "stock_actual": 3,
+    "precio_venta": 110.0,
+    "descripcion_detallada": "Casco GSTK Abatible Negro",
+    "imagen": "102_1.png",
+    "es_popular": false,
+    "variantes_raw": "M:1, L:1, XL:1"
+  },
+  {
     "sku": "102",
     "nombre": "Test Product 102",
     "marca": "AGR",
