@@ -243,18 +243,13 @@
     "variantes_raw": ""
   },
   {
-    "sku": "25X180",
+    "sku": "A2518",
     "nombre": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 29.0,
     "stock_total": 20,
-    "variantes": [
-      {
-        "nombre": "Medida",
-        "stock": 20
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/25X180.jpg"
     ],
@@ -266,7 +261,7 @@
     "descripcion_detallada": "Cadena De Seguridad Reforzado 25mm x 1.80cm",
     "imagen": "25X180.jpg",
     "es_popular": false,
-    "variantes_raw": "Medida:20"
+    "variantes_raw": ""
   },
   {
     "sku": "8303",
