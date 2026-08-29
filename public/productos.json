@@ -154,12 +154,7 @@
     "categoria": "Accesorios",
     "precio": 25.5,
     "stock_total": 187,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 187
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/2018.jpg"
     ],
@@ -171,7 +166,7 @@
     "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "imagen": "2018.jpg",
     "es_popular": false,
-    "variantes_raw": "Único:187"
+    "variantes_raw": ""
   },
   {
     "sku": "20X180",
