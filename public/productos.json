@@ -679,48 +679,6 @@
     "variantes_raw": "ROJO:0, NEGRO:0, BLANCO:3, AZUL:7"
   },
   {
-    "sku": "A-7",
-    "nombre": "Protector De Mano Carbono",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 16.0,
-    "stock_total": 22,
-    "variantes": [
-      {
-        "nombre": "ROJO",
-        "stock": 1
-      },
-      {
-        "nombre": "NEGRO",
-        "stock": 19
-      },
-      {
-        "nombre": "PLATA",
-        "stock": 0
-      },
-      {
-        "nombre": "DORADO",
-        "stock": 0
-      },
-      {
-        "nombre": "AZUL",
-        "stock": 2
-      }
-    ],
-    "imagenes": [
-      "imagenes/A-7.jpg"
-    ],
-    "descripcion": "Protector De Mano Carbono",
-    "popular": false,
-    "stock": 22,
-    "stock_actual": 22,
-    "precio_venta": 16.0,
-    "descripcion_detallada": "Protector De Mano Carbono",
-    "imagen": "A-7.jpg",
-    "es_popular": false,
-    "variantes_raw": "ROJO:1, NEGRO:19, PLATA:0, DORADO:0, AZUL:2"
-  },
-  {
     "sku": "A-006",
     "nombre": "Tapabarro Posterior Universal",
     "marca": "AGR",
