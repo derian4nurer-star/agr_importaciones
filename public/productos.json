@@ -206,7 +206,10 @@
     "stock_total": 210,
     "variantes": [],
     "imagenes": [
-      "imagenes/2415.jpg"
+      "imagenes/2015_1.png",
+      "imagenes/2015_2.webp",
+      "imagenes/2015_3.webp",
+      "imagenes/2015_4.webp"
     ],
     "descripcion": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
     "popular": false,
@@ -214,7 +217,7 @@
     "stock_actual": 210,
     "precio_venta": 30.0,
     "descripcion_detallada": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
-    "imagen": "2415.jpg",
+    "imagen": "2015_1.png",
     "es_popular": false,
     "variantes_raw": ""
   },
