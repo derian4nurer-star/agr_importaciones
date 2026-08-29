@@ -72,32 +72,6 @@
     "variantes_raw": ""
   },
   {
-    "sku": "529",
-    "nombre": "Cadena De Seguridad Para Cascos",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 8.5,
-    "stock_total": 25,
-    "variantes": [
-      {
-        "nombre": "Único",
-        "stock": 25
-      }
-    ],
-    "imagenes": [
-      "imagenes/529.jpg"
-    ],
-    "descripcion": "Cadena De Seguridad Para Cascos",
-    "popular": false,
-    "stock": 25,
-    "stock_actual": 25,
-    "precio_venta": 8.5,
-    "descripcion_detallada": "Cadena De Seguridad Para Cascos",
-    "imagen": "529.jpg",
-    "es_popular": false,
-    "variantes_raw": "Único:25"
-  },
-  {
     "sku": "2015",
     "nombre": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "marca": "AGR",
