@@ -632,31 +632,31 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 60.0,
-    "stock_total": 393,
+    "stock_total": 325,
     "variantes": [
       {
         "nombre": "ROJO",
-        "stock": 112
+        "stock": 75
       },
       {
         "nombre": "NEGRO",
-        "stock": 100
+        "stock": 75
       },
       {
         "nombre": "DORADO",
-        "stock": 46
-      },
-      {
-        "nombre": "PLATA",
         "stock": 50
       },
       {
-        "nombre": "NARANJA",
-        "stock": 45
+        "nombre": "PLATA",
+        "stock": 25
+      },
+      {
+        "nombre": "AZUL",
+        "stock": 75
       },
       {
         "nombre": "VERDE",
-        "stock": 40
+        "stock": 25
       }
     ],
     "imagenes": [
@@ -667,13 +667,13 @@
     ],
     "descripcion": "Manija Rancing Universal",
     "popular": true,
-    "stock": 393,
-    "stock_actual": 393,
+    "stock": 325,
+    "stock_actual": 325,
     "precio_venta": 60.0,
     "descripcion_detallada": "Manija Rancing Universal",
     "imagen": "a-010_1.png",
     "es_popular": true,
-    "variantes_raw": "ROJO:112, NEGRO:100, DORADO:46, PLATA:50, NARANJA:45, VERDE:40"
+    "variantes_raw": "ROJO:75, NEGRO:75, DORADO:50, PLATA:25, AZUL:75, VERDE:25"
   },
   {
     "sku": "A-004",
