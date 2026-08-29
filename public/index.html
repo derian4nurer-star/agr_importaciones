@@ -481,14 +481,14 @@
             <label class="block text-[10px] font-cyber uppercase tracking-wider text-neutral-400 mb-1">
               NOMBRE COMPRADOR / NEGOCIO:
             </label>
-            <input type="text" id="cart-buyer-name" placeholder="Ej: Motos El Rayo"
+            <input type="text" id="input-nombre" placeholder="Ej: Motos El Rayo"
               class="w-full bg-[#131722] border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C8232B]">
           </div>
           <div>
             <label class="block text-[10px] font-cyber uppercase tracking-wider text-neutral-400 mb-1">
               CIUDAD / DESTINO:
             </label>
-            <input type="text" id="cart-buyer-city" placeholder="Ej: Trujillo / Chiclayo"
+            <input type="text" id="input-destino" placeholder="Ej: Trujillo / Chiclayo"
               class="w-full bg-[#131722] border border-neutral-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C8232B]">
           </div>
         </div>
@@ -1445,7 +1445,9 @@
         cart.push({
           cartId: cartId,
           sku: p.sku,
+          nombre: p.nombre || p.descripcion,
           descripcion: p.nombre || p.descripcion,
+          precio: itemPrice,
           precio_venta: itemPrice,
           stock_actual: variantMaxStock,
           cantidad: qty,
@@ -1608,44 +1610,49 @@
     }
 
     function sendOrderToWhatsApp() {
-      const selectedItems = cart.filter(i => i.selected !== false);
-      if (selectedItems.length === 0) {
+      const carrito = cart.filter(i => i.selected !== false);
+      if (carrito.length === 0) {
         showToast('Selecciona al menos un producto de la cesta.', 'warning');
         return;
       }
 
-      const buyerName = document.getElementById('cart-buyer-name')?.value.trim();
-      const buyerCity = document.getElementById('cart-buyer-city')?.value.trim();
-
-      let clientName = "Cliente Web";
-      if (buyerName && buyerCity) {
-        clientName = `${buyerName} (${buyerCity})`;
-      } else if (buyerName) {
-        clientName = buyerName;
-      } else if (buyerCity) {
-        clientName = `Cliente (${buyerCity})`;
-      }
-
-      let msg = `🛒 *PEDIDO MAYORISTA - AGR IMPORTACIONES*\n`;
-      msg += `Cliente: ${clientName}\n\n`;
-
-      let totalAmount = 0;
-      const skuCodes = [];
-
-      selectedItems.forEach(i => {
-        const subtotal = i.precio_venta * i.cantidad;
-        totalAmount += subtotal;
-        const variantStr = i.variante_seleccionada || i.variante || 'Único';
-        msg += `▪ ${i.descripcion} (Variante: ${variantStr})\n  Cant: ${i.cantidad} x S/.${formatMoney(i.precio_venta)} = S/.${formatMoney(subtotal)}\n\n`;
-        skuCodes.push(`${i.sku}:${i.cantidad}`);
+      // Asegurar compatibilidad de propiedades por elemento
+      carrito.forEach(item => {
+        if (!item.nombre) item.nombre = item.descripcion || item.sku || 'Producto';
+        if (item.precio === undefined) item.precio = item.precio_venta || 0;
+        if (!item.variante) item.variante = item.variante_seleccionada || 'Único';
       });
 
-      msg += `*TOTAL A PAGAR: S/.${formatMoney(totalAmount)}*\n`;
-      msg += `Hola AGR Importaciones, confirmo este pedido para coordinar el pago y el despacho de la mercadería.\n\n`;
-      msg += `CODIGO_PEDIDO:[${skuCodes.join(',')}]`;
+      const totalCarrito = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
 
-      const targetURL = `https://wa.me/51992410709?text=${encodeURIComponent(msg)}`;
-      window.open(targetURL, '_blank');
+      // Obtener campos del formulario modal de la Cesta
+      const nombre = document.getElementById('input-nombre')?.value.trim() || 'Cliente Web';
+      const destino = document.getElementById('input-destino')?.value.trim() || 'A coordinar';
+
+      let mensaje = `🛒 *PEDIDO MAYORISTA - AGR IMPORTACIONES*\n`;
+      mensaje += `👤 *Cliente:* ${nombre}\n`;
+      mensaje += `📍 *Destino:* ${destino}\n\n`;
+
+      // Iteración de productos en el carrito
+      carrito.forEach(item => {
+          const varianteTxt = (item.variante && item.variante !== 'Único') ? ` [${item.variante}]` : '';
+          const subtotal = (item.precio * item.cantidad).toFixed(2);
+          mensaje += `• (${item.cantidad}x) ${item.nombre}${varianteTxt} — S/. ${subtotal}\n`;
+      });
+
+      mensaje += `\n━━━━━━━━━━━━━━━━━━━━━\n`;
+      mensaje += `💵 *TOTAL ESTIMADO: S/. ${totalCarrito.toFixed(2)}*\n`;
+      mensaje += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      mensaje += `Buenas tardes, confirmo mi pedido generado desde el catálogo web para coordinar el pago y despacho.\n\n`;
+
+      // Código técnico obligatorio para la Caja de Ventas
+      const listaCodigos = carrito.map(item => `${item.sku_variante || item.sku}:${item.cantidad}`).join(',');
+      mensaje += `CODIGO_PEDIDO:[${listaCodigos}]`;
+
+      // Redirección oficial al número de la empresa
+      const numeroWhatsapp = "51992410709";
+      const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+      window.open(urlWhatsapp, '_blank');
     }
 
     function showToast(message, type = 'info') {
