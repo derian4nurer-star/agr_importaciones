@@ -141,32 +141,6 @@
     "variantes_raw": ""
   },
   {
-    "sku": "A2018",
-    "nombre": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 24.5,
-    "stock_total": 86,
-    "variantes": [
-      {
-        "nombre": "Medida",
-        "stock": 86
-      }
-    ],
-    "imagenes": [
-      "imagenes/20X180.jpg"
-    ],
-    "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
-    "popular": false,
-    "stock": 86,
-    "stock_actual": 86,
-    "precio_venta": 24.5,
-    "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
-    "imagen": "20X180.jpg",
-    "es_popular": false,
-    "variantes_raw": "Medida:86"
-  },
-  {
     "sku": "2415",
     "nombre": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
     "marca": "AGR",
