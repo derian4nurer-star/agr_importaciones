@@ -615,32 +615,6 @@
     "variantes_raw": "ROJO:164, NEGRO:28, DORADO:15, PLATA:17, NARANJA:44, VERDE:39, AZUL:90"
   },
   {
-    "sku": "CD1",
-    "nombre": "Porta Celular De Aluminio Base Timón Con Cargador",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 12.0,
-    "stock_total": 0,
-    "variantes": [
-      {
-        "nombre": "NEGRO",
-        "stock": 0
-      }
-    ],
-    "imagenes": [
-      "imagenes/CD1.jpg"
-    ],
-    "descripcion": "Porta Celular De Aluminio Base Timón Con Cargador",
-    "popular": false,
-    "stock": 0,
-    "stock_actual": 0,
-    "precio_venta": 12.0,
-    "descripcion_detallada": "Porta Celular De Aluminio Base Timón Con Cargador",
-    "imagen": "CD1.jpg",
-    "es_popular": false,
-    "variantes_raw": "NEGRO:0"
-  },
-  {
     "sku": "JT00",
     "nombre": "Posa Pies Deportivos De Lujo",
     "marca": "AGR",
