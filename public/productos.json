@@ -45,7 +45,10 @@
       }
     ],
     "imagenes": [
-      "imagenes/102_1.png"
+      "imagenes/103q_1.png",
+      "imagenes/103q_2.webp",
+      "imagenes/103q_3.webp",
+      "imagenes/103q_4.webp"
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
@@ -53,7 +56,7 @@
     "stock_actual": 3,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
-    "imagen": "102_1.png",
+    "imagen": "103q_1.png",
     "es_popular": false,
     "variantes_raw": "M:1, L:1, XL:1"
   },
