@@ -806,19 +806,19 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 52.5,
-    "stock_total": 8,
+    "stock_total": 1096,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 5
+        "stock": 367
       },
       {
         "nombre": "L",
-        "stock": 2
+        "stock": 367
       },
       {
         "nombre": "XL",
-        "stock": 1
+        "stock": 362
       }
     ],
     "imagenes": [
@@ -829,13 +829,13 @@
     ],
     "descripcion": "Guantes De Cuero Icon",
     "popular": false,
-    "stock": 8,
-    "stock_actual": 8,
+    "stock": 1096,
+    "stock_actual": 1096,
     "precio_venta": 52.5,
     "descripcion_detallada": "Guantes De Cuero Icon",
     "imagen": "mq_1.png",
     "es_popular": false,
-    "variantes_raw": "M:5, L:2, XL:1"
+    "variantes_raw": "M:367, L:367, XL:362"
   },
   {
     "sku": "Y-01",
