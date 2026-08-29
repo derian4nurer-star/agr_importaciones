@@ -34,6 +34,25 @@
     "variantes_raw": "M:1, L:1, XL:1"
   },
   {
+    "sku": "K6",
+    "nombre": "Casco Open Face Kaifa Negro",
+    "marca": "AGR",
+    "categoria": "ACCESORIO BIKER",
+    "precio": 36.0,
+    "stock_total": 1,
+    "variantes": [],
+    "imagenes": [],
+    "descripcion": "Casco Open Face Kaifa Negro",
+    "popular": false,
+    "stock": 1,
+    "stock_actual": 1,
+    "precio_venta": 36.0,
+    "descripcion_detallada": "Casco Open Face Kaifa Negro",
+    "imagen": "",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
     "sku": "102",
     "nombre": "Test Product 102",
     "marca": "AGR",
