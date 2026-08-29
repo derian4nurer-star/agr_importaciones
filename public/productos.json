@@ -681,35 +681,35 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 15.0,
-    "stock_total": 256,
+    "stock_total": 130,
     "variantes": [
       {
         "nombre": "ROJO",
-        "stock": 29
-      },
-      {
-        "nombre": "VERDE",
         "stock": 0
       },
       {
+        "nombre": "VERDE",
+        "stock": 53
+      },
+      {
         "nombre": "DORADO",
-        "stock": 26
+        "stock": 14
       },
       {
         "nombre": "PLATA",
-        "stock": 32
+        "stock": 15
       },
       {
         "nombre": "NARANJA",
-        "stock": 83
+        "stock": 25
       },
       {
         "nombre": "NEGRO",
-        "stock": 29
+        "stock": 0
       },
       {
         "nombre": "AZUL",
-        "stock": 57
+        "stock": 23
       }
     ],
     "imagenes": [
@@ -720,13 +720,13 @@
     ],
     "descripcion": "Manubrios De Aluminio",
     "popular": false,
-    "stock": 256,
-    "stock_actual": 256,
+    "stock": 130,
+    "stock_actual": 130,
     "precio_venta": 15.0,
     "descripcion_detallada": "Manubrios De Aluminio",
     "imagen": "a-004_1.png",
     "es_popular": false,
-    "variantes_raw": "ROJO:29, VERDE:0, DORADO:26, PLATA:32, NARANJA:83, NEGRO:29, AZUL:57"
+    "variantes_raw": "ROJO:0, VERDE:53, DORADO:14, PLATA:15, NARANJA:25, NEGRO:0, AZUL:23"
   },
   {
     "sku": "A-10",
