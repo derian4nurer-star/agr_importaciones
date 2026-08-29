@@ -740,6 +740,9 @@ def add_producto():
 @app.route('/api/productos/<sku>', methods=['PUT'])
 def update_producto(sku):
     data = request.get_json() or {}
+    old_sku = sku.strip().upper()
+    new_sku = str(data.get('sku', old_sku)).strip().upper()
+    
     categoria = str(data.get('categoria', '')).strip()
     marca = str(data.get('marca', '')).strip()
     descripcion = str(data.get('descripcion', '')).strip()
@@ -752,6 +755,9 @@ def update_producto(sku):
         stock_minimo = int(data.get('stock_minimo', 2))
     except ValueError:
         return jsonify({'error': 'Valores numéricos inválidos'}), 400
+
+    if not new_sku or not descripcion or not marca or not categoria:
+        return jsonify({'error': 'El SKU (código), marca, categoría y descripción son obligatorios'}), 400
         
     parsed_v = parse_variantes_string(variantes_raw)
     if parsed_v:
@@ -768,23 +774,29 @@ def update_producto(sku):
     
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute('SELECT sku FROM productos WHERE UPPER(sku) = ?', (sku.upper(),))
+    cursor.execute('SELECT sku FROM productos WHERE UPPER(sku) = ?', (old_sku,))
     if not cursor.fetchone():
         conn.close()
-        return jsonify({'error': f'El producto con SKU "{sku}" no existe'}), 404
+        return jsonify({'error': f'El producto con SKU "{old_sku}" no existe'}), 404
         
+    if new_sku != old_sku:
+        cursor.execute('SELECT sku FROM productos WHERE UPPER(sku) = ?', (new_sku,))
+        if cursor.fetchone():
+            conn.close()
+            return jsonify({'error': f'El código SKU "{new_sku}" ya pertenece a otro producto registrado'}), 400
+
     cursor.execute('''
         UPDATE productos
-        SET categoria = ?, marca = ?, descripcion = ?, variantes = ?, lista_variantes = ?,
+        SET sku = ?, categoria = ?, marca = ?, descripcion = ?, variantes = ?, lista_variantes = ?,
             costo_compra = ?, precio_venta = ?, stock_actual = ?, stock_minimo = ?, imagen = ?
         WHERE UPPER(sku) = ?
-    ''', (categoria, marca, descripcion, variantes_str, variantes_str, costo_compra, precio_venta, stock_actual, stock_minimo, imagen, sku.upper()))
+    ''', (new_sku, categoria, marca, descripcion, variantes_str, variantes_str, costo_compra, precio_venta, stock_actual, stock_minimo, imagen, old_sku))
     
     conn.commit()
     conn.close()
     
     exportar_productos_json()
-    return jsonify({'message': f'Producto {sku} actualizado exitosamente'})
+    return jsonify({'message': f'Producto {new_sku} actualizado exitosamente', 'sku': new_sku})
 
 @app.route('/api/productos/<sku>/stock', methods=['PATCH'])
 def update_stock(sku):

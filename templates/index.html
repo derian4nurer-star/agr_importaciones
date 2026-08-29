@@ -726,6 +726,7 @@
       <!-- Formulario 2 Columnas -->
       <form id="product-form" onsubmit="saveProduct(event)" class="p-6 overflow-y-auto space-y-4 flex-1 text-xs">
         <input type="hidden" id="modal-is-edit" value="false">
+        <input type="hidden" id="modal-original-sku" value="">
         
         <!-- Fila 1: SKU & CATEGORÍA -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -2586,17 +2587,20 @@
     async function openProductModal(sku = null) {
       const modal = document.getElementById('product-modal');
       const isEditInput = document.getElementById('modal-is-edit');
+      const originalSkuInput = document.getElementById('modal-original-sku');
       const skuInput = document.getElementById('form-sku');
 
       if (sku) {
         document.getElementById('modal-title').innerHTML = `<span>📦 Editar Repuesto SKU: ${sku}</span>`;
         isEditInput.value = "true";
-        skuInput.readOnly = true;
+        if (originalSkuInput) originalSkuInput.value = sku;
+        skuInput.readOnly = false;
 
         try {
-          const res = await fetch(`/api/productos/${sku}`);
+          const res = await fetch(`/api/productos/${encodeURIComponent(sku)}`);
           const p = await res.json();
 
+          if (originalSkuInput) originalSkuInput.value = p.sku;
           skuInput.value = p.sku;
           document.getElementById('form-marca').value = p.marca;
           document.getElementById('form-categoria').value = p.categoria;
@@ -2617,6 +2621,7 @@
       } else {
         document.getElementById('modal-title').innerHTML = `<span>📦 Registrar Nuevo Repuesto</span>`;
         isEditInput.value = "false";
+        if (originalSkuInput) originalSkuInput.value = "";
         skuInput.readOnly = false;
         document.getElementById('product-form').reset();
         document.getElementById('form-stock-min').value = 2;
@@ -2659,6 +2664,7 @@
     async function saveProduct(e) {
       e.preventDefault();
       const isEdit = document.getElementById('modal-is-edit').value === "true";
+      const originalSku = (document.getElementById('modal-original-sku')?.value || '').trim().toUpperCase();
       const sku = document.getElementById('form-sku').value.trim().toUpperCase();
 
       const payload = {
@@ -2675,7 +2681,8 @@
       };
 
       try {
-        const url = isEdit ? `/api/productos/${sku}` : '/api/productos';
+        const targetSku = isEdit ? originalSku : sku;
+        const url = isEdit ? `/api/productos/${encodeURIComponent(targetSku)}` : '/api/productos';
         const method = isEdit ? 'PUT' : 'POST';
 
         const res = await fetch(url, {
@@ -2695,6 +2702,7 @@
         closeProductModal();
         loadInventory();
         loadReports();
+        if (typeof renderWebCatalogCards === 'function') renderWebCatalogCards();
 
       } catch (err) {
         showToast('Error al conectar con el servidor', 'error');
