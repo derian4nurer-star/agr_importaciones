@@ -615,44 +615,6 @@
     "variantes_raw": "ROJO:164, NEGRO:28, DORADO:15, PLATA:17, NARANJA:44, VERDE:39, AZUL:90"
   },
   {
-    "sku": "JT00",
-    "nombre": "Posa Pies Deportivos De Lujo",
-    "marca": "AGR",
-    "categoria": "Accesorios",
-    "precio": 14.7,
-    "stock_total": 10,
-    "variantes": [
-      {
-        "nombre": "ROJO",
-        "stock": 0
-      },
-      {
-        "nombre": "NEGRO",
-        "stock": 0
-      },
-      {
-        "nombre": "BLANCO",
-        "stock": 3
-      },
-      {
-        "nombre": "AZUL",
-        "stock": 7
-      }
-    ],
-    "imagenes": [
-      "imagenes/JT00.jpg"
-    ],
-    "descripcion": "Posa Pies Deportivos De Lujo",
-    "popular": false,
-    "stock": 10,
-    "stock_actual": 10,
-    "precio_venta": 14.7,
-    "descripcion_detallada": "Posa Pies Deportivos De Lujo",
-    "imagen": "JT00.jpg",
-    "es_popular": false,
-    "variantes_raw": "ROJO:0, NEGRO:0, BLANCO:3, AZUL:7"
-  },
-  {
     "sku": "A-006",
     "nombre": "Tapabarro Posterior Universal",
     "marca": "AGR",
