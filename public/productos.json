@@ -383,6 +383,35 @@
     "variantes_raw": "CROMADO:0"
   },
   {
+    "sku": "A-011",
+    "nombre": "Candado Para Freno De Disco Semi Pesado",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 33.0,
+    "stock_total": 77,
+    "variantes": [
+      {
+        "nombre": "CROMADO",
+        "stock": 77
+      }
+    ],
+    "imagenes": [
+      "imagenes/a-011_1.png",
+      "imagenes/a-011_2.webp",
+      "imagenes/a-011_3.webp",
+      "imagenes/a-011_4.webp"
+    ],
+    "descripcion": "Candado Para Freno De Disco Semi Pesado",
+    "popular": false,
+    "stock": 77,
+    "stock_actual": 77,
+    "precio_venta": 33.0,
+    "descripcion_detallada": "Candado Para Freno De Disco Semi Pesado",
+    "imagen": "a-011_1.png",
+    "es_popular": false,
+    "variantes_raw": "CROMADO:77"
+  },
+  {
     "sku": "103",
     "nombre": "Cargador USB Con Doble Entrada",
     "marca": "AGR",
