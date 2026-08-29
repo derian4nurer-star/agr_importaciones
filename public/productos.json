@@ -228,12 +228,7 @@
     "categoria": "Accesorios",
     "precio": 26.0,
     "stock_total": 84,
-    "variantes": [
-      {
-        "nombre": "Medida",
-        "stock": 84
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/25X150.jpg"
     ],
@@ -245,7 +240,7 @@
     "descripcion_detallada": "Cadena De Seguridad Reforzado 25mm x 1.50cm",
     "imagen": "25X150.jpg",
     "es_popular": false,
-    "variantes_raw": "Medida:84"
+    "variantes_raw": ""
   },
   {
     "sku": "25X180",
