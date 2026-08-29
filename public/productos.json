@@ -387,12 +387,12 @@
     "nombre": "Candado Para Freno De Disco Semi Pesado",
     "marca": "AGR",
     "categoria": "Accesorios",
-    "precio": 19.0,
-    "stock_total": 77,
+    "precio": 33.0,
+    "stock_total": 19,
     "variantes": [
       {
         "nombre": "CROMADO",
-        "stock": 77
+        "stock": 19
       }
     ],
     "imagenes": [
@@ -403,13 +403,13 @@
     ],
     "descripcion": "Candado Para Freno De Disco Semi Pesado",
     "popular": false,
-    "stock": 77,
-    "stock_actual": 77,
-    "precio_venta": 19.0,
+    "stock": 19,
+    "stock_actual": 19,
+    "precio_venta": 33.0,
     "descripcion_detallada": "Candado Para Freno De Disco Semi Pesado",
     "imagen": "a-011_1.png",
     "es_popular": false,
-    "variantes_raw": "CROMADO:77"
+    "variantes_raw": "CROMADO:19"
   },
   {
     "sku": "103",
