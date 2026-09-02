@@ -367,13 +367,8 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 42.0,
-    "stock_total": 0,
-    "variantes": [
-      {
-        "nombre": "CROMADO",
-        "stock": 0
-      }
-    ],
+    "stock_total": 373,
+    "variantes": [],
     "imagenes": [
       "imagenes/8303_1.png",
       "imagenes/8303_2.webp",
@@ -382,13 +377,13 @@
     ],
     "descripcion": "Candado De Disco Con Alarma Pesado",
     "popular": false,
-    "stock": 0,
-    "stock_actual": 0,
+    "stock": 373,
+    "stock_actual": 373,
     "precio_venta": 42.0,
     "descripcion_detallada": "Candado De Disco Con Alarma Pesado",
     "imagen": "8303_1.png",
     "es_popular": false,
-    "variantes_raw": "CROMADO:0"
+    "variantes_raw": ""
   },
   {
     "sku": "A-011",
