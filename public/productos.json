@@ -90,13 +90,8 @@
     "marca": "AGR",
     "categoria": "ACCESORIOS",
     "precio": 7.5,
-    "stock_total": 0,
-    "variantes": [
-      {
-        "nombre": "ROJO",
-        "stock": 0
-      }
-    ],
+    "stock_total": 94,
+    "variantes": [],
     "imagenes": [
       "imagenes/z02_1.png",
       "imagenes/z02_2.webp",
@@ -105,13 +100,13 @@
     ],
     "descripcion": "Direccionales Led Moto Luces Intermitentes",
     "popular": false,
-    "stock": 0,
-    "stock_actual": 0,
+    "stock": 94,
+    "stock_actual": 94,
     "precio_venta": 7.5,
     "descripcion_detallada": "Direccionales Led Moto Luces Intermitentes",
     "imagen": "z02_1.png",
     "es_popular": false,
-    "variantes_raw": "ROJO:0"
+    "variantes_raw": ""
   },
   {
     "sku": "ZS-01",
