@@ -29,7 +29,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 377,
+    "stock_total": 369,
     "variantes": [
       {
         "nombre": "M",
@@ -37,7 +37,7 @@
       },
       {
         "nombre": "L",
-        "stock": 155
+        "stock": 147
       },
       {
         "nombre": "XL",
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 377,
-    "stock_actual": 377,
+    "stock": 369,
+    "stock_actual": 369,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:67, L:155, XL:155"
+    "variantes_raw": "M:67, L:147, XL:155"
   },
   {
     "sku": "Y-008",
@@ -175,7 +175,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 89,
+    "stock_total": 84,
     "variantes": [],
     "imagenes": [
       "imagenes/mq20_1.png",
@@ -185,8 +185,8 @@
     ],
     "descripcion": "Asiento En Gel",
     "popular": true,
-    "stock": 89,
-    "stock_actual": 89,
+    "stock": 84,
+    "stock_actual": 84,
     "precio_venta": 30.0,
     "descripcion_detallada": "Asiento En Gel",
     "imagen": "mq20_1.png",
@@ -247,7 +247,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 23.5,
-    "stock_total": 20,
+    "stock_total": 15,
     "variantes": [],
     "imagenes": [
       "imagenes/2015_1.png",
@@ -257,8 +257,8 @@
     ],
     "descripcion": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "popular": false,
-    "stock": 20,
-    "stock_actual": 20,
+    "stock": 15,
+    "stock_actual": 15,
     "precio_venta": 23.5,
     "descripcion_detallada": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "imagen": "2015_1.png",
@@ -295,7 +295,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 25.5,
-    "stock_total": 153,
+    "stock_total": 148,
     "variantes": [],
     "imagenes": [
       "imagenes/2015_1.png",
@@ -305,8 +305,8 @@
     ],
     "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "popular": false,
-    "stock": 153,
-    "stock_actual": 153,
+    "stock": 148,
+    "stock_actual": 148,
     "precio_venta": 25.5,
     "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "imagen": "2015_1.png",
@@ -319,7 +319,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 185,
+    "stock_total": 180,
     "variantes": [],
     "imagenes": [
       "imagenes/2015_1.png",
@@ -329,8 +329,8 @@
     ],
     "descripcion": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
     "popular": false,
-    "stock": 185,
-    "stock_actual": 185,
+    "stock": 180,
+    "stock_actual": 180,
     "precio_venta": 30.0,
     "descripcion_detallada": "Cadena De Seguridad Reforzado 24mm x 1.50cm",
     "imagen": "2015_1.png",
@@ -391,11 +391,11 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 33.0,
-    "stock_total": 19,
+    "stock_total": 9,
     "variantes": [
       {
         "nombre": "CROMADO",
-        "stock": 19
+        "stock": 9
       }
     ],
     "imagenes": [
@@ -406,13 +406,13 @@
     ],
     "descripcion": "Candado Para Freno De Disco Semi Pesado",
     "popular": false,
-    "stock": 19,
-    "stock_actual": 19,
+    "stock": 9,
+    "stock_actual": 9,
     "precio_venta": 33.0,
     "descripcion_detallada": "Candado Para Freno De Disco Semi Pesado",
     "imagen": "a-011_1.png",
     "es_popular": false,
-    "variantes_raw": "CROMADO:19"
+    "variantes_raw": "CROMADO:9"
   },
   {
     "sku": "103",
@@ -789,7 +789,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 36.0,
-    "stock_total": 727,
+    "stock_total": 715,
     "variantes": [],
     "imagenes": [
       "imagenes/x-20_1.png",
@@ -799,8 +799,8 @@
     ],
     "descripcion": "Bluetooth Para Casco",
     "popular": true,
-    "stock": 727,
-    "stock_actual": 727,
+    "stock": 715,
+    "stock_actual": 715,
     "precio_venta": 36.0,
     "descripcion_detallada": "Bluetooth Para Casco",
     "imagen": "x-20_1.png",
@@ -813,11 +813,11 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 52.5,
-    "stock_total": 1141,
+    "stock_total": 1131,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 407
+        "stock": 402
       },
       {
         "nombre": "L",
@@ -825,7 +825,7 @@
       },
       {
         "nombre": "XL",
-        "stock": 332
+        "stock": 327
       }
     ],
     "imagenes": [
@@ -836,13 +836,13 @@
     ],
     "descripcion": "Guantes De Cuero Icon",
     "popular": false,
-    "stock": 1141,
-    "stock_actual": 1141,
+    "stock": 1131,
+    "stock_actual": 1131,
     "precio_venta": 52.5,
     "descripcion_detallada": "Guantes De Cuero Icon",
     "imagen": "mq_1.png",
     "es_popular": false,
-    "variantes_raw": "M:407, L:402, XL:332"
+    "variantes_raw": "M:402, L:402, XL:327"
   },
   {
     "sku": "Y-01",
