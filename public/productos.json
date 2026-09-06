@@ -5,7 +5,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 36.0,
-    "stock_total": 338,
+    "stock_total": 320,
     "variantes": [],
     "imagenes": [
       "imagenes/k6_1.png",
@@ -15,8 +15,8 @@
     ],
     "descripcion": "Casco Open Face Kaifa Negro",
     "popular": true,
-    "stock": 338,
-    "stock_actual": 338,
+    "stock": 320,
+    "stock_actual": 320,
     "precio_venta": 36.0,
     "descripcion_detallada": "Casco Open Face Kaifa Negro",
     "imagen": "k6_1.png",
@@ -29,19 +29,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 369,
+    "stock_total": 324,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 67
+        "stock": 49
       },
       {
         "nombre": "L",
-        "stock": 147
+        "stock": 129
       },
       {
         "nombre": "XL",
-        "stock": 155
+        "stock": 146
       }
     ],
     "imagenes": [
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 369,
-    "stock_actual": 369,
+    "stock": 324,
+    "stock_actual": 324,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:67, L:147, XL:155"
+    "variantes_raw": "M:49, L:129, XL:146"
   },
   {
     "sku": "Y-008",
@@ -367,7 +367,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 42.0,
-    "stock_total": 373,
+    "stock_total": 360,
     "variantes": [],
     "imagenes": [
       "imagenes/8303_1.png",
@@ -377,8 +377,8 @@
     ],
     "descripcion": "Candado De Disco Con Alarma Pesado",
     "popular": false,
-    "stock": 373,
-    "stock_actual": 373,
+    "stock": 360,
+    "stock_actual": 360,
     "precio_venta": 42.0,
     "descripcion_detallada": "Candado De Disco Con Alarma Pesado",
     "imagen": "8303_1.png",
@@ -444,19 +444,19 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 511,
+    "stock_total": 481,
     "variantes": [
       {
         "nombre": "L",
-        "stock": 137
+        "stock": 127
       },
       {
         "nombre": "XL",
-        "stock": 187
+        "stock": 177
       },
       {
         "nombre": "XXL",
-        "stock": 187
+        "stock": 177
       }
     ],
     "imagenes": [
@@ -467,13 +467,13 @@
     ],
     "descripcion": "Cobertor Para Moto Lineal",
     "popular": false,
-    "stock": 511,
-    "stock_actual": 511,
+    "stock": 481,
+    "stock_actual": 481,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cobertor Para Moto Lineal",
     "imagen": "a-6_1.png",
     "es_popular": false,
-    "variantes_raw": "L:137, XL:187, XXL:187"
+    "variantes_raw": "L:127, XL:177, XXL:177"
   },
   {
     "sku": "A-8",
@@ -635,7 +635,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 60.0,
-    "stock_total": 375,
+    "stock_total": 370,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -651,7 +651,7 @@
       },
       {
         "nombre": "PLATA",
-        "stock": 25
+        "stock": 23
       },
       {
         "nombre": "AZUL",
@@ -663,7 +663,7 @@
       },
       {
         "nombre": "NARANJA",
-        "stock": 50
+        "stock": 47
       }
     ],
     "imagenes": [
@@ -674,13 +674,13 @@
     ],
     "descripcion": "Manija Rancing Universal",
     "popular": true,
-    "stock": 375,
-    "stock_actual": 375,
+    "stock": 370,
+    "stock_actual": 370,
     "precio_venta": 60.0,
     "descripcion_detallada": "Manija Rancing Universal",
     "imagen": "a-010_1.png",
     "es_popular": true,
-    "variantes_raw": "ROJO:75, NEGRO:75, DORADO:50, PLATA:25, AZUL:75, VERDE:25, NARANJA:50"
+    "variantes_raw": "ROJO:75, NEGRO:75, DORADO:50, PLATA:23, AZUL:75, VERDE:25, NARANJA:47"
   },
   {
     "sku": "A-004",
@@ -789,7 +789,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 36.0,
-    "stock_total": 715,
+    "stock_total": 700,
     "variantes": [],
     "imagenes": [
       "imagenes/x-20_1.png",
@@ -799,8 +799,8 @@
     ],
     "descripcion": "Bluetooth Para Casco",
     "popular": true,
-    "stock": 715,
-    "stock_actual": 715,
+    "stock": 700,
+    "stock_actual": 700,
     "precio_venta": 36.0,
     "descripcion_detallada": "Bluetooth Para Casco",
     "imagen": "x-20_1.png",
@@ -1064,7 +1064,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 251,
+    "stock_total": 237,
     "variantes": [],
     "imagenes": [
       "imagenes/sx18_1.png",
@@ -1074,8 +1074,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Para Timón",
     "popular": false,
-    "stock": 251,
-    "stock_actual": 251,
+    "stock": 237,
+    "stock_actual": 237,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Para Timón",
     "imagen": "sx18_1.png",
