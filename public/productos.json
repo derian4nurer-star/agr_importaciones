@@ -66,15 +66,15 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 16.0,
-    "stock_total": 1096,
+    "stock_total": 1091,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 367
+        "stock": 364
       },
       {
         "nombre": "L",
-        "stock": 367
+        "stock": 365
       },
       {
         "nombre": "XL",
@@ -89,13 +89,13 @@
     ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
     "popular": true,
-    "stock": 1096,
-    "stock_actual": 1096,
+    "stock": 1091,
+    "stock_actual": 1091,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
     "imagen": "y008_1.png",
     "es_popular": true,
-    "variantes_raw": "M:367, L:367, XL:362"
+    "variantes_raw": "M:364, L:365, XL:362"
   },
   {
     "sku": "ZS-02",
@@ -175,7 +175,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 84,
+    "stock_total": 82,
     "variantes": [],
     "imagenes": [
       "imagenes/mq20_1.png",
@@ -185,8 +185,8 @@
     ],
     "descripcion": "Asiento En Gel",
     "popular": true,
-    "stock": 84,
-    "stock_actual": 84,
+    "stock": 82,
+    "stock_actual": 82,
     "precio_venta": 30.0,
     "descripcion_detallada": "Asiento En Gel",
     "imagen": "mq20_1.png",
@@ -367,7 +367,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 42.0,
-    "stock_total": 360,
+    "stock_total": 358,
     "variantes": [],
     "imagenes": [
       "imagenes/8303_1.png",
@@ -377,8 +377,8 @@
     ],
     "descripcion": "Candado De Disco Con Alarma Pesado",
     "popular": false,
-    "stock": 360,
-    "stock_actual": 360,
+    "stock": 358,
+    "stock_actual": 358,
     "precio_venta": 42.0,
     "descripcion_detallada": "Candado De Disco Con Alarma Pesado",
     "imagen": "8303_1.png",
@@ -765,7 +765,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 28.0,
-    "stock_total": 250,
+    "stock_total": 247,
     "variantes": [],
     "imagenes": [
       "imagenes/a-006_1.png",
@@ -775,8 +775,8 @@
     ],
     "descripcion": "Tapabarro Posterior Universal",
     "popular": false,
-    "stock": 250,
-    "stock_actual": 250,
+    "stock": 247,
+    "stock_actual": 247,
     "precio_venta": 28.0,
     "descripcion_detallada": "Tapabarro Posterior Universal",
     "imagen": "a-006_1.png",
@@ -789,7 +789,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 36.0,
-    "stock_total": 700,
+    "stock_total": 696,
     "variantes": [],
     "imagenes": [
       "imagenes/x-20_1.png",
@@ -799,8 +799,8 @@
     ],
     "descripcion": "Bluetooth Para Casco",
     "popular": true,
-    "stock": 700,
-    "stock_actual": 700,
+    "stock": 696,
+    "stock_actual": 696,
     "precio_venta": 36.0,
     "descripcion_detallada": "Bluetooth Para Casco",
     "imagen": "x-20_1.png",
@@ -813,19 +813,19 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 52.5,
-    "stock_total": 1131,
+    "stock_total": 1126,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 402
+        "stock": 400
       },
       {
         "nombre": "L",
-        "stock": 402
+        "stock": 400
       },
       {
         "nombre": "XL",
-        "stock": 327
+        "stock": 326
       }
     ],
     "imagenes": [
@@ -836,13 +836,13 @@
     ],
     "descripcion": "Guantes De Cuero Icon",
     "popular": false,
-    "stock": 1131,
-    "stock_actual": 1131,
+    "stock": 1126,
+    "stock_actual": 1126,
     "precio_venta": 52.5,
     "descripcion_detallada": "Guantes De Cuero Icon",
     "imagen": "mq_1.png",
     "es_popular": false,
-    "variantes_raw": "M:402, L:402, XL:327"
+    "variantes_raw": "M:400, L:400, XL:326"
   },
   {
     "sku": "Y-01",
@@ -946,7 +946,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 36.0,
-    "stock_total": 56,
+    "stock_total": 55,
     "variantes": [],
     "imagenes": [
       "imagenes/sx20_01.png",
@@ -955,8 +955,8 @@
     ],
     "descripcion": "Porta Celular 5 Agarres Full Aluminio Antivibración para timón",
     "popular": true,
-    "stock": 56,
-    "stock_actual": 56,
+    "stock": 55,
+    "stock_actual": 55,
     "precio_venta": 36.0,
     "descripcion_detallada": "Porta Celular 5 Agarres Full Aluminio Antivibración para timón",
     "imagen": "sx20_01.png",
@@ -1017,7 +1017,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 57,
+    "stock_total": 54,
     "variantes": [],
     "imagenes": [
       "imagenes/mt4.png",
@@ -1027,8 +1027,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Antivibración Económico",
     "popular": true,
-    "stock": 57,
-    "stock_actual": 57,
+    "stock": 54,
+    "stock_actual": 54,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Antivibración Económico",
     "imagen": "mt4.png",
@@ -1041,7 +1041,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 55,
+    "stock_total": 53,
     "variantes": [],
     "imagenes": [
       "imagenes/sx18-1_1.png",
@@ -1050,8 +1050,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Para Espejo",
     "popular": false,
-    "stock": 55,
-    "stock_actual": 55,
+    "stock": 53,
+    "stock_actual": 53,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Para Espejo",
     "imagen": "sx18-1_1.png",
