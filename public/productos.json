@@ -29,7 +29,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 324,
+    "stock_total": 321,
     "variantes": [
       {
         "nombre": "M",
@@ -37,7 +37,7 @@
       },
       {
         "nombre": "L",
-        "stock": 129
+        "stock": 126
       },
       {
         "nombre": "XL",
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 324,
-    "stock_actual": 324,
+    "stock": 321,
+    "stock_actual": 321,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:49, L:129, XL:146"
+    "variantes_raw": "M:49, L:126, XL:146"
   },
   {
     "sku": "Y-008",
