@@ -444,19 +444,19 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 481,
+    "stock_total": 451,
     "variantes": [
       {
         "nombre": "L",
-        "stock": 127
+        "stock": 122
       },
       {
         "nombre": "XL",
-        "stock": 177
+        "stock": 162
       },
       {
         "nombre": "XXL",
-        "stock": 177
+        "stock": 167
       }
     ],
     "imagenes": [
@@ -467,13 +467,13 @@
     ],
     "descripcion": "Cobertor Para Moto Lineal",
     "popular": false,
-    "stock": 481,
-    "stock_actual": 481,
+    "stock": 451,
+    "stock_actual": 451,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cobertor Para Moto Lineal",
     "imagen": "a-6_1.png",
     "es_popular": false,
-    "variantes_raw": "L:127, XL:177, XXL:177"
+    "variantes_raw": "L:122, XL:162, XXL:167"
   },
   {
     "sku": "A-8",
