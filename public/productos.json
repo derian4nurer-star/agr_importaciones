@@ -127,7 +127,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIOS",
     "precio": 7.5,
-    "stock_total": 94,
+    "stock_total": 74,
     "variantes": [],
     "imagenes": [
       "imagenes/z01_1.png",
@@ -137,8 +137,8 @@
     ],
     "descripcion": "Luces Intermitentes Para Motocicleta modelo picaron",
     "popular": false,
-    "stock": 94,
-    "stock_actual": 94,
+    "stock": 74,
+    "stock_actual": 74,
     "precio_venta": 7.5,
     "descripcion_detallada": "Luces Intermitentes Para Motocicleta modelo picaron",
     "imagen": "z01_1.png",
@@ -151,7 +151,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIOS",
     "precio": 20.0,
-    "stock_total": 42,
+    "stock_total": 32,
     "variantes": [],
     "imagenes": [
       "imagenes/102_1.png",
@@ -161,8 +161,8 @@
     ],
     "descripcion": "Test",
     "popular": false,
-    "stock": 42,
-    "stock_actual": 42,
+    "stock": 32,
+    "stock_actual": 32,
     "precio_venta": 20.0,
     "descripcion_detallada": "Test",
     "imagen": "102_1.png",
@@ -367,7 +367,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 42.0,
-    "stock_total": 358,
+    "stock_total": 348,
     "variantes": [],
     "imagenes": [
       "imagenes/8303_1.png",
@@ -377,8 +377,8 @@
     ],
     "descripcion": "Candado De Disco Con Alarma Pesado",
     "popular": false,
-    "stock": 358,
-    "stock_actual": 358,
+    "stock": 348,
+    "stock_actual": 348,
     "precio_venta": 42.0,
     "descripcion_detallada": "Candado De Disco Con Alarma Pesado",
     "imagen": "8303_1.png",
@@ -420,7 +420,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 13.0,
-    "stock_total": 254,
+    "stock_total": 244,
     "variantes": [],
     "imagenes": [
       "imagenes/103_1.png",
@@ -430,8 +430,8 @@
     ],
     "descripcion": "Cargador USB Con Doble Entrada",
     "popular": false,
-    "stock": 254,
-    "stock_actual": 254,
+    "stock": 244,
+    "stock_actual": 244,
     "precio_venta": 13.0,
     "descripcion_detallada": "Cargador USB Con Doble Entrada",
     "imagen": "103_1.png",
@@ -574,7 +574,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 38.0,
-    "stock_total": 77,
+    "stock_total": 72,
     "variantes": [],
     "imagenes": [
       "imagenes/8306_1.png",
@@ -584,8 +584,8 @@
     ],
     "descripcion": "Kit Candado De Disco Con Alarma",
     "popular": false,
-    "stock": 77,
-    "stock_actual": 77,
+    "stock": 72,
+    "stock_actual": 72,
     "precio_venta": 38.0,
     "descripcion_detallada": "Kit Candado De Disco Con Alarma",
     "imagen": "8306_1.png",
@@ -635,7 +635,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 60.0,
-    "stock_total": 370,
+    "stock_total": 363,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -643,7 +643,7 @@
       },
       {
         "nombre": "NEGRO",
-        "stock": 75
+        "stock": 72
       },
       {
         "nombre": "DORADO",
@@ -651,11 +651,11 @@
       },
       {
         "nombre": "PLATA",
-        "stock": 23
+        "stock": 22
       },
       {
         "nombre": "AZUL",
-        "stock": 75
+        "stock": 72
       },
       {
         "nombre": "VERDE",
@@ -674,13 +674,13 @@
     ],
     "descripcion": "Manija Rancing Universal",
     "popular": true,
-    "stock": 370,
-    "stock_actual": 370,
+    "stock": 363,
+    "stock_actual": 363,
     "precio_venta": 60.0,
     "descripcion_detallada": "Manija Rancing Universal",
     "imagen": "a-010_1.png",
     "es_popular": true,
-    "variantes_raw": "ROJO:75, NEGRO:75, DORADO:50, PLATA:23, AZUL:75, VERDE:25, NARANJA:47"
+    "variantes_raw": "ROJO:75, NEGRO:72, DORADO:50, PLATA:22, AZUL:72, VERDE:25, NARANJA:47"
   },
   {
     "sku": "A-004",
@@ -1017,7 +1017,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 54,
+    "stock_total": 47,
     "variantes": [],
     "imagenes": [
       "imagenes/mt4.png",
@@ -1027,8 +1027,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Antivibración Económico",
     "popular": true,
-    "stock": 54,
-    "stock_actual": 54,
+    "stock": 47,
+    "stock_actual": 47,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Antivibración Económico",
     "imagen": "mt4.png",
@@ -1112,7 +1112,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 10.0,
-    "stock_total": 128,
+    "stock_total": 118,
     "variantes": [],
     "imagenes": [
       "imagenes/c-32_1.png",
@@ -1122,8 +1122,8 @@
     ],
     "descripcion": "Porta Celular De Aluminio Para Timón",
     "popular": false,
-    "stock": 128,
-    "stock_actual": 128,
+    "stock": 118,
+    "stock_actual": 118,
     "precio_venta": 10.0,
     "descripcion_detallada": "Porta Celular De Aluminio Para Timón",
     "imagen": "c-32_1.png",
