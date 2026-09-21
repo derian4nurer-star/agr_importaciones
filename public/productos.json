@@ -66,19 +66,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 16.0,
-    "stock_total": 941,
+    "stock_total": 891,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 313
+        "stock": 297
       },
       {
         "nombre": "L",
-        "stock": 315
+        "stock": 298
       },
       {
         "nombre": "XL",
-        "stock": 313
+        "stock": 296
       }
     ],
     "imagenes": [
@@ -89,13 +89,13 @@
     ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
     "popular": true,
-    "stock": 941,
-    "stock_actual": 941,
+    "stock": 891,
+    "stock_actual": 891,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
     "imagen": "y008_1.png",
     "es_popular": true,
-    "variantes_raw": "M:313, L:315, XL:313"
+    "variantes_raw": "M:297, L:298, XL:296"
   },
   {
     "sku": "ZS-02",
@@ -175,7 +175,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 82,
+    "stock_total": 76,
     "variantes": [],
     "imagenes": [
       "imagenes/mq20_1.png",
@@ -185,8 +185,8 @@
     ],
     "descripcion": "Asiento En Gel",
     "popular": true,
-    "stock": 82,
-    "stock_actual": 82,
+    "stock": 76,
+    "stock_actual": 76,
     "precio_venta": 30.0,
     "descripcion_detallada": "Asiento En Gel",
     "imagen": "mq20_1.png",
@@ -444,19 +444,19 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 451,
+    "stock_total": 431,
     "variantes": [
       {
         "nombre": "L",
-        "stock": 122
+        "stock": 116
       },
       {
         "nombre": "XL",
-        "stock": 162
+        "stock": 155
       },
       {
         "nombre": "XXL",
-        "stock": 167
+        "stock": 160
       }
     ],
     "imagenes": [
@@ -467,13 +467,13 @@
     ],
     "descripcion": "Cobertor Para Moto Lineal",
     "popular": false,
-    "stock": 451,
-    "stock_actual": 451,
+    "stock": 431,
+    "stock_actual": 431,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cobertor Para Moto Lineal",
     "imagen": "a-6_1.png",
     "es_popular": false,
-    "variantes_raw": "L:122, XL:162, XXL:167"
+    "variantes_raw": "L:116, XL:155, XXL:160"
   },
   {
     "sku": "A-8",
@@ -1041,7 +1041,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 53,
+    "stock_total": 33,
     "variantes": [],
     "imagenes": [
       "imagenes/sx18-1_1.png",
@@ -1050,8 +1050,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Para Espejo",
     "popular": false,
-    "stock": 53,
-    "stock_actual": 53,
+    "stock": 33,
+    "stock_actual": 33,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Para Espejo",
     "imagen": "sx18-1_1.png",
