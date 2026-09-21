@@ -29,19 +29,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 321,
+    "stock_total": 318,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 49
+        "stock": 48
       },
       {
         "nombre": "L",
-        "stock": 126
+        "stock": 125
       },
       {
         "nombre": "XL",
-        "stock": 146
+        "stock": 145
       }
     ],
     "imagenes": [
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 321,
-    "stock_actual": 321,
+    "stock": 318,
+    "stock_actual": 318,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:49, L:126, XL:146"
+    "variantes_raw": "M:48, L:125, XL:145"
   },
   {
     "sku": "Y-008",
@@ -1017,7 +1017,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 47,
+    "stock_total": 41,
     "variantes": [],
     "imagenes": [
       "imagenes/mt4.png",
@@ -1027,8 +1027,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Antivibración Económico",
     "popular": true,
-    "stock": 47,
-    "stock_actual": 47,
+    "stock": 41,
+    "stock_actual": 41,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Antivibración Económico",
     "imagen": "mt4.png",
