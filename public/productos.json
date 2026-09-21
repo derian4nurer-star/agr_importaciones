@@ -66,19 +66,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 16.0,
-    "stock_total": 1091,
+    "stock_total": 1041,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 364
+        "stock": 347
       },
       {
         "nombre": "L",
-        "stock": 365
+        "stock": 348
       },
       {
         "nombre": "XL",
-        "stock": 362
+        "stock": 346
       }
     ],
     "imagenes": [
@@ -89,13 +89,13 @@
     ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
     "popular": true,
-    "stock": 1091,
-    "stock_actual": 1091,
+    "stock": 1041,
+    "stock_actual": 1041,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
     "imagen": "y008_1.png",
     "es_popular": true,
-    "variantes_raw": "M:364, L:365, XL:362"
+    "variantes_raw": "M:347, L:348, XL:346"
   },
   {
     "sku": "ZS-02",
