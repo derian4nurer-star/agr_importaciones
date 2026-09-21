@@ -29,7 +29,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 318,
+    "stock_total": 314,
     "variantes": [
       {
         "nombre": "M",
@@ -37,11 +37,11 @@
       },
       {
         "nombre": "L",
-        "stock": 125
+        "stock": 123
       },
       {
         "nombre": "XL",
-        "stock": 145
+        "stock": 143
       }
     ],
     "imagenes": [
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 318,
-    "stock_actual": 318,
+    "stock": 314,
+    "stock_actual": 314,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:48, L:125, XL:145"
+    "variantes_raw": "M:48, L:123, XL:143"
   },
   {
     "sku": "Y-008",
@@ -175,7 +175,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 76,
+    "stock_total": 74,
     "variantes": [],
     "imagenes": [
       "imagenes/mq20_1.png",
@@ -185,8 +185,8 @@
     ],
     "descripcion": "Asiento En Gel",
     "popular": true,
-    "stock": 76,
-    "stock_actual": 76,
+    "stock": 74,
+    "stock_actual": 74,
     "precio_venta": 30.0,
     "descripcion_detallada": "Asiento En Gel",
     "imagen": "mq20_1.png",
@@ -850,7 +850,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 8.0,
-    "stock_total": 484,
+    "stock_total": 481,
     "variantes": [],
     "imagenes": [
       "imagenes/y01_1.png",
@@ -860,8 +860,8 @@
     ],
     "descripcion": "Lentes Cros Transparente",
     "popular": false,
-    "stock": 484,
-    "stock_actual": 484,
+    "stock": 481,
+    "stock_actual": 481,
     "precio_venta": 8.0,
     "descripcion_detallada": "Lentes Cros Transparente",
     "imagen": "y01_1.png",
@@ -874,7 +874,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 8.0,
-    "stock_total": 206,
+    "stock_total": 203,
     "variantes": [],
     "imagenes": [
       "imagenes/y02_1.png",
@@ -884,8 +884,8 @@
     ],
     "descripcion": "Lentes Cross Tornasol",
     "popular": false,
-    "stock": 206,
-    "stock_actual": 206,
+    "stock": 203,
+    "stock_actual": 203,
     "precio_venta": 8.0,
     "descripcion_detallada": "Lentes Cross Tornasol",
     "imagen": "y02_1.png",
