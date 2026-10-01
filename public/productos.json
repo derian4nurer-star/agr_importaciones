@@ -98,6 +98,25 @@
     "variantes_raw": "M:297, L:298, XL:296"
   },
   {
+    "sku": "001",
+    "nombre": "Ropa impermeable para lluvia",
+    "marca": "AGR",
+    "categoria": "ACCESORIO BIKER",
+    "precio": 26.0,
+    "stock_total": 0,
+    "variantes": [],
+    "imagenes": [],
+    "descripcion": "Ropa impermeable para lluvia",
+    "popular": false,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 26.0,
+    "descripcion_detallada": "Ropa impermeable para lluvia",
+    "imagen": "",
+    "es_popular": false,
+    "variantes_raw": ""
+  },
+  {
     "sku": "ZS-02",
     "nombre": "Direccionales Led Moto Luces Intermitentes",
     "marca": "AGR",
