@@ -415,6 +415,35 @@
     "variantes_raw": "CROMADO:9"
   },
   {
+    "sku": "ZH",
+    "nombre": "Cargador De Carga Rápida 3.0",
+    "marca": "AGR",
+    "categoria": "Accesorios",
+    "precio": 20.0,
+    "stock_total": 0,
+    "variantes": [
+      {
+        "nombre": "NEGRO",
+        "stock": 0
+      }
+    ],
+    "imagenes": [
+      "imagenes/ZH-1.png",
+      "imagenes/ZH-2.jpg",
+      "imagenes/ZH-3.webp",
+      "imagenes/ZH-4.webp"
+    ],
+    "descripcion": "Cargador De Carga Rápida 3.0",
+    "popular": true,
+    "stock": 0,
+    "stock_actual": 0,
+    "precio_venta": 20.0,
+    "descripcion_detallada": "Cargador De Carga Rápida 3.0",
+    "imagen": "ZH-1.png",
+    "es_popular": true,
+    "variantes_raw": "NEGRO"
+  },
+  {
     "sku": "103",
     "nombre": "Cargador USB Con Doble Entrada",
     "marca": "AGR",
