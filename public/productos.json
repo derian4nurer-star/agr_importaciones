@@ -105,15 +105,20 @@
     "precio": 26.0,
     "stock_total": 0,
     "variantes": [],
-    "imagenes": [],
+    "imagenes": [
+      "imagenes/001-1.png",
+      "imagenes/001-2.webp",
+      "imagenes/001-3.jpg",
+      "imagenes/001-4.webp"
+    ],
     "descripcion": "Ropa impermeable para lluvia",
-    "popular": false,
+    "popular": true,
     "stock": 0,
     "stock_actual": 0,
     "precio_venta": 26.0,
     "descripcion_detallada": "Ropa impermeable para lluvia",
-    "imagen": "",
-    "es_popular": false,
+    "imagen": "001-1.png",
+    "es_popular": true,
     "variantes_raw": ""
   },
   {
