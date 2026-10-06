@@ -465,7 +465,7 @@
     "descripcion_detallada": "Cargador De Carga Rápida 3.0",
     "imagen": "ZH-1.png",
     "es_popular": true,
-    "variantes_raw": "NEGRO"
+    "variantes_raw": "NEGRO:0"
   },
   {
     "sku": "103",
