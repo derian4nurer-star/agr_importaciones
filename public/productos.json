@@ -5,7 +5,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 36.0,
-    "stock_total": 305,
+    "stock_total": 299,
     "variantes": [],
     "imagenes": [
       "imagenes/k6_1.png",
@@ -15,8 +15,8 @@
     ],
     "descripcion": "Casco Open Face Kaifa Negro",
     "popular": true,
-    "stock": 305,
-    "stock_actual": 305,
+    "stock": 299,
+    "stock_actual": 299,
     "precio_venta": 36.0,
     "descripcion_detallada": "Casco Open Face Kaifa Negro",
     "imagen": "k6_1.png",
@@ -66,19 +66,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 16.0,
-    "stock_total": 891,
+    "stock_total": 876,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 297
+        "stock": 292
       },
       {
         "nombre": "L",
-        "stock": 298
+        "stock": 293
       },
       {
         "nombre": "XL",
-        "stock": 296
+        "stock": 291
       }
     ],
     "imagenes": [
@@ -89,13 +89,13 @@
     ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
     "popular": true,
-    "stock": 891,
-    "stock_actual": 891,
+    "stock": 876,
+    "stock_actual": 876,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
     "imagen": "y008_1.png",
     "es_popular": true,
-    "variantes_raw": "M:297, L:298, XL:296"
+    "variantes_raw": "M:292, L:293, XL:291"
   },
   {
     "sku": "001",
@@ -103,7 +103,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 26.0,
-    "stock_total": 600,
+    "stock_total": 597,
     "variantes": [],
     "imagenes": [
       "imagenes/001-1.png",
@@ -113,8 +113,8 @@
     ],
     "descripcion": "Ropa impermeable para lluvia",
     "popular": true,
-    "stock": 600,
-    "stock_actual": 600,
+    "stock": 597,
+    "stock_actual": 597,
     "precio_venta": 26.0,
     "descripcion_detallada": "Ropa impermeable para lluvia",
     "imagen": "001-1.png",
@@ -223,7 +223,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 18.0,
-    "stock_total": 191,
+    "stock_total": 186,
     "variantes": [],
     "imagenes": [
       "imagenes/mq122_1.png",
@@ -233,8 +233,8 @@
     ],
     "descripcion": "Base De Exploradora Para Barras Telescópicas",
     "popular": false,
-    "stock": 191,
-    "stock_actual": 191,
+    "stock": 186,
+    "stock_actual": 186,
     "precio_venta": 18.0,
     "descripcion_detallada": "Base De Exploradora Para Barras Telescópicas",
     "imagen": "mq122_1.png",
@@ -271,7 +271,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 23.5,
-    "stock_total": 13,
+    "stock_total": 8,
     "variantes": [],
     "imagenes": [
       "imagenes/2015_1.png",
@@ -281,8 +281,8 @@
     ],
     "descripcion": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "popular": false,
-    "stock": 13,
-    "stock_actual": 13,
+    "stock": 8,
+    "stock_actual": 8,
     "precio_venta": 23.5,
     "descripcion_detallada": "Cadena De Seguridad Reforzada 20mm x 1.50cm",
     "imagen": "2015_1.png",
@@ -319,7 +319,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 25.5,
-    "stock_total": 146,
+    "stock_total": 142,
     "variantes": [],
     "imagenes": [
       "imagenes/2015_1.png",
@@ -329,8 +329,8 @@
     ],
     "descripcion": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "popular": false,
-    "stock": 146,
-    "stock_actual": 146,
+    "stock": 142,
+    "stock_actual": 142,
     "precio_venta": 25.5,
     "descripcion_detallada": "Cadena De Seguridad Reforzado 20mm x 1.80cm",
     "imagen": "2015_1.png",
@@ -473,7 +473,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 13.0,
-    "stock_total": 244,
+    "stock_total": 232,
     "variantes": [],
     "imagenes": [
       "imagenes/103_1.png",
@@ -483,8 +483,8 @@
     ],
     "descripcion": "Cargador USB Con Doble Entrada",
     "popular": false,
-    "stock": 244,
-    "stock_actual": 244,
+    "stock": 232,
+    "stock_actual": 232,
     "precio_venta": 13.0,
     "descripcion_detallada": "Cargador USB Con Doble Entrada",
     "imagen": "103_1.png",
@@ -497,7 +497,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 431,
+    "stock_total": 421,
     "variantes": [
       {
         "nombre": "L",
@@ -509,7 +509,7 @@
       },
       {
         "nombre": "XXL",
-        "stock": 160
+        "stock": 150
       }
     ],
     "imagenes": [
@@ -520,13 +520,13 @@
     ],
     "descripcion": "Cobertor Para Moto Lineal",
     "popular": false,
-    "stock": 431,
-    "stock_actual": 431,
+    "stock": 421,
+    "stock_actual": 421,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cobertor Para Moto Lineal",
     "imagen": "a-6_1.png",
     "es_popular": false,
-    "variantes_raw": "L:116, XL:155, XXL:160"
+    "variantes_raw": "L:116, XL:155, XXL:150"
   },
   {
     "sku": "A-8",
@@ -579,7 +579,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 8.0,
-    "stock_total": 600,
+    "stock_total": 590,
     "variantes": [],
     "imagenes": [
       "imagenes/a-0019_1.png",
@@ -589,8 +589,8 @@
     ],
     "descripcion": "Interruptor De 2 Tiempos Con 3 Cables",
     "popular": false,
-    "stock": 600,
-    "stock_actual": 600,
+    "stock": 590,
+    "stock_actual": 590,
     "precio_venta": 8.0,
     "descripcion_detallada": "Interruptor De 2 Tiempos Con 3 Cables",
     "imagen": "a-0019_1.png",
@@ -866,15 +866,15 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 52.5,
-    "stock_total": 1126,
+    "stock_total": 1120,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 400
+        "stock": 395
       },
       {
         "nombre": "L",
-        "stock": 400
+        "stock": 399
       },
       {
         "nombre": "XL",
@@ -889,13 +889,13 @@
     ],
     "descripcion": "Guantes De Cuero Icon",
     "popular": false,
-    "stock": 1126,
-    "stock_actual": 1126,
+    "stock": 1120,
+    "stock_actual": 1120,
     "precio_venta": 52.5,
     "descripcion_detallada": "Guantes De Cuero Icon",
     "imagen": "mq_1.png",
     "es_popular": false,
-    "variantes_raw": "M:400, L:400, XL:326"
+    "variantes_raw": "M:395, L:399, XL:326"
   },
   {
     "sku": "Y-01",
@@ -1117,7 +1117,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 237,
+    "stock_total": 227,
     "variantes": [],
     "imagenes": [
       "imagenes/sx18_1.png",
@@ -1127,8 +1127,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Para Timón",
     "popular": false,
-    "stock": 237,
-    "stock_actual": 237,
+    "stock": 227,
+    "stock_actual": 227,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Para Timón",
     "imagen": "sx18_1.png",
@@ -1165,7 +1165,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 10.0,
-    "stock_total": 118,
+    "stock_total": 108,
     "variantes": [],
     "imagenes": [
       "imagenes/c-32_1.png",
@@ -1175,8 +1175,8 @@
     ],
     "descripcion": "Porta Celular De Aluminio Para Timón",
     "popular": false,
-    "stock": 118,
-    "stock_actual": 118,
+    "stock": 108,
+    "stock_actual": 108,
     "precio_venta": 10.0,
     "descripcion_detallada": "Porta Celular De Aluminio Para Timón",
     "imagen": "c-32_1.png",
