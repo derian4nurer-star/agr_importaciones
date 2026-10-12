@@ -5,7 +5,7 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 36.0,
-    "stock_total": 299,
+    "stock_total": 245,
     "variantes": [],
     "imagenes": [
       "imagenes/k6_1.png",
@@ -15,8 +15,8 @@
     ],
     "descripcion": "Casco Open Face Kaifa Negro",
     "popular": true,
-    "stock": 299,
-    "stock_actual": 299,
+    "stock": 245,
+    "stock_actual": 245,
     "precio_venta": 36.0,
     "descripcion_detallada": "Casco Open Face Kaifa Negro",
     "imagen": "k6_1.png",
@@ -29,19 +29,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 110.0,
-    "stock_total": 314,
+    "stock_total": 251,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 48
+        "stock": 39
       },
       {
         "nombre": "L",
-        "stock": 123
+        "stock": 96
       },
       {
         "nombre": "XL",
-        "stock": 143
+        "stock": 116
       }
     ],
     "imagenes": [
@@ -52,13 +52,13 @@
     ],
     "descripcion": "Casco QSTK Abatible Negro",
     "popular": false,
-    "stock": 314,
-    "stock_actual": 314,
+    "stock": 251,
+    "stock_actual": 251,
     "precio_venta": 110.0,
     "descripcion_detallada": "Casco QSTK Abatible Negro",
     "imagen": "103q_1.png",
     "es_popular": false,
-    "variantes_raw": "M:48, L:123, XL:143"
+    "variantes_raw": "M:39, L:96, XL:116"
   },
   {
     "sku": "Y-008",
@@ -66,19 +66,19 @@
     "marca": "AGR",
     "categoria": "ACCESORIO BIKER",
     "precio": 16.0,
-    "stock_total": 876,
+    "stock_total": 776,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 292
+        "stock": 272
       },
       {
         "nombre": "L",
-        "stock": 293
+        "stock": 253
       },
       {
         "nombre": "XL",
-        "stock": 291
+        "stock": 251
       }
     ],
     "imagenes": [
@@ -89,13 +89,13 @@
     ],
     "descripcion": "Guantes Pro Biker Moto Protecciones Nudillos",
     "popular": true,
-    "stock": 876,
-    "stock_actual": 876,
+    "stock": 776,
+    "stock_actual": 776,
     "precio_venta": 16.0,
     "descripcion_detallada": "Guantes Pro Biker Moto Protecciones Nudillos",
     "imagen": "y008_1.png",
     "es_popular": true,
-    "variantes_raw": "M:292, L:293, XL:291"
+    "variantes_raw": "M:272, L:253, XL:251"
   },
   {
     "sku": "001",
@@ -199,7 +199,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 30.0,
-    "stock_total": 74,
+    "stock_total": 64,
     "variantes": [],
     "imagenes": [
       "imagenes/mq20_1.png",
@@ -209,8 +209,8 @@
     ],
     "descripcion": "Asiento En Gel",
     "popular": true,
-    "stock": 74,
-    "stock_actual": 74,
+    "stock": 64,
+    "stock_actual": 64,
     "precio_venta": 30.0,
     "descripcion_detallada": "Asiento En Gel",
     "imagen": "mq20_1.png",
@@ -223,7 +223,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 18.0,
-    "stock_total": 186,
+    "stock_total": 172,
     "variantes": [],
     "imagenes": [
       "imagenes/mq122_1.png",
@@ -233,8 +233,8 @@
     ],
     "descripcion": "Base De Exploradora Para Barras Telescópicas",
     "popular": false,
-    "stock": 186,
-    "stock_actual": 186,
+    "stock": 172,
+    "stock_actual": 172,
     "precio_venta": 18.0,
     "descripcion_detallada": "Base De Exploradora Para Barras Telescópicas",
     "imagen": "mq122_1.png",
@@ -415,11 +415,11 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 33.0,
-    "stock_total": 10,
+    "stock_total": 0,
     "variantes": [
       {
         "nombre": "CROMADO",
-        "stock": 10
+        "stock": 0
       }
     ],
     "imagenes": [
@@ -430,13 +430,13 @@
     ],
     "descripcion": "Candado Para Freno De Disco Semi Pesado",
     "popular": false,
-    "stock": 10,
-    "stock_actual": 10,
+    "stock": 0,
+    "stock_actual": 0,
     "precio_venta": 33.0,
     "descripcion_detallada": "Candado Para Freno De Disco Semi Pesado",
     "imagen": "a-011_1.png",
     "es_popular": false,
-    "variantes_raw": "CROMADO:10"
+    "variantes_raw": "CROMADO:0"
   },
   {
     "sku": "ZH",
@@ -444,7 +444,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 20.0,
-    "stock_total": 400,
+    "stock_total": 370,
     "variantes": [],
     "imagenes": [
       "imagenes/ZH-1.png",
@@ -454,8 +454,8 @@
     ],
     "descripcion": "Cargador De Carga Rápida 3.0",
     "popular": true,
-    "stock": 400,
-    "stock_actual": 400,
+    "stock": 370,
+    "stock_actual": 370,
     "precio_venta": 20.0,
     "descripcion_detallada": "Cargador De Carga Rápida 3.0",
     "imagen": "ZH-1.png",
@@ -529,7 +529,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 28.0,
-    "stock_total": 580,
+    "stock_total": 575,
     "variantes": [
       {
         "nombre": "ROJO",
@@ -537,7 +537,7 @@
       },
       {
         "nombre": "NEGRO",
-        "stock": 225
+        "stock": 220
       },
       {
         "nombre": "DORADO",
@@ -560,13 +560,13 @@
     ],
     "descripcion": "Corta Viento Deportivo",
     "popular": false,
-    "stock": 580,
-    "stock_actual": 580,
+    "stock": 575,
+    "stock_actual": 575,
     "precio_venta": 28.0,
     "descripcion_detallada": "Corta Viento Deportivo",
     "imagen": "a-8_1.png",
     "es_popular": false,
-    "variantes_raw": "ROJO:202, NEGRO:225, DORADO:47, PLATA:0, AZUL:106"
+    "variantes_raw": "ROJO:202, NEGRO:220, DORADO:47, PLATA:0, AZUL:106"
   },
   {
     "sku": "A-0019",
@@ -574,7 +574,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 8.0,
-    "stock_total": 590,
+    "stock_total": 570,
     "variantes": [],
     "imagenes": [
       "imagenes/a-0019_1.png",
@@ -584,8 +584,8 @@
     ],
     "descripcion": "Interruptor De 2 Tiempos Con 3 Cables",
     "popular": false,
-    "stock": 590,
-    "stock_actual": 590,
+    "stock": 570,
+    "stock_actual": 570,
     "precio_venta": 8.0,
     "descripcion_detallada": "Interruptor De 2 Tiempos Con 3 Cables",
     "imagen": "a-0019_1.png",
@@ -622,7 +622,7 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 38.0,
-    "stock_total": 72,
+    "stock_total": 62,
     "variantes": [],
     "imagenes": [
       "imagenes/8306_1.png",
@@ -632,8 +632,8 @@
     ],
     "descripcion": "Kit Candado De Disco Con Alarma",
     "popular": false,
-    "stock": 72,
-    "stock_actual": 72,
+    "stock": 62,
+    "stock_actual": 62,
     "precio_venta": 38.0,
     "descripcion_detallada": "Kit Candado De Disco Con Alarma",
     "imagen": "8306_1.png",
@@ -646,11 +646,11 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 9.5,
-    "stock_total": 323,
+    "stock_total": 293,
     "variantes": [
       {
         "nombre": "NEGRO",
-        "stock": 300
+        "stock": 270
       },
       {
         "nombre": "ROJO",
@@ -669,13 +669,13 @@
     ],
     "descripcion": "Malla Elástica Reflectiva Scoyco",
     "popular": false,
-    "stock": 323,
-    "stock_actual": 323,
+    "stock": 293,
+    "stock_actual": 293,
     "precio_venta": 9.5,
     "descripcion_detallada": "Malla Elástica Reflectiva Scoyco",
     "imagen": "419-1_1.png",
     "es_popular": false,
-    "variantes_raw": "NEGRO:300, ROJO:23, AZUL:0"
+    "variantes_raw": "NEGRO:270, ROJO:23, AZUL:0"
   },
   {
     "sku": "A-010",
@@ -683,35 +683,35 @@
     "marca": "AGR",
     "categoria": "Accesorios",
     "precio": 60.0,
-    "stock_total": 363,
+    "stock_total": 331,
     "variantes": [
       {
         "nombre": "ROJO",
-        "stock": 75
+        "stock": 70
       },
       {
         "nombre": "NEGRO",
-        "stock": 72
+        "stock": 67
       },
       {
         "nombre": "DORADO",
-        "stock": 50
+        "stock": 45
       },
       {
         "nombre": "PLATA",
-        "stock": 22
+        "stock": 20
       },
       {
         "nombre": "AZUL",
-        "stock": 72
+        "stock": 67
       },
       {
         "nombre": "VERDE",
-        "stock": 25
+        "stock": 20
       },
       {
         "nombre": "NARANJA",
-        "stock": 47
+        "stock": 42
       }
     ],
     "imagenes": [
@@ -722,13 +722,13 @@
     ],
     "descripcion": "Manija Rancing Universal",
     "popular": true,
-    "stock": 363,
-    "stock_actual": 363,
+    "stock": 331,
+    "stock_actual": 331,
     "precio_venta": 60.0,
     "descripcion_detallada": "Manija Rancing Universal",
     "imagen": "a-010_1.png",
     "es_popular": true,
-    "variantes_raw": "ROJO:75, NEGRO:72, DORADO:50, PLATA:22, AZUL:72, VERDE:25, NARANJA:47"
+    "variantes_raw": "ROJO:70, NEGRO:67, DORADO:45, PLATA:20, AZUL:67, VERDE:20, NARANJA:42"
   },
   {
     "sku": "A-004",
@@ -837,7 +837,7 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 36.0,
-    "stock_total": 692,
+    "stock_total": 682,
     "variantes": [],
     "imagenes": [
       "imagenes/x-20_1.png",
@@ -847,8 +847,8 @@
     ],
     "descripcion": "Bluetooth Para Casco",
     "popular": true,
-    "stock": 692,
-    "stock_actual": 692,
+    "stock": 682,
+    "stock_actual": 682,
     "precio_venta": 36.0,
     "descripcion_detallada": "Bluetooth Para Casco",
     "imagen": "x-20_1.png",
@@ -861,19 +861,19 @@
     "marca": "AGR",
     "categoria": "Accesorios Biker",
     "precio": 52.5,
-    "stock_total": 1120,
+    "stock_total": 1095,
     "variantes": [
       {
         "nombre": "M",
-        "stock": 395
+        "stock": 385
       },
       {
         "nombre": "L",
-        "stock": 399
+        "stock": 389
       },
       {
         "nombre": "XL",
-        "stock": 326
+        "stock": 321
       }
     ],
     "imagenes": [
@@ -884,13 +884,13 @@
     ],
     "descripcion": "Guantes De Cuero Icon",
     "popular": false,
-    "stock": 1120,
-    "stock_actual": 1120,
+    "stock": 1095,
+    "stock_actual": 1095,
     "precio_venta": 52.5,
     "descripcion_detallada": "Guantes De Cuero Icon",
     "imagen": "mq_1.png",
     "es_popular": false,
-    "variantes_raw": "M:395, L:399, XL:326"
+    "variantes_raw": "M:385, L:389, XL:321"
   },
   {
     "sku": "Y-01",
@@ -1112,7 +1112,7 @@
     "marca": "AGR",
     "categoria": "PORTA CELULARES",
     "precio": 22.0,
-    "stock_total": 227,
+    "stock_total": 207,
     "variantes": [],
     "imagenes": [
       "imagenes/sx18_1.png",
@@ -1122,8 +1122,8 @@
     ],
     "descripcion": "Porta Celular De 8 Agarres Para Timón",
     "popular": false,
-    "stock": 227,
-    "stock_actual": 227,
+    "stock": 207,
+    "stock_actual": 207,
     "precio_venta": 22.0,
     "descripcion_detallada": "Porta Celular De 8 Agarres Para Timón",
     "imagen": "sx18_1.png",
