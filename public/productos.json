@@ -445,12 +445,7 @@
     "categoria": "Accesorios",
     "precio": 20.0,
     "stock_total": 0,
-    "variantes": [
-      {
-        "nombre": "NEGRO",
-        "stock": 0
-      }
-    ],
+    "variantes": [],
     "imagenes": [
       "imagenes/ZH-1.png",
       "imagenes/ZH-2.jpg",
@@ -465,7 +460,7 @@
     "descripcion_detallada": "Cargador De Carga Rápida 3.0",
     "imagen": "ZH-1.png",
     "es_popular": true,
-    "variantes_raw": "NEGRO:0"
+    "variantes_raw": ""
   },
   {
     "sku": "103",
